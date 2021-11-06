@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'fabric-icons';
+    src: url('../font/fabric-mdl2.woff') format('woff');
+  }
+::placeholder {
+    color: #d6d6d6 !important;
+}
+.title-1 {
+    font-weight: 500;
+}
+.title-2 {
+    font-weight: 700;
+}
+.title-3 {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: normal;
+}
+.images {
+    position: relative;
+}
+.d-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.d-bottom {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.z-index-100 {
+    z-index: 100;
+}
+.nav-top {
+    font-family: 'Titillium Web', sans-serif;
+}
+.nav-top > li > a {
+    color:#fff !important;
+    text-transform: uppercase;
+    /* font-size: 12px; */
+}
+.divider-top {
+    width: 1px;
+    height: 30px;
+}
+.space-m {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.bg-primary-2 {
+    background-color: #004936 !important;
+}
+.card-home {
+    background-color: #004936 !important;
+    color: #fff;
+    min-height: 30vh;
+}
+.side-help {
+    position: fixed;
+    height:100%;
+    z-index: 1;
+    right: 0;
+    left: auto;
+}
+.btn-help {
+    border-radius: 0 0.125rem;
+}
+
+option:first-child
+{
+    color: #ccc !important;
+}
