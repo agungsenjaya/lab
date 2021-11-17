@@ -8,6 +8,6 @@ use DB;
 class ClientController extends Controller
 {
     public function index() {
-        //
+        return redirect()->route('login');
     }
 }

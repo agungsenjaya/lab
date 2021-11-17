@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::GET('/','ClientController@index')->name('index');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
     Route::GET('/dashboard', 'AdminController@index')->name('admin.dashboard');
