@@ -11,7 +11,7 @@ $no = 1;
 			<div class="card-body">
 				<div class="d-flex justify-content-between mb-4">
 					<div>
-						<h4 class="title-3 text-uppercase font-weight-bold mb-0 text-primary">Pencarian Pasien</h4>
+						<h4 class="title-3 text-uppercase fw-bold mb-0 text-lab">Pencarian Pasien</h4>
 						<p class="mb-0 text-secondary">List nama pasien</p>
 					</div>
 					<div>
@@ -41,7 +41,7 @@ $no = 1;
 								<td>{{ $pas->name }}</td>
 								<td>{{ $pas->ktp }}</td>
 								<td>@php $data = \App\Diagnosa::where('pasien_id', $pas->id)->get(); @endphp @if($data) {{ counTing(count($data)) }} @endif</td>
-								<td><a href="{{ route('admin.pasien_detail',['id' => $pas -> id]) }}" class="btn btn-sm btn-block btn-primary">Detail</a>
+								<td><a href="{{ route('admin.pasien_detail',['id' => $pas -> id]) }}" class="btn btn-sm w-100 btn-lab">Detail</a>
 								</td>
 							</tr>@endforeach</tbody>
 					</table>
@@ -53,12 +53,12 @@ $no = 1;
 @include('footer')
 @endsection
 @section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 @endsection
 @section('js')
 <script src="https://htmlstream.com/preview/nova-v1.2.2/assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $('#example').DataTable();
 </script>

@@ -1,9 +1,9 @@
-<nav class="navbar navbar-light bg-primary">
+<nav class="navbar navbar-light bg-lab">
     <div class="container">
     <a class="navbar-brand text-white" href="{{ route('admin.dashboard') }}">
-        <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle mr-2"><span class="title-3 text-uppercase font-weight-bold h5">Labora</span>
+        <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora</span>
     </a>
-    <ul class="nav ml-auto nav-top d-flex align-items-center">
+    <ul class="nav ms-auto nav-top d-flex align-items-center">
     <li class="nav-item">
     <div class="input-group input-group-sm bg-white rounded-pill">
    <div class="input-group-prepend">
@@ -22,15 +22,15 @@
           <div class="divider-top border-left border-white"></div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="align-middle text-uppercase">Account</span>
-      <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle ml-3 rounded-pill">
+      <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle ms-3 rounded-pill">
         </a>
-        <div class="dropdown-menu dropdown-menu-right animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
           <h6 class="dropdown-header text-uppercase">Your Account</h6>
-          <a class="dropdown-item" href="javascript:void(0)"><i class="ms-Icon ms-Icon--PlayerSettings mr-2"></i>Setting Account</a>
+          <a class="dropdown-item" href="javascript:void(0)"><i class="ms-Icon ms-Icon--PlayerSettings me-2"></i>Setting Account</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#modalLogout"><i class="ms-Icon ms-Icon--SignOut mr-2"></i>Logout</a>
+          <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalLogout"><i class="ms-Icon ms-Icon--SignOut me-2"></i>Logout</a>
         </div>
       </li>
     </ul>

@@ -12,7 +12,7 @@ $no = 1;
             <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
 					<div>
-						<h4 class="title-3 text-uppercase font-weight-bold mb-0 text-primary">Detail Pasien</h4>
+						<h4 class="title-3 text-uppercase fw-bold mb-0 text-lab">Detail Pasien</h4>
 						<p class="mb-0 text-secondary">Informasi detail pasien</p>
 					</div>
 					<div>
@@ -29,9 +29,9 @@ $no = 1;
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<div class="card">
+						<div class="card border-0">
 							<div class="card-body">
-							<table class="table text-secondary">
+							<table class="table text-secondary line-h-2">
 							<tbody class="text-capitalize">
 								<tr>
 									<td>Nomor KTP</td>
@@ -79,7 +79,7 @@ $no = 1;
 
 				<div class="d-flex justify-content-between my-4">
 					<div>
-						<h4 class="title-3 text-uppercase font-weight-bold mb-0 text-primary">Riwayat pasien</h4>
+						<h4 class="title-3 text-uppercase fw-bold mb-0 text-lab">Riwayat pasien</h4>
 						<p class="mb-0 text-secondary">Informasi riwayat pengobatan</p>
 					</div>
 					
@@ -105,7 +105,7 @@ $no = 1;
 								<td>{{ $pas->dokter->name }}</td>
 								<td>{{ $pas->cabang->kota }}</td>
 								<td>{{ $pas->created_at }}</td>
-								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm btn-block btn-primary">Print Out</a>
+								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-lab">Print Out</a>
 								</td>
 							</tr>@endforeach</tbody>
 					</table>
@@ -120,12 +120,12 @@ $no = 1;
 @include('footer')
 @endsection
 @section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 @endsection
 @section('js')
 <script src="https://htmlstream.com/preview/nova-v1.2.2/assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $('#example').DataTable();
 </script>

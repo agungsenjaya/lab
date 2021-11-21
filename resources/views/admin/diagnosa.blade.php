@@ -8,7 +8,7 @@
             <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
 					<div>
-						<h4 class="title-3 text-uppercase text-primary font-weight-bold mb-0">Diagnosa Pasien</h4>
+						<h4 class="title-3 text-uppercase text-lab fw-bold mb-0">Diagnosa Pasien</h4>
 						<p class="mb-0 text-secondary">Informasi diagnosa pasien</p>
 					</div>
 					<div>
@@ -24,9 +24,9 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-					<div class="card">
+					<div class="card border-0">
 					<div class="card-body">
-					<table class="table text-secondary">
+					<table class="table text-secondary line-h-2">
 					<tbody class="text-capitalize">
 						<tr>
 							<td>No. Transaksi</td>
@@ -64,9 +64,9 @@
 					</tbody>
 				</table>
 					</div>
-					<div class="card-footer d-flex justify-content-between">
+					<div class="card-footer bg-transparent border-0 d-flex justify-content-between">
 							<div>Total Pembayaran</div>
-							<div class="text-capitalize title-2 text-primary">
+							<div class="text-capitalize title-2 text-lab">
 								{{ 'Rp ' . $data->pembayaran }}
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 					<div class="col-md-6">
 						<div class="bg-light rounded" style="height:50vh"></div>
 						<div class="mt-4 text-center">
-							<a href="javascript:void(0)" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print mr-2"></i>Cetak pembayaran</a>
+							<a href="javascript:void(0)" class="btn btn-lab"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak pembayaran</a>
 						</div>
 					</div>
 				</div>

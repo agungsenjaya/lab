@@ -105,6 +105,8 @@
     </script>
 </head>
 <body>
+@guest
+@else
     <!-- Page loading spinner-->
     <div class="page-loading active">
       <div class="page-loading-inner">
@@ -112,11 +114,9 @@
       </div>
     </div>
     <div id="app">
-      @guest
-      @else
-      @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('owner'))
+      @if(Auth::user()->hasRole('superadmin'))
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -165,12 +165,24 @@
                 </div>
             </div>
         </nav>
+        <section class="">
+          <div class="container-fluid">
+            <div class="row g-0">
+              <div class="col-md-2 min-vh-100 bg-light">
+              <div class="list-group nav-res">
+  <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+  <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+  <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+</div>
+              </div>
+              <div class="col-md">
+                @yield('content')
+              </div>
+            </div>
+          </div>
+        </section>
         @endif
         @endguest
-
-        <main class="">
-            @yield('content')
-        </main>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->

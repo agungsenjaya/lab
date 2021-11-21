@@ -4,7 +4,7 @@
 <!-- <div class="side-help">
   <button class="btn btn-warning btn-help" type="button">Bantuan</button>
 </div> -->
-<section class="min-vh-100 bg-primary">
+<section class="min-vh-100 bg-lab">
   @include('header')
 <div class="space-m">
   <div class="container">
@@ -15,7 +15,7 @@
           <div class="media">
           <!-- <i class="ms-Icon ms-Icon--UserEvent mr-3 h2"></i> -->
             <div class="media-body">
-            <h5 class="title-3 text-uppercase font-weight-bold mb-0">Pencarian Pasien</h5>
+            <h5 class="title-3 text-uppercase fw-bold mb-0">Pencarian Pasien</h5>
             <p class="mb-0">Cari nama pasien</p>
             </div>
           </div>
@@ -28,7 +28,7 @@
           <div class="media">
           <!-- <i class="ms-Icon ms-Icon--AddFriend mr-3 h2"></i> -->
             <div class="media-body">
-            <h5 class="title-3 text-uppercase font-weight-bold mb-0">Input Pasien</h5>
+            <h5 class="title-3 text-uppercase fw-bold mb-0">Input Pasien</h5>
             <p class="mb-0">Input data pasien baru</p>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <div class="media">
           <!-- <i class="ms-Icon ms-Icon--UserEvent mr-3 h2"></i> -->
             <div class="media-body">
-            <h5 class="title-3 text-uppercase font-weight-bold mb-0">Nama Dokter</h5>
+            <h5 class="title-3 text-uppercase fw-bold mb-0">Nama Dokter</h5>
           <p class="mb-0">Daftar list dokter</p>
             </div>
           </div>
@@ -54,7 +54,7 @@
           <div class="media">
           <!-- <i class="ms-Icon ms-Icon--UserEvent mr-3 h2"></i> -->
             <div class="media-body">
-            <h5 class="title-3 text-uppercase font-weight-bold mb-0">Informasi Lab</h5>
+            <h5 class="title-3 text-uppercase fw-bold mb-0">Informasi Lab</h5>
           <p class="mb-0">Detail laboratorium</p>
             </div>
           </div>

@@ -114,7 +114,7 @@
     <div id="app">
       @guest
       @else
-      @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('owner'))
+      @if(Auth::user()->hasRole('owner'))
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -167,7 +167,6 @@
         </nav>
         @endif
         @endguest
-
         <main class="">
             @yield('content')
         </main>

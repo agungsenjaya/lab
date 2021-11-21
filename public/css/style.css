@@ -74,3 +74,23 @@ option:first-child
 {
     color: #ccc !important;
 }
+.nav-res > a {
+    background: transparent;
+}
+.text-lab {
+    color: #005C45;
+}
+.bg-lab {
+    background-color: #005C45;
+}
+.btn-lab {
+    background-color: #005C45;
+    color: #fff;
+}
+.btn-lab:hover {
+    background-color: #124F3F;
+    color: #fff;
+}
+.line-h-2 {
+    line-height: 2;
+}
