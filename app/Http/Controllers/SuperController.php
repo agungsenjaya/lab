@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Diagnosa;
+use Auth;
 
 class SuperController extends Controller
 {
@@ -21,8 +23,10 @@ class SuperController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('super.home');
+        // $location = $request->ipinfo->all;
+        $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
+        return view('super.home',compact('data'));
     }
 }

@@ -40,7 +40,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="card-footer lead bg-transparent border-0 text-muted text-center mx-4">
+                <div class="card-footer bg-transparent border-0 text-muted text-center mx-4">
                 Jika anda mempunyai kendala seputar lupa password, silahkan <a href="{{ route('password.request') }}" class="fw-bold"><u>klik disini.</u></a>
                 </div>
         </div>
@@ -55,7 +55,7 @@
                 <h2 class="title-1 display-5">Sistem management laboratorium</h2>
                     <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est quisquam numquam aut dicta sint quaerat aperiam veniam omnis</p> -->
                 </div>
-                <div class="w-100 text-right">
+                <div class="w-100 text-end">
                     <img src="{{ asset('img/shape-5.svg') }}" alt="" width="80%">
                 </div>
             </div>

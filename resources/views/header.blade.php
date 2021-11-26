@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-lab">
     <div class="container">
     <a class="navbar-brand text-white" href="{{ route('admin.dashboard') }}">
-        <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora</span>
+        <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora admin</span>
     </a>
     <ul class="nav ms-auto nav-top d-flex align-items-center">
     <li class="nav-item">
@@ -28,9 +28,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
           <h6 class="dropdown-header text-uppercase">Your Account</h6>
-          <a class="dropdown-item" href="javascript:void(0)"><i class="ms-Icon ms-Icon--PlayerSettings me-2"></i>Setting Account</a>
+          <a class="dropdown-item" href="javascript:void(0)">Setting Account</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalLogout"><i class="ms-Icon ms-Icon--SignOut me-2"></i>Logout</a>
+          <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout</a>
         </div>
       </li>
     </ul>
