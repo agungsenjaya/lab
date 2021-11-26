@@ -54,6 +54,9 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
+.space-mb {
+    padding-bottom: 40px;
+}
 .bg-primary-2 {
     background-color: #004936 !important;
 }
@@ -97,6 +100,14 @@ option:first-child
 .bg-lab {
     background-color: #005C45;
 }
+.btn-warn {
+    background-color: #E4C573;
+    color: #005C45;
+}
+.btn-warn:hover {
+    background-color: #c0a455;
+    color: #005C45;
+}
 .btn-lab {
     background-color: #005C45;
     color: #fff;
@@ -116,4 +127,7 @@ option:first-child
 }
 .line-h-2 {
     line-height: 2;
+}
+#table1_wrapper > .row {
+    margin-bottom: 20px;
 }
