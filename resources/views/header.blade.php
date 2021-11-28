@@ -4,7 +4,7 @@
         <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora admin</span>
     </a>
     <ul class="nav ms-auto nav-top d-flex align-items-center">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
     <div class="input-group input-group-sm bg-white rounded-pill">
    <div class="input-group-prepend">
      <button class="btn pr-0 pl-2" type="button">
@@ -20,11 +20,11 @@
       </li>
         <li class="nav-item">
           <div class="divider-top border-left border-white"></div>
-      </li>
+      </li> -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="align-middle text-uppercase">Account</span>
-      <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle ms-3 rounded-pill">
+          <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle rounded-pill">
+          <span class="align-middle text-uppercase title-3 fw-bold ms-2">Account</span>
         </a>
         <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
           <h6 class="dropdown-header text-uppercase">Your Account</h6>

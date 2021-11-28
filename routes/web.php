@@ -23,6 +23,7 @@ Auth::routes(['register' => false]);
 Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
     Route::GET('/dashboard', 'AdminController@index')->name('admin.dashboard');
     Route::GET('/pasien', 'AdminController@pasien')->name('admin.pasien');
+    Route::GET('/pasien/search', 'AdminController@pasien_search')->name('admin.pasien_search');
     Route::GET('/pasien/new', 'AdminController@pasien_new')->name('admin.pasien_new');
     Route::POST('/pasien/new/store', 'AdminController@pasien_store')->name('admin.pasien_store');
     Route::GET('/pasien/detail/{id}', 'AdminController@pasien_detail')->name('admin.pasien_detail');
@@ -30,6 +31,9 @@ Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
 });
 Route::GROUP(['prefix' => 'superadmin',  'middleware' => ['role:superadmin']], function(){
     Route::GET('/dashboard', 'SuperController@index')->name('dashboard.super');
+    Route::GET('/pasien', 'SuperController@pasien')->name('super.pasien');
+    Route::GET('/pasien/search', 'SuperController@pasien_search')->name('super.pasien_search');
+    Route::GET('/pasien/detail/{id}', 'SuperController@pasien_detail')->name('super.pasien_detail');
 });
 Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){
     Route::GET('/dashboard', 'OwnerController@index')->name('dashboard.owner');

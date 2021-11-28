@@ -1,4 +1,3 @@
-
 <div class="position-fixed bottom-0 right-0 p-3 animate__animated animate__fadeInUp animate__faster" style="z-index: 5; right: 0; bottom: 0;">
 @if(Session::has('success'))
   <div id="tSuccess" class="toast hide border-primary" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">

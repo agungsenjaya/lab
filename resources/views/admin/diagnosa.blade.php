@@ -39,11 +39,11 @@
 							<td>{{ $data->pasien->name }}</td>
 						</tr>
 						<tr>
-							<td>Dokter Pemeriksa</td>
+							<td>Dokter</td>
 							<td>:</td>
 							<td>
 								<!-- <span class="badge badge-warning badge-pill px-3"></span> -->
-									{{ $data->dokter->name }}
+								<i class="text-lab bi bi-person-badge me-2"></i>{{ $data->dokter->name }}
 							</td>
 						</tr>
 						<tr>

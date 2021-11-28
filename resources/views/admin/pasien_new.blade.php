@@ -104,7 +104,7 @@ var mask = IMask(masa, maskOptions);
 $( "#number" ).keyup(function() {
 		var bos = $(this ).val();
 		if (bos.length == 16) {
-			$.getJSON(`http://lab.test/api/v1/pasiens/${bos}`,
+			$.getJSON(`http://localhost:8000/api/v1/pasiens/${bos}`,
 				function (res) {
 					if (res.data) {
 						$('input[name="name"]').val(res.data.name);

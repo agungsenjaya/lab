@@ -1,2 +1,2 @@
-$('#tSuccess').toast('show');
-$('#tFailed').toast('show');
+// $('#tSuccess').toast('show');
+// $('#tFailed').toast('show');

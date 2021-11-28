@@ -33,7 +33,13 @@ class AdminController extends Controller
 
     public function pasien()
     {
-        return view('admin.pasien')->with('pasien', Pasien::all());
+        $pasien = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
+        return view('admin.pasien',compact('pasien'));
+    }
+    
+    public function pasien_search()
+    {
+        return view('admin.pasien_search')->with('pasien', Pasien::all());
     }
     
     public function pasien_new()

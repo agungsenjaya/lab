@@ -15,8 +15,8 @@
           <div class="media">
           <!-- <i class="ms-Icon ms-Icon--UserEvent mr-3 h2"></i> -->
             <div class="media-body">
-            <h5 class="title-3 text-uppercase fw-bold mb-0">Pencarian Pasien</h5>
-            <p class="mb-0">Cari nama pasien</p>
+            <h5 class="title-3 text-uppercase fw-bold mb-0">Table Pasien</h5>
+            <p class="mb-0">Pasien di laboratorium</p>
             </div>
           </div>
         </div>

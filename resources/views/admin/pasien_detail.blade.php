@@ -86,30 +86,28 @@ $no = 1;
 				</div>
 
 				@if($data)
-				<div class="table-responsive-md datatable">
-				<table class="js-datatable table mb-5 table-striped table-bordered" id="example">
-						<thead class="title-3 text-uppercase">
+				<table id="table1" class="table table-striped w-100 table-bordered">
+						<thead class="title-3 text-uppercase text-lab">
 							<tr>
 								<th scope="col" class="border-top-0 py-2">#</th>
 								<th scope="col" class="border-top-0 py-2">Diagnosa</th>
 								<th scope="col" class="border-top-0 py-2">Dokter</th>
 								<th scope="col" class="border-top-0 py-2">Cabang</th>
-								<th scope="col" class="border-top-0 py-2">Tgl Berobat</th>
+								<th scope="col" class="border-top-0 py-2">Tgl</th>
 								<th scope="col" class="border-top-0 py-2">Actions</th>
 							</tr>
 						</thead>
-						<tbody class="font-size-1 text-secondary text-capitalize">@foreach($data as $pas)
+						<tbody class="font-size-1 text-capitalize">@foreach($data->reverse() as $pas)
 							<tr>
 								<td>{{ counTing($no++) }}</td>
 								<td>{{ $pas->formula->judul }}</td>
-								<td>{{ $pas->dokter->name }}</td>
+								<td><i class="text-lab bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
 								<td>{{ $pas->cabang->kota }}</td>
 								<td>{{ $pas->created_at }}</td>
-								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-lab">Print Out</a>
+								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-lab">Detail</a>
 								</td>
 							</tr>@endforeach</tbody>
 					</table>
-				</div>
 				@endif
 
             </div>
@@ -127,6 +125,6 @@ $no = 1;
 <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script>
-    $('#example').DataTable();
+    $('#table1').DataTable();
 </script>
 @endsection
