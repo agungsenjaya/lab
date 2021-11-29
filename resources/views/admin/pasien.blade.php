@@ -44,7 +44,7 @@ $no = 1;
 								<td><i class="text-lab bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
 								<td class="text-uppercase">{{ counTing($pas->id) . substr($pas->kode, 0 ,5) }}</td>
 								<td>{{ $pas->created_at }}</td>
-								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-lab">Detail</a>
+								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-warn">Detail</a>
 								</td>
 							</tr>@endforeach</tbody>
 					</table>
