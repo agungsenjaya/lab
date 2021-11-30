@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Diagnosa;
 use App\Dokter;
+use App\Pasien;
 use DB,Session,Uuid,Validator,Auth;
 
 class SuperController extends Controller
@@ -42,13 +43,19 @@ class SuperController extends Controller
         return view('super.pasien',compact('data'));
     }
 
+    public function diagnosa($id)
+    {
+        $data = Diagnosa::where('kode', $id)->first();
+        return view('super.diagnosa',compact('data'));
+    }
+
     public function pasien_detail($id)
     {
-        $pasien = Diagnosa::where('kode', $id)->first();
+        $pasien = Pasien::where('id', $id)->first();
         return view('super.pasien_detail',compact('pasien'));
     }
     
     public function pasien_search() {
-        // 
+        return view('super.pasien_search')->with('pasien', Pasien::all());
     }
 }

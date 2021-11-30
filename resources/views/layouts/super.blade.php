@@ -141,11 +141,11 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.pasien')? 'show' : '' }}" id="nav-1" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.pasien')? 'show' : '' || (Route::currentRouteName() == 'super.pasien_detail')? 'show' : '' || (Route::currentRouteName() == 'super.diagnosa')? 'show' : '' || (Route::currentRouteName() == 'super.pasien_search')? 'show' : '' }}" id="nav-1" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
-                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien_search')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Cari Pasien</a>
+                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien')? 'active-res' : '' || (Route::currentRouteName() == 'super.diagnosa')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
+                  <a href="{{ route('super.pasien_search') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien_detail')? 'active-res' : '' || (Route::currentRouteName() == 'super.pasien_search')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Cari Pasien</a>
                 </div>
                 
               </div>

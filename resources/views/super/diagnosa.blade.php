@@ -1,10 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.super')
 @section('content')
-@include('modal')
-@include('header')
-<section class="min-vh-100 space-m">
+<section>
     <div class="container">
-        <div class="card shadow">
+        
+	<div class="card shadow">
             <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
 					<div>
@@ -14,7 +13,7 @@
 					<div>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="{{ route('admin.pasien') }}">Pasien</a>
+								<li class="breadcrumb-item"><a href="{{ route('super.pasien') }}">Pasien</a>
 								</li>
 								<!-- <li class="breadcrumb-item"><a href="{{ route('admin.pasien_detail',['id' =>$data ->pasien_id]) }}">Detail pasien</a></li> -->
 								<li class="breadcrumb-item active" aria-current="page">Diagnosa pasien</li>
@@ -75,15 +74,14 @@
 					<div class="col-md-6">
 						<div class="bg-light rounded" style="height:50vh"></div>
 						<div class="mt-4 text-center">
-							<a href="{{ route('admin.pasien_detail',['id' =>$data ->pasien_id]) }}" class="btn btn-warn me-2">Track Record</a>
+							<a href="{{ route('super.pasien_detail',['id' =>$data ->pasien_id]) }}" class="btn btn-warn me-2">Track Record</a>
 							<a href="javascript:void(0)" class="btn btn-lab"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak pembayaran</a>
 						</div>
 					</div>
 				</div>
             </div>
         </div>
+        
     </div>
 </section>
-@include('alert')
-@include('footer')
 @endsection

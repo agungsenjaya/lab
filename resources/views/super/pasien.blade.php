@@ -57,7 +57,7 @@ $no = 1;
           <i class="text-lab bi bi-person-badge me-2"></i>{{ $dat->dokter->name }}
         </td>
         <td>
-          <a href="{{ route('super.pasien_detail',['id' => $dat -> kode]) }}" class="btn btn-warn w-100 btn-sm">Details</a>
+          <a href="{{ route('super.diagnosa',['id' => $dat -> kode]) }}" class="btn btn-warn w-100 btn-sm">Details</a>
         </td>
       </tr>
       @endforeach
