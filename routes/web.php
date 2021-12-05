@@ -35,6 +35,11 @@ Route::GROUP(['prefix' => 'superadmin',  'middleware' => ['role:superadmin']], f
     Route::GET('/pasien/search', 'SuperController@pasien_search')->name('super.pasien_search');
     Route::GET('/diagnosa/{id}', 'SuperController@diagnosa')->name('super.diagnosa');
     Route::GET('/pasien/detail/{id}', 'SuperController@pasien_detail')->name('super.pasien_detail');
+    Route::GET('/dokter', 'SuperController@dokter')->name('super.dokter');
+    Route::GET('/dokter/edit/{id}', 'SuperController@dokter_edit')->name('super.dokter_edit');
+    Route::GET('/dokter/update/{id}', 'SuperController@dokter_update')->name('super.dokter_update');
+    Route::GET('/dokter/new', 'SuperController@dokter_new')->name('super.dokter_new');
+    Route::POST('/dokter/store', 'SuperController@dokter_store')->name('super.dokter_store');
 });
 Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){
     Route::GET('/dashboard', 'OwnerController@index')->name('dashboard.owner');

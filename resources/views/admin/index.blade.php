@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
 @include('modal')
-<!-- <div class="side-help">
-  <button class="btn btn-warning btn-help" type="button">Bantuan</button>
-</div> -->
 <section class="min-vh-100 bg-lab">
   @include('header')
 <div class="space-m">

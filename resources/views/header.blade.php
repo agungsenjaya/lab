@@ -23,7 +23,7 @@
       </li> -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle rounded-pill">
+          <img src="{{ asset('img/user.png') }}" width="40" alt="" class="align-middle rounded-pill">
           <span class="align-middle text-uppercase title-3 fw-bold ms-2">Account</span>
         </a>
         <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">

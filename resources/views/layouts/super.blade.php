@@ -155,11 +155,11 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2" id="nav-2" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.dokter')? 'show' : '' || (Route::currentRouteName() == 'super.dokter_edit')? 'show' : '' || (Route::currentRouteName() == 'super.dokter_new')? 'show' : '' }}" id="nav-2" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action"><i class="bi bi-dot me-3"></i>Table Dokter</a>
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action"><i class="bi bi-dot me-3"></i>Tambah Dokter</a>
+                  <a href="{{ route('super.dokter') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter')? 'active-res' : '' || (Route::currentRouteName() == 'super.dokter_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Dokter</a>
+                  <a href="{{ route('super.dokter_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah Dokter</a>
                 </div>
                 
               </div>
@@ -205,7 +205,7 @@
                         @else
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle text-dark" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle rounded-pill">
+                            <img src="{{ asset('img/user.png') }}" width="40" alt="" class="align-middle rounded-pill">
                             <span class="align-middle text-uppercase title-3 fw-bold ms-2">Account</span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">

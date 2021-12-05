@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('modal')
+@include('alert')
 @include('header')
 <section class="min-vh-100 space-m">
     <div class="container">
@@ -84,6 +85,5 @@
         </div>
     </div>
 </section>
-@include('alert')
 @include('footer')
 @endsection

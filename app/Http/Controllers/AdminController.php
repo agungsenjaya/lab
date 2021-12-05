@@ -52,14 +52,14 @@ class AdminController extends Controller
     public function pasien_store(Request $request)
     {
         $pasien;
-        $valpasien = Validator::make($request->all(), [
+        $valid = Validator::make($request->all(), [
             'ktp' => 'required|unique:pasiens',
         ]);
-        if ($valpasien->fails()) {
+        if ($valid->fails()) {
             $pasien = Pasien::where('ktp',$request->ktp)->first();
             $pasien = $pasien->id;
             // Session::flash('failed','Data gagal diinput, coba periksa kembali.');
-            // return redirect()->back()->withErrors($valpasien)->withInput();
+            // return redirect()->back()->withErrors($valid)->withInput();
         }else{
             $pasien = Pasien::create([
                 'name' => $request->name,

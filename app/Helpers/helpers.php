@@ -23,8 +23,21 @@ function titleSuper($a)
         case 'super.pasien':
             echo 'Table Pasien';
             break;
+        case 'super.dokter':
+            echo 'Table Dokter';
+            break;
+        case 'super.dokter_new':
+            echo 'Tambah Dokter';
+            break;
+        case 'super.dokter_edit':
+            echo 'Edit Dokter';
+            break;
         default:
             echo 'Dashboard';
             break;
     }
+}
+
+function titleOwner($a){
+    // 
 }

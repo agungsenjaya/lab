@@ -58,4 +58,46 @@ class SuperController extends Controller
     public function pasien_search() {
         return view('super.pasien_search')->with('pasien', Pasien::all());
     }
+
+    public function dokter()
+    {
+        $data = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
+        return view('super.dokter',compact('data'));
+    }
+
+    public function dokter_edit($id)
+    {
+        $data = Dokter::where('id', $id)->first();
+        return view('super.dokter_edit',compact('data'));
+    }
+    
+    public function dokter_update(Request $request, $id)
+    {
+        // 
+    }
+
+    public function dokter_new()
+    {
+        return view('super.dokter_new');
+    }
+
+    public function dokter_store(Request $request)
+    {
+        $valid = Dokter::where('name', $request->name)->where('specialist', $request->specialist)->where('cabang_id', Auth::user()->cabang_id)->first();
+        if ($valid) {
+            Session::flash('failed','Nama dokter dan specialist sudah terdaftar sebelumnya.');
+            return redirect()->route('super.dokter_new');
+        }else{
+            $data = Dokter::create([
+                'name' => $request->name,
+                'user_id' => Auth::user()->id,
+                'specialist' => $request->specialist,
+                'cabang_id' => Auth::user()->cabang_id,
+            ]);
+            if ($data) {
+                Session::flash('success','Data dokter baru berhasil ditambahkan.');
+                return redirect()->route('super.dokter');
+            }
+        }
+    }
 }

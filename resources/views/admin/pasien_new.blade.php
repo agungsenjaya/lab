@@ -84,7 +84,6 @@
 		</div>
 	</div>
 </section>
-@include('alert')
 @include('footer')
 @endsection
 @section('css')
@@ -102,8 +101,9 @@ var maskOptions = {
 var mask = IMask(masa, maskOptions);
 
 $( "#number" ).keyup(function() {
-		var bos = $(this ).val();
-		if (bos.length == 16) {
+		var bos = $(this).val();
+		// if (bos.length == 16) {
+		// }
 			$.getJSON(`http://localhost:8000/api/v1/pasiens/${bos}`,
 				function (res) {
 					if (res.data) {
@@ -113,7 +113,6 @@ $( "#number" ).keyup(function() {
 						$('textarea[name="alamat"]').val(res.data.alamat);
 					}
 				});
-		}
 	});
 </script>
 @endsection

@@ -17,16 +17,19 @@ class DoktersTableSeeder extends Seeder
         DB::table('dokters')->insert([
             'name' => 'boyke',
             'cabang_id' => 1,
+            'specialist' => 'umum',
             'user_id' => 2,
         ]);
         DB::table('dokters')->insert([
             'name' => 'elman',
             'cabang_id' => 1,
+            'specialist' => 'gigi',
             'user_id' => 2,
         ]);
         DB::table('dokters')->insert([
             'name' => 'sarah',
             'cabang_id' => 1,
+            'specialist' => 'jantung',
             'user_id' => 2,
         ]);
     }
