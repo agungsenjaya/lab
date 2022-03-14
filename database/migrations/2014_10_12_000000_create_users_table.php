@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('kelamin',['laki-laki','perempuan']);
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->integer('cabang_id');
             $table->integer('user_id');
             $table->longText('alamat');

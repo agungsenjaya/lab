@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
          */
         $a = new User();
         $a->name = 'owner';
-        $a->phone = '088';
+        $a->phone = '88';
         $a->user_id = 1;
         $a->cabang_id = 1;
         $a->kelamin = 'laki-laki';
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
         
         $b = new User();
         $b->name = 'superadmin';
-        $b->phone = '088';
+        $b->phone = '88';
         $b->user_id = 1;
         $b->cabang_id = 1;
         $b->kelamin = 'laki-laki';
@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
         
         $c = new User();
         $c->name = 'admin';
-        $c->phone = '088';
+        $c->phone = '88';
         $c->user_id = 2;
         $c->cabang_id = 1;
         $c->kelamin = 'laki-laki';

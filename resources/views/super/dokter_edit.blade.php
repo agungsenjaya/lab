@@ -3,7 +3,7 @@
 <section>
     <div class="container">
         <div class="card card-body shadow">
-        <div class="d-flex justify-content-between mb-4">
+        <div class="d-flex justify-content-between">
 					<div>
 						
 					</div>
@@ -12,7 +12,7 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="{{ route('super.dokter') }}">Dokter</a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Detail dokter</li>
+								<li class="breadcrumb-item active" aria-current="page">Edit dokter</li>
 							</ol>
 						</nav>
 					</div>
@@ -24,13 +24,26 @@
 					</div>
 				</div>
 
-				<!-- <div class="media">
-					<img src="{{ asset('img/user.png') }}" alt="" width="80" class="me-2">
-					<div class="media-body">
-						<h5 class="text-uppercase title-3 text-lab fw-bold">{{ $data->name }}</h5>
-						<span class="badge bg-lab w-100">Aktif</span>
-					</div>
-				</div> -->
+				<form action="{{ route('super.dokter_update',['id' => $data -> id]) }}" method="POST">
+      @csrf
+  <div class="mb-3">
+    <label class="form-label">Nama Lengkap</label>
+    <input type="text" class="form-control" name="name" placeholder="Masukan nama" required value="{{ $data->name }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Specialist</label>
+    <select name="specialist" class="form-select" required>
+        <option value="">-- Select Option --</option>
+        <option value="umum" {{ ($data->specialist == 'umum') ? 'selected' : '' }}>umum</option>
+        <option value="gigi" {{ ($data->specialist == 'gigi') ? 'selected' : '' }}>gigi</option>
+        <option value="jantung" {{ ($data->specialist == 'jantung') ? 'selected' : '' }}>jantung</option>
+        <option value="mata" {{ ($data->specialist == 'mata') ? 'selected' : '' }}>mata</option>
+        <option value="syaraf" {{ ($data->specialist == 'syaraf') ? 'selected' : '' }}>syaraf</option>
+        <option value="anak" {{ ($data->specialist == 'anak') ? 'selected' : '' }}>anak</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-lab">Update Dokter</button>
+</form>
 
         </div>
     </div>

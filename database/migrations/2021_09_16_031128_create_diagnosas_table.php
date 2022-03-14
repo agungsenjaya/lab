@@ -17,7 +17,7 @@ class CreateDiagnosasTable extends Migration
             $table->id();
             $table->string('kode');
             $table->integer('dokter_id');
-            $table->integer('formula_id');
+            $table->json('data');	
             $table->integer('cabang_id');
             $table->integer('pasien_id');
             $table->integer('user_id');

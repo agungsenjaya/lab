@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pasien;
 use App\Dokter;
+use App\Cabang;
 use App\Formula;
 use App\Diagnosa;
 use DB,Session,Uuid,Validator,Auth;
@@ -44,16 +45,15 @@ class AdminController extends Controller
     
     public function pasien_new()
     {
-        // $uuid = Uuid::generate(1);
-        // dd($uuid->string);
-        return view('admin.pasien_new')->with('pasien', Pasien::all())->with('dokter', Dokter::all())->with('formula', Formula::all());
+        $dokter = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
+        return view('admin.pasien_new',compact('dokter'))->with('pasien', Pasien::all());
     }
 
     public function pasien_store(Request $request)
     {
         $pasien;
         $valid = Validator::make($request->all(), [
-            'ktp' => 'required|unique:pasiens',
+            'ktp' => 'unique:pasiens',
         ]);
         if ($valid->fails()) {
             $pasien = Pasien::where('ktp',$request->ktp)->first();
@@ -99,5 +99,17 @@ class AdminController extends Controller
     {
         $pasien = Pasien::where('id', $id)->first();
         return view('admin.pasien_detail',compact('pasien'));
+    }
+
+    public function dokter()
+    {
+        $dokter = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
+        return view('admin.dokter', compact('dokter'));
+    }
+
+    public function info()
+    {
+        $cabang = Cabang::where('id', Auth::user()->cabang_id)->first();
+        return view('admin.info', compact('cabang'));
     }
 }

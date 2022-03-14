@@ -4,6 +4,14 @@
 $no = 1;
 @endphp
 <section>
+  <!-- <div class="d-flex justify-content-between mb-4">
+    <div>
+      <h5 class="title-2 mb-0">Laporan Hari Ini</h5>
+    </div>
+    <div>
+      <a href="{{ route('super.laporan') }}">Laporan Lainnya</a>
+    </div>
+  </div> -->
 <div class="row row-cols-1 row-cols-md-3 g-4 text-white">
   <div class="col">
     <div class="position-relative">
@@ -27,7 +35,7 @@ $no = 1;
   <div class="card-body z-index-100">
       <h4 class="card-title">Jumlah Pasien</h4>
       <h1 class="text-warn title-2">{{ counTing(count($data)) }}</h1>
-      <p class="lead">Total pasien yang telah berobat di laboratorium</p>
+      <p class="lead">Total pasien yang telah berobat <br> hari ini</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -43,7 +51,7 @@ $no = 1;
   <div class="card-body z-index-100">
       <h4 class="card-title">Total Pendapatan</h4>
       <h1 class="text-warn title-2">Rp<span id="pr"></span></h1>
-      <p class="lead">Total pendapatan di laboratorium saat ini</p>
+      <p class="lead">Total pendapatan laboratorium <br> hari ini</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">

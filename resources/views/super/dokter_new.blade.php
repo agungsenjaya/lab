@@ -27,7 +27,7 @@
     <input type="text" class="form-control" name="name" placeholder="Masukan nama" required>
   </div>
   <div class="mb-3">
-    <label class="form-label">Spesialist</label>
+    <label class="form-label">Specialist</label>
     <select name="specialist" class="form-select" required>
         <option value="">-- Select Option --</option>
         <option value="umum">umum</option>

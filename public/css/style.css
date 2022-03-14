@@ -5,6 +5,9 @@
 ::placeholder {
     color: #d6d6d6 !important;
 }
+.open-sans {
+    font-family: 'Open Sans';
+}
 .title-1 {
     font-weight: 500;
 }
@@ -108,6 +111,9 @@ option:first-child
 .bg-lab {
     background-color: #005C45;
 }
+.bg-warn {
+    background-color: #E4C573;
+}
 .btn-warn {
     background-color: #E4C573;
     color: #005C45;
@@ -141,4 +147,16 @@ option:first-child
 }
 .active-res {
     border-left: 3px solid #c0a455 !important;
+}
+.border-transparent {
+    border-color: transparent !important;
+}
+.list-error > li {
+    background-color: transparent !important;
+}
+.list-no {
+    list-style-type: none;
+}
+.fw-semibold {
+    font-weight: 500;
 }

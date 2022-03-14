@@ -16,8 +16,10 @@ class CreateFormulasTable extends Migration
         Schema::create('formulas', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->enum('kategori',['1','2','3'])->nullable();
-            $table->string('pembayaran');
+            $table->integer('formula_kat_id');
+            $table->integer('formula_sub_id')->nullable();
+            $table->integer('sub_kat')->nullable();
+            $table->longText('content')->nullable();
             $table->timestamps();
         });
     }

@@ -53,7 +53,7 @@ $no = 1;
               <span class="badge bg-lab w-100">Aktif</span>
               @endif
             </td>
-            <td><i class="bi bi-activity text-lab me-2"></i>Umum</td>
+            <td><i class="bi bi-activity text-lab me-2"></i>{{ $dat->specialist }}</td>
             <td>
               @if($dat->created_at)
               {{ $dat->created_at }}
@@ -62,7 +62,7 @@ $no = 1;
               @endif
             </td>
             <td>
-              <a href="{{ route('super.dokter_edit',['id' => $dat -> id]) }}" class="btn btn-warn w-100 btn-sm">Details</a>
+              <a href="{{ route('super.dokter_edit',['id' => $dat -> id]) }}" class="btn btn-warn w-100 btn-sm">Edit</a>
             </td>
           </tr>
           @endforeach

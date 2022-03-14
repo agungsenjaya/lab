@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Pasien;
 use App\Dokter;
 use App\Formula;
+use App\Price;
 use App\Diagnosa;
-use DB,Session,Uuid,Validator,Response;
+use DB,Session,Uuid,Validator,Auth,Hash, Response;
 
 class ApiController extends Controller
 {
@@ -30,6 +31,64 @@ class ApiController extends Controller
         return Response::json([
             'code'  => 200,
             'data'  => $data
+        ]);
+    }
+
+    public function prices_store(Request $request, $a)
+    {
+        $for;
+        $valid = Price::where('formula_id',$request->formula_id)->where('cabang_id', Auth::user()->cabang_id)->first();
+        if ($valid) {
+            $valid->pembayaran = $request->pembayaran;
+            $valid->save();
+            if ($valid) {
+                return Response::json([
+                    'code'  => 200,
+                ]);
+            }
+        }else{
+            $for = Price::create([
+                'cabang_id' => Auth::user()->cabang_id,
+                'user_id' => Auth::user()->user_id,
+                'formula_id' => $request->formula_Id,
+                'pembayaran' => $request->pembayaran,
+            ]);
+            if (count($for)) {
+                return Response::json([
+                    'code'  => 200,
+                ]);
+            }
+        }
+    }
+
+    public function formulas($id)
+    {
+        $data = Formula::where('formula_kat_id', $id)->get();
+        if (count($data)) {
+            return Response::json([
+                'code'  => 200,
+                'data' => $data
+            ]);
+        }
+    }
+
+    public function formula_price(Request $request)
+    {
+        $data = Price::where('formula_id',$request->user_is)->where('cabang_id',Auth::user()->cabang_id)->first();
+        if ($data) {
+            $data->pembayaran = $request->pemnayaran;
+            $data->save();
+        }else {
+            $dataa = Price::create([
+                'user_id' => $request->user_id,
+                'cabang_id' => $request->cabang_id,
+                'pembayaran' => $request->pembayaran,
+                'formula_id' => $request->formula_id,
+            ]);
+        }
+        return Response::json([
+            'code'  => 200,
+            'data' => $request->value
         ]);
     }
 }

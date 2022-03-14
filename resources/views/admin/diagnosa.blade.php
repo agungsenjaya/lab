@@ -55,7 +55,7 @@
 						<tr>
 							<td>Cabang</td>
 							<td>:</td>
-							<td>{{ $data->cabang->kota }}</td>
+							<td class="text-uppercase title-3">{{ $data->cabang->name }}</td>
 						</tr>
 						<tr>
 							<td>Hasil Diagnosa</td>

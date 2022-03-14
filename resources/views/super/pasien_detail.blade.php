@@ -48,7 +48,7 @@ $no = 1;
 								<tr>
 									<td>Date Reg</td>
 									<td>:</td>
-									<td>{{ $pasien->created_at->format('d M Y') }}</td>
+									<td>{{ $pasien->created_at }}</td>
 								</tr>
 								<!-- <tr>
 									<td>Alamat</td>
@@ -99,7 +99,7 @@ $no = 1;
 								<td>{{ counTing($no++) }}</td>
 								<td>{{ $pas->formula->judul }}</td>
 								<td><i class="text-lab bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
-								<td>{{ $pas->cabang->kota }}</td>
+								<td class="text-uppercase title-3">{{ $pas->cabang->name }}</td>
 								<td>{{ $pas->created_at }}</td>
 								<td><a href="{{ route('super.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-warn">Detail</a>
 								</td>

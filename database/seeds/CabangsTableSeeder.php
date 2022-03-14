@@ -15,10 +15,12 @@ class CabangsTableSeeder extends Seeder
     public function run()
     {
         DB::table('cabangs')->insert([
+            'name' => 'Klinik Permata',
             'kota' => 'KOTA SUKABUMI',
             'alamat' => 'jl raya soekabumi 11',
         ]);
         DB::table('cabangs')->insert([
+            'name' => 'Klinik Farma',
             'kota' => 'KABUPATEN SUKABUMI',
             'alamat' => 'jl raya soekabumi 12',
         ]);

@@ -23,13 +23,16 @@
 				</div>
 
 				<form method="POST" action="{{ route('admin.pasien_store') }}">@csrf
-					<input type="hidden" name="user" value="{{ Auth::user()->id }}">
+				<input type="hidden" name="user" value="{{ Auth::user()->id }}">
+
+				<div class="swiper slider-1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide p-1">
 					<div class="row">
 						<div class="mb-4 col ui-widget">
-							<!-- <label class="form-label" for="">Nomor KTP <span class="text-secondary">( optional )</span> -->
-							<label class="form-label" for="">Nomor KTP <span class="text-danger">*</span>
+							<label class="form-label" for="">Nomor KTP<span class="ms-2 text-secondary">(Optional)</span>
 							</label>
-							<input required class="form-control" id="number" aria-describedby="" placeholder="Masukan nomor" name="ktp">
+							<input class="form-control" id="number" aria-describedby="" placeholder="Masukan nomor" name="ktp">
 						</div>
 						<div class="mb-4 col">
 							<label class="form-label" for="">Nama Lengkap <span class="text-danger">*</span>
@@ -42,7 +45,7 @@
 							<label class="form-label" for="">Jenis Kelamin <span class="text-danger">*</span>
 							</label>
 							<select required class="form-select" name="kelamin">
-								<option class="text-secondary">Select option</option>
+								<option class="text-secondary">-- Select Option --</option>
 								<option class="text-secondary" value="laki-laki">Laki-laki</option>
 								<option class="text-secondary" value="perempuan">Perempuan</option>
 							</select>
@@ -50,35 +53,67 @@
 						<div class="mb-4 col">
 							<label class="form-label" for="">Tanggal Lahir <span class="text-danger">*</span>
 							</label>
-							<input required type="date" class="form-control" id="" aria-describedby="" placeholder="Masukan nama" name="tgl">
+							<input required class="form-control" id="" aria-describedby="" placeholder="Masukan tanggal" name="tgl">
 						</div>
 					</div>
-					<div class="row">
-						<div class="mb-4 col">
+						<div class="mb-4">
 							<label class="form-label" for="">Dokter Pemeriksa <span class="text-danger">*</span>
 							</label>
 							<select required class="form-select" name="dokter">
-								<option class="text-secondary">Select option</option>@foreach($dokter as $dok)
+								<option class="text-secondary">-- Select Option --</option>@foreach($dokter as $dok)
 								<option class="text-secondary" value="{{ $dok->id }}">{{ $dok->name }}</option>@endforeach</select>
 						</div>
-						<div class="mb-4 col">
-							<label class="form-label" for="">Diagnosa Pasien <span class="text-danger">*</span>
-							</label>
-							<select required class="form-select" name="formula">
-								<option class="text-secondary">Select option</option>@foreach($formula as $for)
-								<option class="text-secondary" value="{{ $for }}">{{ $for->judul }}</option>@endforeach</select>
-						</div>
-					</div>
 					<div class="mb-4">
 						<label class="form-label" for="">Alamat <span class="text-danger">*</span>
 						</label>
 						<textarea id="" cols="20" rows="5" class="form-control" placeholder="Masukan alamat" name="alamat"></textarea>
 					</div>
-					<div class="form-checkbox mb-4">
-						<input required type="checkbox" class="form-control-input" id="checkSetuju">
-						<label class="form-label text-secondary" for="checkSetuju">Setujui input data pasien</label>
+					<button type="button" class="next btn btn-lab">Masukan Pasien</button>
 					</div>
-					<button type="submit" class="btn btn-lab">Masukan Pasien</button>
+					<!-- <div class="swiper-slide p-1">
+					@php
+					$ez = \App\Formula::all()->keyBy('id')->groupBy('formula_kat_id', true);
+					$stun = $ez;
+					@endphp
+					<ol>
+						@foreach ($stun as $bo => $ez)
+						@php
+						$stan = \App\Formula_kat::where('id', $bo)->first();
+						@endphp
+						<li><span class="title-3 fw-bold text-uppercase"> {{ $stan->judul }}</span>
+							<ul id="diagnosa">
+								@foreach ($ez as $zi)
+								@if($zi->sub_kat)
+								<ul>
+									<li> 
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="{{ $zi }}" id="{{ $zi->id }}">
+										<label class="form-check-label text-capitalize open-sans" for="{{ $zi->id }}">
+											{{ $zi->judul }}
+										</label>
+									</div>
+									</li>
+								</ul>
+								@else
+								<li>
+								<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="{{ $zi }}" id="{{ $zi->id }}">
+										<label class="form-check-label text-capitalize open-sans" for="{{ $zi->id }}">
+											{{ $zi->judul }}
+										</label>
+									</div>
+								</li>
+								@endif
+								@endforeach
+							</ul>
+						</li>
+						@endforeach
+					</ol>
+					<button type="button" class="prev btn btn-light text-lab">Kembali</button>
+					<button type="submit" class="btn btn-lab">Masukan Diagnosa</button>
+					</div> -->
+				</div>
+				</div>
 				</form>
 			</div>
 		</div>
@@ -88,11 +123,14 @@
 @endsection
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.4.1/swiper-bundle.min.css"/>
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.4.1/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.2.2/imask.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{ asset('js/diagnosa.js') }}"></script>
 <script>
   var masa = document.getElementById('number');
 var maskOptions = {
@@ -100,7 +138,8 @@ var maskOptions = {
 };
 var mask = IMask(masa, maskOptions);
 
-$( "#number" ).keyup(function() {
+// $( "#number" ).keyup(function() {
+$( "#number" ).change(function() {
 		var bos = $(this).val();
 		// if (bos.length == 16) {
 		// }
@@ -114,5 +153,13 @@ $( "#number" ).keyup(function() {
 					}
 				});
 	});
+
+	var swiper = new Swiper(".slider-1", {
+		allowTouchMove: false,
+        navigation: {
+          nextEl: ".next",
+          prevEl: ".prev",
+        },
+      });
 </script>
 @endsection

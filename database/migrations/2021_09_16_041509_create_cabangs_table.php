@@ -15,7 +15,9 @@ class CreateCabangsTable extends Migration
     {
         Schema::create('cabangs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('kota');
+            $table->string('img')->nullable();
             $table->integer('phone')->nullable();
             $table->longText('alamat');
             $table->json('map')->nullable();

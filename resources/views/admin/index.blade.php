@@ -2,7 +2,7 @@
 @section('content')
 @include('modal')
 <section class="min-vh-100 bg-lab">
-  @include('header')
+@include('header')
 <div class="space-m">
   <div class="container">
     <div class="row">
@@ -13,7 +13,7 @@
           <!-- <i class="ms-Icon ms-Icon--UserEvent mr-3 h2"></i> -->
             <div class="media-body">
             <h5 class="title-3 text-uppercase fw-bold mb-0">Table Pasien</h5>
-            <p class="mb-0">Pasien di laboratorium</p>
+            <p class="mb-0">Pasien di lab   oratorium</p>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
         </div>
       </div>
 </a>
-    <a href="javascript:void(0)" class="col-md-6 mb-4">
+    <a href="{{ route('admin.dokter') }}" class="col-md-6 mb-4">  
       <div class="card card-home">
         <div class="card-body align-items-center h-100 d-flex">
           <div class="media">
@@ -45,7 +45,7 @@
         </div>
       </div>
 </a>
-    <a href="javascript:void(0)" class="col-md-6 mb-4">
+    <a href="{{ route('admin.info') }}" class="col-md-6 mb-4">
       <div class="card card-home">
         <div class="card-body align-items-center h-100 d-flex">
           <div class="media">
@@ -59,7 +59,7 @@
       </div>
 </a>
     </div>
-    <p class="text-center text-uppercase title-3 text-white small mb-0">&copy; Copyright {{ date('Y') }} Agung Senjaya.  All rights reserved</p>
+    <p class="text-center text-uppercase title-3 text-white small mb-0">&copy; Copyright {{ date('Y') }} <a href="https://codejira.com/" class="text-white" target="_blank">Codejira</a>.  All rights reserved</p>
   </div>
 </div>
 </section>

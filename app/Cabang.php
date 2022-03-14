@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cabang extends Model
 {
+
+    protected $fillable = ['name','kota','phone','alamat','map','img'];
     
     public function diagnosas()
     {
