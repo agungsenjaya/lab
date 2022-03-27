@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 14 Mar 2022 pada 23.44
+-- Waktu pembuatan: 27 Mar 2022 pada 15.18
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `cabangs` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` int(11) DEFAULT NULL,
+  `kode` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `map` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`map`)),
   `created_at` timestamp NULL DEFAULT NULL,
@@ -43,10 +43,9 @@ CREATE TABLE `cabangs` (
 -- Dumping data untuk tabel `cabangs`
 --
 
-INSERT INTO `cabangs` (`id`, `name`, `kota`, `img`, `phone`, `alamat`, `map`, `created_at`, `updated_at`) VALUES
-(1, 'Klinik Permata', 'KOTA SUKABUMI', NULL, NULL, 'jl raya soekabumi 11', NULL, NULL, NULL),
-(2, 'Klinik Farma', 'KABUPATEN SUKABUMI', NULL, NULL, 'jl raya soekabumi 12', NULL, NULL, NULL),
-(3, 'klinik permata indah', 'KABUPATEN SUKABUMI', NULL, NULL, 'jl raya cisaat', NULL, '2022-02-03 03:41:47', '2022-02-03 03:41:47');
+INSERT INTO `cabangs` (`id`, `name`, `kota`, `img`, `kode`, `alamat`, `map`, `created_at`, `updated_at`) VALUES
+(1, 'bali united', 'KABUPATEN GARUT', NULL, 'f4e4dee0', 'jl cisaat utara dan sekitarnya', NULL, '2022-03-23 00:07:52', '2022-03-23 00:07:52'),
+(2, 'persib bandung', 'KABUPATEN BANDUNG', NULL, '5f21b7b0', 'jl dua lipa utara', NULL, '2022-03-23 00:10:51', '2022-03-23 00:10:51');
 
 -- --------------------------------------------------------
 
@@ -80,6 +79,14 @@ CREATE TABLE `diagnosas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `diagnosas`
+--
+
+INSERT INTO `diagnosas` (`id`, `kode`, `dokter_id`, `data`, `cabang_id`, `pasien_id`, `user_id`, `catatan`, `pembayaran`, `created_at`, `updated_at`) VALUES
+(1, '2b5eef80-abf3-11ec-845e-b394c87b660d', 3, '[\"[{\\\"id\\\":1,\\\"data\\\":{\\\"id\\\":1,\\\"judul\\\":\\\"Hemoglobin\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"12 - 16 g\\/dl,14 - 18 f\\/dl\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\"},\\\"nilai\\\":\\\"13\\\",\\\"price\\\":\\\"400.000\\\"},{\\\"id\\\":2,\\\"data\\\":{\\\"id\\\":2,\\\"judul\\\":\\\"Eritrosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"4,0 - 5,5 juta \\/ ul 4,5 - 6,0 juta \\/ ul\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:05.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:05.000000Z\\\"},\\\"nilai\\\":\\\"5\\\",\\\"price\\\":\\\"30.000\\\"},{\\\"id\\\":3,\\\"data\\\":{\\\"id\\\":3,\\\"judul\\\":\\\"Leukosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"Dewasa : 5.000 - 10.000, Bayi : 7.000 - 17.000 \\/ ul\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:06.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:06.000000Z\\\"},\\\"nilai\\\":\\\"6000\\\",\\\"price\\\":\\\"20.000\\\"},{\\\"id\\\":38,\\\"data\\\":{\\\"id\\\":38,\\\"judul\\\":\\\"SGOT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 31 U\\/L < 34 U\\/L\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:41.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:41.000000Z\\\"},\\\"nilai\\\":\\\"30\\\",\\\"price\\\":\\\"20.000\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":39,\\\"data\\\":{\\\"id\\\":39,\\\"judul\\\":\\\"SGPT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 36 U\\/L < 46 U\\/L\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:42.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:42.000000Z\\\"},\\\"nilai\\\":\\\"20\\\",\\\"price\\\":\\\"12.000\\\",\\\"anormali\\\":\\\"*\\\"}]\"]', 1, 1, 3, NULL, ' 482.000', '2022-03-24 21:22:23', '2022-03-24 21:22:23'),
+(2, '12957b60-ac42-11ec-a9a7-91f6adea2cba', 3, '[\"[{\\\"id\\\":2,\\\"data\\\":{\\\"id\\\":2,\\\"judul\\\":\\\"Eritrosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"4,0 - 5,5 juta \\/ ul 4,5 - 6,0 juta \\/ ul\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:05.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:05.000000Z\\\"},\\\"nilai\\\":\\\"4\\\",\\\"price\\\":\\\"30.000\\\"},{\\\"id\\\":1,\\\"data\\\":{\\\"id\\\":1,\\\"judul\\\":\\\"Hemoglobin\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"12 - 16 g\\/dl,14 - 18 f\\/dl\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\"},\\\"nilai\\\":\\\"13\\\",\\\"price\\\":\\\"400.000\\\"},{\\\"id\\\":38,\\\"data\\\":{\\\"id\\\":38,\\\"judul\\\":\\\"SGOT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 31 U\\/L < 34 U\\/L\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:41.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:41.000000Z\\\"},\\\"nilai\\\":\\\"30\\\",\\\"price\\\":\\\"20.000\\\"},{\\\"id\\\":39,\\\"data\\\":{\\\"id\\\":39,\\\"judul\\\":\\\"SGPT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 36 U\\/L < 46 U\\/L\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:42.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:42.000000Z\\\"},\\\"nilai\\\":\\\"38\\\",\\\"price\\\":\\\"12.000\\\"},{\\\"id\\\":40,\\\"data\\\":{\\\"id\\\":40,\\\"judul\\\":\\\"Gamma GT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 32 U\\/L < 50 U\\/L\\\",\\\"created_at\\\":\\\"2021-10-16T16:18:43.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:43.000000Z\\\"},\\\"nilai\\\":\\\"60\\\",\\\"price\\\":\\\"30.000\\\",\\\"anormali\\\":\\\"*\\\"}]\"]', 1, 2, 3, NULL, ' 492.000', '2022-03-25 06:47:12', '2022-03-25 06:47:12');
+
 -- --------------------------------------------------------
 
 --
@@ -90,7 +97,7 @@ CREATE TABLE `dokters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
-  `specialist` enum('umum','gigi','jantung','mata','syaraf','anak') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `specialist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cabang_id` int(11) NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -104,7 +111,8 @@ CREATE TABLE `dokters` (
 INSERT INTO `dokters` (`id`, `name`, `user_id`, `specialist`, `cabang_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'boyke', 2, 'umum', 1, NULL, NULL, NULL),
 (2, 'elman', 2, 'gigi', 1, NULL, NULL, NULL),
-(3, 'sarah', 2, 'jantung', 1, NULL, NULL, NULL);
+(3, 'sarah', 2, 'jantung', 1, NULL, NULL, NULL),
+(4, 'budi dalton', 2, NULL, 1, NULL, '2022-03-23 01:59:41', '2022-03-23 01:59:41');
 
 -- --------------------------------------------------------
 
@@ -483,19 +491,19 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(47, '2014_10_12_000000_create_users_table', 1),
 (48, '2014_10_12_100000_create_password_resets_table', 1),
 (49, '2019_08_19_000000_create_failed_jobs_table', 1),
 (50, '2021_09_16_030845_create_pasiens_table', 1),
 (51, '2021_09_16_031128_create_diagnosas_table', 1),
-(52, '2021_09_16_041509_create_cabangs_table', 1),
-(53, '2021_09_16_132925_create_dokters_table', 1),
 (54, '2021_09_17_052338_create_formulas_table', 1),
 (55, '2021_09_21_091600_laratrust_setup_tables', 1),
 (56, '2021_12_24_133650_create_formula_kats_table', 1),
 (57, '2021_12_24_133702_create_formula_subs_table', 1),
 (58, '2021_12_25_052023_create_cetaks_table', 1),
-(59, '2022_01_05_140636_create_prices_table', 1);
+(59, '2022_01_05_140636_create_prices_table', 1),
+(60, '2014_10_12_000000_create_users_table', 2),
+(61, '2021_09_16_041509_create_cabangs_table', 3),
+(62, '2021_09_16_132925_create_dokters_table', 4);
 
 -- --------------------------------------------------------
 
@@ -513,6 +521,14 @@ CREATE TABLE `pasiens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `pasiens`
+--
+
+INSERT INTO `pasiens` (`id`, `name`, `tanggal_lahir`, `ktp`, `kelamin`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 'agung senjaya', 27, 320, 'laki-laki', 'Jl. Engku Putri, Tlk. Tering, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444, Indonesia', '2022-03-24 21:22:23', '2022-03-24 21:22:23'),
+(2, 'buri rahman', 18, NULL, 'laki-laki', 'Sukamulya, Kec. Tegalwaru, Kabupaten Purwakarta, Jawa Barat, Indonesia', '2022-03-25 06:47:12', '2022-03-25 06:47:12');
 
 -- --------------------------------------------------------
 
@@ -580,6 +596,29 @@ CREATE TABLE `prices` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `prices`
+--
+
+INSERT INTO `prices` (`id`, `cabang_id`, `user_id`, `formula_id`, `pembayaran`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, '400.000', '2022-03-16 03:32:20', '2022-03-16 03:32:20'),
+(2, 1, 1, 2, '30.000', '2022-03-16 03:32:23', '2022-03-16 03:32:23'),
+(3, 1, 1, 3, '20.000', '2022-03-16 03:32:25', '2022-03-16 03:32:25'),
+(4, 1, 1, 4, '0', '2022-03-16 03:32:27', '2022-03-24 23:34:14'),
+(5, 1, 1, 5, '14.000', '2022-03-16 03:32:31', '2022-03-16 03:32:31'),
+(6, 1, 1, 6, '45.000', '2022-03-16 03:32:37', '2022-03-16 03:32:37'),
+(7, 1, 1, 7, '12.000', '2022-03-16 03:32:40', '2022-03-16 03:32:40'),
+(8, 1, 1, 8, '10.000', '2022-03-16 03:32:45', '2022-03-16 03:32:45'),
+(9, 1, 1, 38, '20.000', '2022-03-16 03:34:43', '2022-03-16 03:34:43'),
+(10, 1, 1, 39, '12.000', '2022-03-16 03:34:46', '2022-03-16 03:34:46'),
+(11, 1, 1, 40, '30.000', '2022-03-16 03:34:48', '2022-03-23 02:05:14'),
+(12, 1, 1, 41, '5.000', '2022-03-16 03:34:51', '2022-03-16 03:34:51'),
+(13, 1, 1, 42, '3.000', '2022-03-21 00:49:17', '2022-03-21 00:49:47'),
+(14, 1, 1, 43, '10.000', '2022-03-21 00:49:21', '2022-03-21 00:49:21'),
+(15, 1, 1, 44, '10.000', '2022-03-21 00:50:01', '2022-03-21 00:50:01'),
+(16, 1, 1, 45, '5.000', '2022-03-21 00:50:04', '2022-03-21 00:50:04'),
+(17, 1, 1, 46, '40.000', '2022-03-23 02:05:01', '2022-03-23 02:05:01');
+
 -- --------------------------------------------------------
 
 --
@@ -600,9 +639,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'owner', 'Owner', NULL, '2022-01-05 07:11:37', '2022-01-05 07:11:37'),
-(2, 'superadmin', 'Superadmin', NULL, '2022-01-05 07:11:37', '2022-01-05 07:11:37'),
-(3, 'admin', 'Admin', NULL, '2022-01-05 07:11:37', '2022-01-05 07:11:37');
+(1, 'owner', 'Owner', NULL, '2022-03-22 04:36:59', '2022-03-22 04:36:59'),
+(2, 'superadmin', 'Superadmin', NULL, '2022-03-22 04:36:59', '2022-03-22 04:36:59'),
+(3, 'admin', 'Admin', NULL, '2022-03-22 04:36:59', '2022-03-22 04:36:59');
 
 -- --------------------------------------------------------
 
@@ -623,7 +662,9 @@ CREATE TABLE `role_user` (
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (1, 1, 'App\\User'),
 (2, 2, 'App\\User'),
-(3, 3, 'App\\User');
+(3, 3, 'App\\User'),
+(2, 4, 'App\\User'),
+(3, 5, 'App\\User');
 
 -- --------------------------------------------------------
 
@@ -634,15 +675,13 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kelamin` enum('laki-laki','perempuan') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` bigint(20) NOT NULL,
   `cabang_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `alamat` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `api_token` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -652,10 +691,12 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `kelamin`, `phone`, `cabang_id`, `user_id`, `alamat`, `email`, `deleted_at`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'owner', 'laki-laki', 88, 1, 1, 'jl raya soekabumi', 'owner@sample.com', NULL, NULL, '$2y$10$5SZFU/f0tKxp7OEvzqi.N.aSamEdXgzpghl7Pu.TD9oGlCuMlrsf6', NULL, '2022-01-05 07:11:37', '2022-01-05 07:11:37'),
-(2, 'superadmin', 'laki-laki', 88, 1, 1, 'jl raya soekabumi', 'super@sample.com', NULL, NULL, '$2y$10$XJ6VdXV/M28.FAtb6uI9cepWu/TDUYyo9dudVAUIsbLMYY7T81RKK', NULL, '2022-01-05 07:11:37', '2022-01-05 07:11:37'),
-(3, 'admin', 'laki-laki', 88, 1, 2, 'jl raya soekabumi', 'admin@sample.com', NULL, NULL, '$2y$10$YdNe8OTYPXk4yVGTNu7KZO4QoRffUEuqrV4eazD8P9jHs0K08EyFi', NULL, '2022-01-05 07:11:37', '2022-02-13 07:11:45');
+INSERT INTO `users` (`id`, `name`, `cabang_id`, `user_id`, `email`, `deleted_at`, `email_verified_at`, `password`, `api_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'owner', 1, 1, 'owner@sample.com', NULL, NULL, '$2y$10$WCE.kk4ZHw3IVZLaFxTlCuhSH7LiezYNcvER4K6nybkfpL5hvPHUm', NULL, NULL, '2022-03-22 04:36:59', '2022-03-22 04:36:59'),
+(2, 'superadmin', 1, 1, 'super@sample.com', NULL, NULL, '$2y$10$h.lEog1ZC8sPpldDhpLJ2urCN78uYellThvxzh4tMFrCefkiVjS0y', NULL, NULL, '2022-03-22 04:36:59', '2022-03-22 04:36:59'),
+(3, 'admin', 1, 2, 'admin@sample.com', NULL, NULL, '$2y$10$ZmMdkjK35Otv9xSDtI42ped4Hy6UdgxuOwcb9SFgRPlruBYfpQ/GG', NULL, NULL, '2022-03-22 04:37:00', '2022-03-22 04:37:00'),
+(4, 'budi ramayana', 2, 1, 'budi@sample.com', NULL, NULL, '$2y$10$W/bkHBfH4qHZ1POm5OQUSuh6OogQLEhXCvY8NZJPV.nHkHUkDpbW.', NULL, NULL, '2022-03-23 00:43:14', '2022-03-23 01:06:36'),
+(5, 'cinta luna', 1, 2, 'cinta@sample.com', NULL, NULL, '$2y$10$09MD8bLY9ZrqcJkKIWrAwOB3uRi1YZqT5BIkIkpFf/Cgr5cbPOrcy', NULL, NULL, '2022-03-23 02:20:57', '2022-03-23 02:20:57');
 
 --
 -- Indexes for dumped tables
@@ -773,7 +814,8 @@ ALTER TABLE `role_user`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_api_token_unique` (`api_token`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -783,7 +825,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cabangs`
 --
 ALTER TABLE `cabangs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `cetaks`
@@ -795,13 +837,13 @@ ALTER TABLE `cetaks`
 -- AUTO_INCREMENT untuk tabel `diagnosas`
 --
 ALTER TABLE `diagnosas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `dokters`
 --
 ALTER TABLE `dokters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -831,13 +873,13 @@ ALTER TABLE `formula_subs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT untuk tabel `pasiens`
 --
 ALTER TABLE `pasiens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `permissions`
@@ -849,19 +891,19 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT untuk tabel `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
