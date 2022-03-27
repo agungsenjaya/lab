@@ -17,7 +17,7 @@ class CreateDoktersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('user_id');
-            $table->enum('specialist',['umum','gigi','jantung','mata','syaraf','anak'])->nullable();
+            $table->string('specialist')->nullable();
             $table->integer('cabang_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

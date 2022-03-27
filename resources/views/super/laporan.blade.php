@@ -10,9 +10,9 @@ $no = 1;
     <div class="position-relative">
   <div class="card shadow bg-lab">
     <div class="card-body z-index-100">
-      <h4 class="card-title">Jumlah Dokter</h4>
+      <h5 class="card-title">Jumlah Dokter</h5>
       <h1 class="text-warn title-2">{{ counTing(count($dokter)) }}</h1>
-      <p class="lead">Total dokter yang bertugas di laboratorium</p>
+      <p class="">Total dokter laboratorium <span class="text-capitalize">{{ Auth::user()->cabang->name }}</span></p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -26,9 +26,9 @@ $no = 1;
     <div class="position-relative">
   <div class="card shadow bg-lab">
   <div class="card-body z-index-100">
-      <h4 class="card-title">Jumlah Pasien</h4>
+      <h5 class="card-title">Jumlah Pasien</h5>
       <h1 class="text-warn title-2">{{ counTing(count($data)) }}</h1>
-      <p class="lead">Total pasien yang telah berobat <br> hari ini</p>
+      <p class="">Total pasien hari ini</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -42,9 +42,9 @@ $no = 1;
     <div class="position-relative">
   <div class="card shadow bg-lab">
   <div class="card-body z-index-100">
-      <h4 class="card-title">Total Pendapatan</h4>
+      <h5 class="card-title">Total Pendapatan</h5>
       <h1 class="text-warn title-2">Rp<span id="pr"></span></h1>
-      <p class="lead">Total pendapatan laboratorium <br> hari ini</p>
+      <p class="">Total pendapatan hari ini</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -76,11 +76,10 @@ $no = 1;
 
 
   <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-lab">
+    <thead class="title-3 text-uppercase fw-bold text-primary">
       <tr>
         <td>No</td>
         <td>Nama</td>
-        <td>Diagnosa</td>
         <td>Tgl</td>
         <td>Dokter</td>
         <td>Actions</td>
@@ -93,13 +92,10 @@ $no = 1;
         <td>{{ counTing($no++) }}</td>
         <td>{{ $dat->pasien->name }}</td>
         <td>
-        <i class="text-lab bi bi-activity me-2"></i>{{ $dat->formula->judul }}
-        </td>
-        <td>
           {{ $dat->created_at->format('Y/m/d') }}
         </td>
         <td>
-          <i class="text-lab bi bi-person-badge me-2"></i>{{ $dat->dokter->name }}
+          <i class="text-primary bi bi-person-badge me-2"></i>{{ $dat->dokter->name }}
         </td>
         <td>
           <a href="javascript:void(0)" class="btn btn-warn w-100 btn-sm">Details</a>
@@ -187,9 +183,9 @@ $(document).ready(function() {
 });
 
     $('#table1_length').addClass('mb-3')
-    $('#table1_filter input').addClass('form-control form-control-lg')
+    $('#table1_filter input').addClass('form-control')
     // $('#table1_length select').addClass('custom-select custom-select-sm')
-    $('.dt-button').removeClass('dt-button').addClass('mb-3 btn btn-warn text-lab me-2');
+    $('.dt-button').removeClass('dt-button').addClass('mb-3 btn btn-warn text-primary me-2');
     // $('#table1_paginate').addClass('btn btn-sm btn-success');
     // $('#table1_paginate > .paginate_button').addClass('text-white mx-2');
 

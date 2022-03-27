@@ -10,26 +10,26 @@
                 <div class="col-md align-self-center">
                     <table class="table line-h-2">
                         <tr>
-                            <td class="title-3 text-uppercase">Nama Lengkap</td>
+                            <td class="title-3 ">Nama Lengkap</td>
                             <td>:</td>
                             <td class="text-capitalize">{{ Auth::user()->name }}</td>
                         </tr>
                         <tr>
-                            <td class="title-3 text-uppercase">Date Reg</td>
+                            <td class="title-3 ">Date Reg</td>
                             <td>:</td>
                             <td>{{ Auth::user()->created_at }}</td>
                         </tr>
                         <tr>
-                            <td class="title-3 text-uppercase">Role</td>
+                            <td class="title-3 ">Role</td>
                             <td>:</td>
                             <td>
-                                <span class="badge bg-warn text-lab py-2">
-                                    <i class="bi bi-check-circle-fill me-2"></i>{{ Auth::user()->roles[0]->name }}
+                                <span class="badge alert-primary">
+                                    {{ Auth::user()->roles[0]->name }}
                                 </span>
                             </td>
                         </tr>
                         <tr class="border-transparent">
-                            <td class="title-3 text-uppercase">Email Address</td>
+                            <td class="title-3 ">Email Address</td>
                             <td>:</td>
                             <td>{{ Auth::user()->email }}</td>
                         </tr>
@@ -55,29 +55,32 @@
           <input type="email" class="form-control" name="email" placeholder="Masukan email" required value="{{ Auth::user()->email }}">
         </div>
       </div>
-  <div class="row">
-    <div class="mb-3 col">
-    <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
-    <select name="kelamin" class="form-select" required>
-        <option value="">-- Select Option --</option>
-        <option value="laki-laki" {{ (Auth::user()->kelamin == 'laki-laki') ? 'selected' : '' }}>laki-laki</option>
-        <option value="perempuan" {{ (Auth::user()->kelamin == 'perempuan') ? 'selected' : '' }}>perempuan</option>
-    </select>
-  </div>
-  <div class="mb-3 col">
-          <label class="form-label">Nomor Telepon <span class="text-danger">*</span></label>
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">+62</span>
-            <input class="form-control" id="number" name="phone" placeholder="Masukan phone" required value="{{ Auth::user()->phone }}">
-          </div>
-        </div>
-  </div>
-                        <div class="mb-3">
-      <label class="form-label">Alamat Lengkap <span class="text-danger">*</span></label>
-      <textarea name="alamat" id="" cols="30" rows="5" class="form-control" placeholder="Masukan alamat" required>{{ Auth::user()->alamat }}</textarea>
+
+      <div class="row mb-3">
+  <div class="col">
+      <label for="password" class="form-label">new {{ __('Password') }}</label>
+
+      <div class="">
+          <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+
+          @error('password')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+      </div>
   </div>
 
-  <button type="submit" class="btn btn-lab">Update Account</button>
+  <div class="col">
+      <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+
+      <div class="">
+          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+      </div>
+  </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Account</button>
 </form>
 
         </div>

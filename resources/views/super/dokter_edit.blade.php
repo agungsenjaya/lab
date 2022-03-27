@@ -30,9 +30,9 @@
     <label class="form-label">Nama Lengkap</label>
     <input type="text" class="form-control" name="name" placeholder="Masukan nama" required value="{{ $data->name }}">
   </div>
-  <div class="mb-3">
+  <div class="mb-3 d-none">
     <label class="form-label">Specialist</label>
-    <select name="specialist" class="form-select" required>
+    <select name="specialist" class="form-select">
         <option value="">-- Select Option --</option>
         <option value="umum" {{ ($data->specialist == 'umum') ? 'selected' : '' }}>umum</option>
         <option value="gigi" {{ ($data->specialist == 'gigi') ? 'selected' : '' }}>gigi</option>
@@ -42,7 +42,7 @@
         <option value="anak" {{ ($data->specialist == 'anak') ? 'selected' : '' }}>anak</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-lab">Update Dokter</button>
+  <button type="submit" class="btn btn-primary">Update Dokter</button>
 </form>
 
         </div>

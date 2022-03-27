@@ -15,6 +15,7 @@ class CreateCetaksTable extends Migration
     {
         Schema::create('cetaks', function (Blueprint $table) {
             $table->id();
+            $table->
             $table->timestamps();
         });
     }

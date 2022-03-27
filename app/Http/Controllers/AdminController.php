@@ -7,7 +7,10 @@ use App\Pasien;
 use App\Dokter;
 use App\Cabang;
 use App\Formula;
+use App\Formula_kat;
 use App\Diagnosa;
+use Carbon\Carbon;
+use PDF;
 use DB,Session,Uuid,Validator,Auth;
 
 class AdminController extends Controller
@@ -29,7 +32,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->whereDate('created_at', Carbon::today())->get();
+        return view('admin.index',compact('data'));
     }
 
     public function pasien()
@@ -46,32 +50,46 @@ class AdminController extends Controller
     public function pasien_new()
     {
         $dokter = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
-        return view('admin.pasien_new',compact('dokter'))->with('pasien', Pasien::all());
+        return view('admin.pasien_new',compact('dokter'))->with('pasien', Pasien::all())->with('formula', Formula::all());
     }
 
     public function pasien_store(Request $request)
     {
+        // dd($request->all());
         $pasien;
-        $valid = Validator::make($request->all(), [
-            'ktp' => 'unique:pasiens',
-        ]);
-        if ($valid->fails()) {
-            $pasien = Pasien::where('ktp',$request->ktp)->first();
-            $pasien = $pasien->id;
-            // Session::flash('failed','Data gagal diinput, coba periksa kembali.');
-            // return redirect()->back()->withErrors($valid)->withInput();
+        if ($request->ktp) {
+            $valid = Validator::make($request->all(), [
+                'ktp' => 'unique:pasiens',
+            ]);
+            if ($valid->fails()) {
+                $pasien = Pasien::where('ktp',$request->ktp)->first();
+                $pasien = $pasien->id;
+            }
+            else{
+                $pasien = Pasien::create([
+                    'name' => $request->name,
+                    'tanggal_lahir' => $request->tgl,
+                    'ktp' => ($request->ktp) ? $request->ktp : NULL,
+                    'kelamin' => $request->kelamin,
+                    'alamat' => $request->alamat,
+                ]);
+                if ($pasien) {
+                    $pasien = $pasien->id;
+                }
+            }
         }else{
             $pasien = Pasien::create([
                 'name' => $request->name,
                 'tanggal_lahir' => $request->tgl,
-                'ktp' => $request->ktp,
                 'kelamin' => $request->kelamin,
                 'alamat' => $request->alamat,
             ]);
             if ($pasien) {
                 $pasien = $pasien->id;
-            }
+            } 
         }
+
+
         $formula = json_decode($request->formula);
         $uuid = Uuid::generate(1);
         $diagnosa = Diagnosa::create([
@@ -79,9 +97,9 @@ class AdminController extends Controller
             'pasien_id' => $pasien,
             'cabang_id' => Auth::user()->cabang_id,
             'dokter_id' => $request->dokter,
+            'data' => json_encode($request->data),
             'user_id' => $request->user,
-            'formula_id' => $formula->id,
-            'pembayaran' => $formula->pembayaran,
+            'pembayaran' => $request->pembayaran,
         ]);
         if ($diagnosa) {
             Session::flash('success','Anda berhasil menambahkan data.');
@@ -92,7 +110,22 @@ class AdminController extends Controller
     public function diagnosa($id)
     {
         $data = Diagnosa::where('kode', $id)->first();
-        return view('admin.diagnosa',compact('data'));
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
+        
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
+        }
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+        
+        return view('admin.diagnosa',compact('data','gas'));
     }
 
     public function pasien_detail($id)
@@ -111,5 +144,31 @@ class AdminController extends Controller
     {
         $cabang = Cabang::where('id', Auth::user()->cabang_id)->first();
         return view('admin.info', compact('cabang'));
+    }
+
+    public function cetak($id)
+    {
+
+        $data = Diagnosa::where('kode', $id)->first();
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
+        
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
+        }
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+
+        // $pdf = PDF::loadView('pdf.pasien',compact('data','gas'));
+        // return $pdf->setPaper('a4', 'portrait')->stream();
+        return view('pdf.pasien',compact('data','gas'));
+        
+
     }
 }

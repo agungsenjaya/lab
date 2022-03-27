@@ -40,7 +40,7 @@ class OwnerController extends Controller
 
     public function user_new()
     {
-        return view('owner.user_new');
+        return view('owner.user_new')->with('cabang', Cabang::all());
     }
 
     public function user_edit($id)
@@ -63,11 +63,8 @@ class OwnerController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'name' => 'required',
-            'kelamin' => 'required',
             'cabang_id' => 'required',
             'email' => 'required|unique:users',
-            'phone' => 'required|unique:users',
-            'alamat' => 'required',
             'password' => ['required','confirmed'],
         ]);
         if ($valid->fails()) {
@@ -79,10 +76,7 @@ class OwnerController extends Controller
                 'cabang_id' => $request->cabang_id,
                 'user_id' => Auth::user()->id,
                 'email' => $request->email,
-                'kelamin' => $request->kelamin,
-                'phone' => $request->phone,
                 'password' => Hash::make($request->password),
-                'alamat' => $request->alamat,
             ]);
             $adm = Role::where('name', 'superadmin')->first();
             $data->attachRole($adm);
@@ -98,23 +92,17 @@ class OwnerController extends Controller
         $data = User::find($id);
         $valid = Validator::make($request->all(), [
             'name' => 'required',
-            'kelamin' => 'required',
             'email' => 'required',
-            'phone' => 'required',
-            'alamat' => 'required',
         ]);
         if ($valid->fails()) {
             Session::flash('failed', 'Data update telah gagal');
             return redirect()->back()->withErrors($valid->errors())->withInput();
         }else{ 
             $data->name = $request->name; 
-            $data->kelamin = $request->kelamin; 
             $data->email = $request->email; 
-            $data->phone = $request->phone; 
-            $data->alamat = $request->alamat; 
             if ($request->password) {
                 $dat =  Validator::make($request->password, [
-                    'password' => ['required', 'string', 'min:8', 'confirmed'],
+                    'password' => ['required', 'string', 'confirmed'],
                 ]);
                 if ($dat->fails()) {
                     Session::flash('failed', 'Data update telah gagal');
@@ -143,6 +131,7 @@ class OwnerController extends Controller
 
     public function cabang_store(Request $request)
     {
+        $uuid = Uuid::generate(1);
         $valid = Validator::make($request->all(), [
             'name' => 'required',
             'kota' => 'required',
@@ -155,6 +144,7 @@ class OwnerController extends Controller
 
             $data = Cabang::create([
                 'name' => strtolower($request->name),
+                'kode' => substr($uuid->string,0,8),
                 'kota' => $request->kota,
                 'alamat' => strtolower($request->alamat),
             ]);

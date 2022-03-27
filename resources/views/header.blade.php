@@ -1,38 +1,30 @@
-<nav class="navbar navbar-light bg-lab">
+<nav class="navbar navbar-light bg-primary">
     <div class="container">
     <a class="navbar-brand text-white" href="{{ route('admin.dashboard') }}">
-        <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora admin</span>
+        <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 fw-bold h5">Admin</span>
     </a>
     <ul class="nav ms-auto nav-top d-flex align-items-center">
-    <!-- <li class="nav-item">
-    <div class="input-group input-group-sm bg-white rounded-pill">
-   <div class="input-group-prepend">
-     <button class="btn pr-0 pl-2" type="button">
-       <img src="{{ asset('img/search.svg') }}" alt="" width="18" class="d-flex align-items-center">
-      </button>
-    </div>
-    <input type="text" class="form-control border-0 bg-transparent" placeholder="Cari nik pasien" aria-label="" aria-describedby="">
-  </div>
-
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)"><i class="ms-Icon ms-Icon--Ringer"></i></a>
-      </li>
-        <li class="nav-item">
-          <div class="divider-top border-left border-white"></div>
-      </li> -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="{{ asset('img/user.png') }}" width="40" alt="" class="align-middle rounded-pill">
-          <span class="align-middle text-uppercase title-3 fw-bold ms-2">Account</span>
+        <a type="button" class="nav-link px-0 fw-bold h5 m-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          Menu<i class="ms-2 bi bi-list"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
-          <h6 class="dropdown-header text-uppercase">Your Account</h6>
-          <a class="dropdown-item" href="javascript:void(0)">Setting Account</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout</a>
-        </div>
       </li>
     </ul>
   </div>
 </nav>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Menu Admin</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body px-0">
+  <div class="list-group list-group-flush line-h-2">
+  <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action"> <i class="text-primary bi bi-archive me-3"></i>Home</a>
+  <a href="{{ route('admin.pasien') }}" class="list-group-item list-group-item-action"> <i class="text-primary bi bi-card-list me-3"></i>Table Pasien</a>
+  <a href="{{ route('admin.pasien_new') }}" class="list-group-item list-group-item-action"> <i class="text-primary bi bi-clipboard-plus me-3"></i>Input Pasien</a>
+  <a href="{{ route('admin.dokter') }}" class="list-group-item list-group-item-action"> <i class="text-primary bi bi-person me-3"></i>Dokter</a>
+  <a href="{{ route('admin.info') }}" class="list-group-item list-group-item-action"> <i class="text-primary bi bi-info-circle me-3"></i>Informasi Lab</a>
+  <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#modalLogout"><i class="text-primary bi bi-slash-circle me-3"></i>Logout Account</a>
+</div>
+  </div>
+</div>

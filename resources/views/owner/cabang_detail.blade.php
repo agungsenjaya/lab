@@ -19,12 +19,21 @@
         <div class="col-md-8">
             <table class="table line-h-2">
                 <tr>
-                    <td class="title-3 text-uppercase">Nama Cabang</td>
+                    <td class="title-3 text-capitalize">Kode Cabang</td>
                     <td>:</td>
-                    <td class="text-uppercase">{{ $data->name }}</td>
+                    <td class="text-uppercase">
+                      <div class="badge alert-primary">
+                        {{ $data->kode }}
+                      </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td class="title-3 text-uppercase">Nomor Telepon</td>
+                    <td class="title-3 text-capitalize">Nama Cabang</td>
+                    <td>:</td>
+                    <td class="text-capitalize">{{ $data->name }}</td>
+                </tr>
+                <tr class="d-none">
+                    <td class="title-3 text-capitalize">Nomor Telepon</td>
                     <td>:</td>
                     <td class="text-capitalize">
                         @if($data->phone)
@@ -35,7 +44,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="title-3 text-uppercase">Jumlah Karyawan</td>
+                    <td class="title-3 text-capitalize">Jumlah Users</td>
                     <td>:</td>
                     <td class="text-capitalize">
                         @php
@@ -45,17 +54,17 @@
                     </td>
                 </tr>
                 <tr class="border-transparent">
-                    <td class="title-3 text-uppercase">Kota/Kabupaten</td>
+                    <td class="title-3 text-capitalize">Kota/Kabupaten</td>
                     <td>:</td>
                     <td class="text-capitalize">{{ $data->kota }}</td>
                 </tr>
             </table>
         </div>
         <div class="col-md-4">
-        <div class="alert alert-success h-100" role="alert">
-        <p class="alert-heading title-3 text-uppercase fw-bold"><i class="bi bi-info-circle-fill me-2"></i>Alamat Lengkap</p>
-        <!-- <p>{{ $data->alamat }}</p> -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, perferendis repellat, nemo ex impedit pariatur rem obcaecati</p>
+        <div class="alert alert-primary h-100" role="alert">
+        <p class="alert-heading fw-bold"><i class="bi bi-info-circle-fill me-2"></i>Alamat Cabang</p>
+        <p class="text-capitalize mb-0">{{ $data->alamat }}</p>
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, perferendis repellat, nemo ex impedit pariatur rem obcaecati</p> -->
         </div>
         </div>
         </div>
@@ -78,7 +87,7 @@
     @endphp
 
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-lab">
+    <thead class="title-3 text-uppercase fw-bold text-primary">
       <tr>
         <td>No</td>
         <td>Nama</td>
@@ -100,7 +109,7 @@
           {{ $dat->created_at }}
         </td>
         <td>
-          <i class="text-lab bi bi-person-badge me-2"></i>{{ $dat->roles[0]->name }}
+          <i class="text-primary bi bi-person-badge me-2"></i>{{ $dat->roles[0]->name }}
           <!-- - -->
         </td>
         <td>

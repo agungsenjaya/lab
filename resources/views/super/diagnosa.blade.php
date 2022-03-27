@@ -7,7 +7,7 @@
             <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
 					<div>
-						<h4 class="title-3 text-uppercase text-lab fw-bold mb-0">Diagnosa Pasien</h4>
+						<h5 class="title-3 fw-bold mb-0">Diagnosa Pasien</h5>
 						<p class="mb-0 text-secondary">Informasi diagnosa pasien</p>
 					</div>
 					<div>
@@ -28,9 +28,11 @@
 					<table class="table text-secondary line-h-2">
 					<tbody class="text-capitalize">
 						<tr>
-							<td>No. Transaksi</td>
+							<td>No Transaksi</td>
 							<td>:</td>
-							<td class="text-uppercase">{{ counTing($data->id) . substr($data->kode, 0 ,5) }}</td>
+							<td class="text-uppercase">
+								<span class="alert-primary badge">{{ counTing($data->id) . substr($data->kode, 0 ,5) }}</span>
+							</td>
 						</tr>
 						<tr>
 							<td>Nama Lengkap</td>
@@ -42,7 +44,7 @@
 							<td>:</td>
 							<td>
 								<!-- <span class="badge badge-warning badge-pill px-3"></span> -->
-								<i class="text-lab bi bi-person-badge me-2"></i>{{ $data->dokter->name }}
+								<i class="text-primary bi bi-person-badge me-2"></i>{{ $data->dokter->name }}
 							</td>
 						</tr>
 						<tr>
@@ -55,17 +57,12 @@
 							<td>:</td>
 							<td>{{ $data->cabang->kota }}</td>
 						</tr>
-						<tr>
-							<td>Hasil Diagnosa</td>
-							<td>:</td>
-							<td>{{ $data->formula->judul }}</td>
-						</tr>
 					</tbody>
 				</table>
 					</div>
 					<div class="card-footer bg-transparent border-0 d-flex justify-content-between">
 							<div>Total Pembayaran</div>
-							<div class="text-capitalize title-2 text-lab">
+							<div class="text-capitalize title-2 text-primary">
 								{{ 'Rp ' . $data->pembayaran }}
 							</div>
 						</div>
@@ -74,8 +71,8 @@
 					<div class="col-md-6">
 						<div class="bg-light rounded" style="height:50vh"></div>
 						<div class="mt-4 text-center">
-							<a href="{{ route('super.pasien_detail',['id' =>$data ->pasien_id]) }}" class="btn btn-warn me-2">Track Record</a>
-							<a href="javascript:void(0)" class="btn btn-lab"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak pembayaran</a>
+							<!-- <a href="{{ route('super.pasien_detail',['id' =>$data ->pasien_id]) }}" class="btn btn-warn me-2">Track Record</a> -->
+							<a href="javascript:void(0)" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak pembayaran</a>
 						</div>
 					</div>
 				</div>

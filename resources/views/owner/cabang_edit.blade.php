@@ -38,7 +38,7 @@
     <textarea class="form-control" name="alamat" required></textarea>
   </div>
   
-  <button type="submit" class="btn btn-lab">Insert cabang</button>
+  <button type="submit" class="btn btn-primary">Insert cabang</button>
 </form>
 </div>
 </div>

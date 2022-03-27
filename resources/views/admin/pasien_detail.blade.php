@@ -12,7 +12,7 @@ $no = 1;
             <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
 					<div>
-						<h4 class="title-3 text-uppercase fw-bold mb-0 text-lab">Detail Pasien</h4>
+						<h4 class="title-3 text-uppercase fw-bold mb-0 text-primary">Detail Pasien</h4>
 						<p class="mb-0 text-secondary">Informasi detail pasien</p>
 					</div>
 					<div>
@@ -79,7 +79,7 @@ $no = 1;
 
 				<div class="d-flex justify-content-between my-4">
 					<div>
-						<h4 class="title-3 text-uppercase fw-bold mb-0 text-lab">Riwayat pasien</h4>
+						<h4 class="title-3 text-uppercase fw-bold mb-0 text-primary">Riwayat pasien</h4>
 						<p class="mb-0 text-secondary">Informasi riwayat pengobatan</p>
 					</div>
 					
@@ -87,7 +87,7 @@ $no = 1;
 
 				@if($data)
 				<table id="table1" class="table table-striped w-100 table-bordered">
-						<thead class="title-3 text-uppercase text-lab">
+						<thead class="title-3 text-uppercase text-primary">
 							<tr>
 								<th scope="col" class="border-top-0 py-2">#</th>
 								<th scope="col" class="border-top-0 py-2">Diagnosa</th>
@@ -101,7 +101,7 @@ $no = 1;
 							<tr>
 								<td>{{ counTing($no++) }}</td>
 								<td>{{ $pas->formula->judul }}</td>
-								<td><i class="text-lab bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
+								<td><i class="text-primary bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
 								<td class="text-uppercase title-3">{{ $pas->cabang->name }}</td>
 								<td>{{ $pas->created_at }}</td>
 								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-warn">Detail</a>

@@ -12,10 +12,12 @@ use DB,Session,Uuid,Validator,Auth,Hash, Response;
 
 class ApiController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    protected $cek_price;
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        $this->cek_price = [];
+    }
 
     public function pasiens(Request $request)
     {
@@ -65,18 +67,25 @@ class ApiController extends Controller
     {
         $data = Formula::where('formula_kat_id', $id)->get();
         if (count($data)) {
+            for ($i=0; $i < count($data); $i++) {
+                $dataa = Price::where('formula_id', $data[$i]->id)->where('cabang_id', 1)->first();
+                if ($dataa) {
+                    array_push($this->cek_price, $dataa);
+                }
+            }
             return Response::json([
                 'code'  => 200,
-                'data' => $data
+                'data' => $data,
+                'price' => $this->cek_price
             ]);
         }
     }
 
     public function formula_price(Request $request)
     {
-        $data = Price::where('formula_id',$request->user_is)->where('cabang_id',Auth::user()->cabang_id)->first();
+        $data = Price::where('formula_id',$request->formula_id)->where('cabang_id',$request->cabang_id)->first();
         if ($data) {
-            $data->pembayaran = $request->pemnayaran;
+            $data->pembayaran = $request->pembayaran;
             $data->save();
         }else {
             $dataa = Price::create([
@@ -88,7 +97,25 @@ class ApiController extends Controller
         }
         return Response::json([
             'code'  => 200,
-            'data' => $request->value
+            'data'  => $request->pembayaran,
+        ]);
+    }
+
+    public function formula_price_check(Request $request){
+        $embose = array();
+        for ($i=0; $i < count($request->id); $i++) {
+            $ro = $request->id[$i];
+            $data = Price::where('formula_id', $ro)->where('cabang_id', $request->cabang_id)->first();
+            if ($data) {
+                array_push($embose, array(
+                    'id' => $ro,
+                    'price' => $data->pembayaran,
+                ));
+            }
+        }
+        return Response::json([
+            'code'  => 200,
+            'data' => $embose
         ]);
     }
 }

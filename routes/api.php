@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    // return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::GET('/v1/pasiens', 'ApiController@pasiens');
-Route::GET('/v1/formulas/{id}', 'ApiController@formulas');
-Route::POST('/v1/formulas/price', 'ApiController@formula_price');
-Route::GET('/v1/pasiens/{id}', 'ApiController@pasiens_search');
+// Route::group(['middleware' => 'auth:api'], function(){
+// });
+    Route::GET('/v1/pasiens', 'ApiController@pasiens');
+    Route::GET('/v1/formulas/{id}', 'ApiController@formulas');
+    Route::POST('/v1/formulas/price', 'ApiController@formula_price');
+    Route::POST('/v1/formulas/price_check', 'ApiController@formula_price_check');
+    Route::GET('/v1/pasiens/{id}', 'ApiController@pasiens_search');

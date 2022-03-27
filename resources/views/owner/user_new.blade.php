@@ -19,19 +19,20 @@
 					</div>
 				</div>
 
+
         @if($errors->any())
-        <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
-          <p class="fw-bold">Error Listing</p>
+        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+          <h6 class="fw-bold"><i class="bi bi-info-circle-fill me-2"></i>Notifications</h6>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              <ul class="list-group list-group-flush line-h-2 list-error">
-          @foreach ($errors->all() as $error)
-              <li class="list-group-item">{{ $error }}</li>
+            <ul class="list-group list-group-flush line-h-2 list-error">
+              @foreach ($errors->all() as $error)
+              <li class="list-group-item ps-0"><i class="bi bi-dash me-2"></i>{{ $error }}</li>
               @endforeach
-          </ul>
+              </ul>
         </div>
         @endif
 
-                <form action="{{ route('super.user_store') }}" method="POST">
+                <form action="{{ route('owner.user_store') }}" method="POST">
       @csrf
       <div class="row">
         <div class="mb-3 col">
@@ -43,23 +44,15 @@
           <input type="email" class="form-control" name="email" placeholder="Masukan email" required>
         </div>
       </div>
-  <div class="row">
-    <div class="mb-3 col">
-    <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
-    <select name="kelamin" class="form-select" required>
-        <option value="">-- Select Option --</option>
-        <option value="laki-laki">laki-laki</option>
-        <option value="perempuan">perempuan</option>
-    </select>
-  </div>
-  <div class="mb-3 col">
-          <label class="form-label">Nomor Telepon <span class="text-danger">*</span></label>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">+62</span>
-            <input class="form-control" id="number" name="phone" placeholder="Masukan phone" required>
-          </div>
-        </div>
-  </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Cabang <span class="text-danger">*</span></label>
+        <select name="cabang_id" class="form-select" required>
+          <option value="">-- Select Options --</option>
+          @foreach($cabang->reverse() as $cab)
+          <option value="{{ $cab->id }}">{{ $cab->name }}</option>
+          @endforeach
+        </select>
+      </div>
   <div class="row">
     <div class="col mb-3">
                             <label for="password" class="form-label">{{ __('Password') }} <span class="text-danger">*</span></label>
@@ -80,12 +73,7 @@
 
                         </div>
 
-                        <div class="mb-3">
-      <label class="form-label">Alamat Lengkap <span class="text-danger">*</span></label>
-      <textarea name="alamat" id="" cols="30" rows="5" class="form-control" placeholder="Masukan alamat" required></textarea>
-  </div>
-
-  <button type="submit" class="btn btn-lab">Tambah User</button>
+  <button type="submit" class="btn btn-primary">Tambah User</button>
 </form>
 
         </div>

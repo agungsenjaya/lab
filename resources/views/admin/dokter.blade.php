@@ -2,51 +2,72 @@
 @section('content')
 @include('modal')
 @include('header')
-<div class="bg-lab-2 text-white py-5">
-  <div class="text-center">
-        <h1 class="title-4 text-uppercase fw-bold my-0">Dokter Labora</h1>
-        <p>Berikut dokter pada laboratorium</p>
-  </div>
-  </div>
-<section class="space-m min-vh-100">
+@php
+$no = 1;
+@endphp
+<section class="min-vh-100 space-m">
     <div class="container">
-      <div class="row">
-        <div class="col-md-10 offset-md-1">
-
-        <nav aria-label="breadcrumb" class="mb-4">
+    <div class="card col-md-10 offset-md-1">
+      <div class="card-body">
+      <div class="d-flex justify-content-between mb-4">
+					<div>
+						<h5 class="title-3 fw-bold mb-0">Daftar Dokter</h5>
+						<p class="mb-0 text-secondary">Informasi dokter laboratorium</p>
+					</div>
+					<div>
+						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
 								</li>
 								<li class="breadcrumb-item active" aria-current="page">Dokter</li>
 							</ol>
 						</nav>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-      @foreach($dokter->reverse() as $dok)
-  <div class="col text-center">
-    <div class="card shadow h-100">
-      <img src="{{ asset('img/user.png')}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title title-3 text-uppercase fw-bold text-lab">{{ $dok->name }}</h5>
-        <div class="badge bg-warn py-2 text-lab w-100"><i class="bi bi-activity me-2"></i>{{ $dok->specialist }}</div>
+					</div>
+				</div>
+      <table id="table1" class="table table-striped w-100 table-bordered">
+    <thead class="bg-primary text-white">
+      <tr>
+        <th>No</th>
+        <th>Nama Dokter</th>
+        <th>Unit Cabang</th>
+        <th>Tanggal Add</th>
+      </tr>
+    </thead>
+    <tbody class="text-capitalize">
+      @if($dokter)
+      @foreach($dokter->reverse() as $dat)
+      <tr>
+        <td>{{ counTing($no++) }}</td>
+        <td>{{ $dat->name }}</td>
+        <td>{{ $dat->cabang->name }}</td>
+        <td>
+          @if($dat->created_at)
+          {{ $dat->created_at }}
+          @else
+          -
+          @endif
+        </td>
+      </tr>
+      @endforeach
+      @endif
+    </tbody>
+  </table>
       </div>
-      <div class="card-footer d-flex justify-content-between small title-3 text-uppercase border-0">
-        <div class="text-lab fw-bold">Cabang</div>
-      <div>
-          {{ $dok->cabang->name }}
-      </div>
-
-      </div>
-    </div>
-  </div>
-  @endforeach
-  
-</div>
-
-        </div>
       </div>
     </div>
 </section>
-
 @include('footer')
+@endsection
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+@endsection
+@section('js')
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#table1').DataTable();
+  });
+
+</script>
 @endsection

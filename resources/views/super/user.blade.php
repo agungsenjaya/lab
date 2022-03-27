@@ -7,13 +7,13 @@ $no = 1;
   <div class="container">
     <div class="card card-body shadow">
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-lab">
+    <thead class="title-3 text-uppercase fw-bold text-primary">
       <tr>
         <td>No</td>
         <td>Nama</td>
         <td>Email</td>
         <td>Status</td>
-        <td>Date Reg</td>
+        <td>Cabang</td>
         <td>Role</td>
         <td>Actions</td>
       </tr>
@@ -24,21 +24,20 @@ $no = 1;
       @if($dat->hasRole('admin') || $dat->hasRole('superadmin'))
       <tr>
         <td>{{ counTing($no++) }}</td>
-        <td>{{ $dat->name }}</td>
+        <td class="text-capitalize">{{ $dat->name }}</td>
         <td class="text-lowercase">{{ $dat->email }}</td>
         <td>
             @if($dat->deleted_at)
             <span class="badge bg-secondary w-100">Deactive</span>
             @else
-            <span class="badge bg-lab w-100">Aktif</span>
+            <span class="badge bg-primary text-uppercase rounded-pill w-100">Aktif</span>
             @endif
         </td>
         <td>
-          {{ $dat->created_at }}
+          {{ ($dat->cabang) ? $dat->cabang->name : '-' }}
         </td>
         <td>
-          <i class="text-lab bi bi-person-badge me-2"></i>{{ $dat->roles[0]->name }}
-          <!-- - -->
+          <i class="text-primary bi bi-person-badge me-2"></i>{{ $dat->roles[0]->name }}
         </td>
         <td>
           <a href="{{ route('super.user_edit',['id' => $dat -> id]) }}" class="btn btn-warn w-100 btn-sm">Edit</a>

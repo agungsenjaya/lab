@@ -38,11 +38,8 @@ class UsersTableSeeder extends Seeder
          */
         $a = new User();
         $a->name = 'owner';
-        $a->phone = '88';
         $a->user_id = 1;
         $a->cabang_id = 1;
-        $a->kelamin = 'laki-laki';
-        $a->alamat = 'jl raya soekabumi';
         $a->email = 'owner@sample.com';
         $a->password = Hash::make('owner123');
         $a->save();
@@ -50,11 +47,8 @@ class UsersTableSeeder extends Seeder
         
         $b = new User();
         $b->name = 'superadmin';
-        $b->phone = '88';
         $b->user_id = 1;
         $b->cabang_id = 1;
-        $b->kelamin = 'laki-laki';
-        $b->alamat = 'jl raya soekabumi';
         $b->email = 'super@sample.com';
         $b->password = Hash::make('super123');
         $b->save();
@@ -62,11 +56,8 @@ class UsersTableSeeder extends Seeder
         
         $c = new User();
         $c->name = 'admin';
-        $c->phone = '88';
         $c->user_id = 2;
         $c->cabang_id = 1;
-        $c->kelamin = 'laki-laki';
-        $c->alamat = 'jl raya soekabumi';
         $c->email = 'admin@sample.com';
         $c->password = Hash::make('admin123');
         $c->save();

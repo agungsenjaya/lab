@@ -14,10 +14,6 @@ class FormulasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('formulas')->insert([
-            'judul' => 'sakit gigi',
-            'kategori' => 1,
-            'pembayaran' => '500.000',
-        ]);
+        // 
     }
 }

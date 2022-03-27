@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<section class="vh-100 bg-lab d-flex align-items-center">
+<section class="vh-100 bg-primaryd-flex align-items-center">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
@@ -40,7 +40,7 @@
 
                         <div class="form-group mb-0 text-center">
                             <div class="">
-                                <button type="submit" class="btn btn-lab">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>

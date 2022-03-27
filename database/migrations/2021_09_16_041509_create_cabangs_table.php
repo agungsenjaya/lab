@@ -18,7 +18,7 @@ class CreateCabangsTable extends Migration
             $table->string('name');
             $table->string('kota');
             $table->string('img')->nullable();
-            $table->integer('phone')->nullable();
+            $table->longText('kode');
             $table->longText('alamat');
             $table->json('map')->nullable();
             $table->timestamps();

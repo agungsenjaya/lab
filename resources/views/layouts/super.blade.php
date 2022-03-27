@@ -121,13 +121,13 @@
         <section class="">
           <div class="">
             <div class="row g-0">
-              <div class="col-md-2 min-vh-100 bg-lab">
+              <div class="col-md-2 min-vh-100 bg-primary">
                 <div class="sticky-top">
                 <div class="position-absolute w-100">
               <nav class="navbar navbar-light bg-lab-2 py-2">
               <div class="container">
               <a class="navbar-brand text-white" href="javascript:void(0)">
-                    <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora SPV</span>
+                    <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 fw-bold h5">Supervisor</span>
                 </a>
               </div>
             </nav>
@@ -145,7 +145,7 @@
 
                 <div class="list-group list-group-flush nav-res">
                   <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien')? 'active-res' : '' || (Route::currentRouteName() == 'super.diagnosa')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
-                  <a href="{{ route('super.pasien_search') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien_detail')? 'active-res' : '' || (Route::currentRouteName() == 'super.pasien_search')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Cari Pasien</a>
+                  <!-- <a href="{{ route('super.pasien_search') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien_detail')? 'active-res' : '' || (Route::currentRouteName() == 'super.pasien_search')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Cari Pasien</a> -->
                 </div>
                 
               </div>
@@ -238,10 +238,10 @@
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle text-dark" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ asset('img/user.png') }}" width="40" alt="" class="align-middle rounded-pill">
-                            <span class="align-middle text-uppercase title-3 fw-bold ms-2">Account</span>
+                            <span class="align-middle  title-3 fw-bold ms-2">Account</span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
-                            <h6 class="dropdown-header text-uppercase">Your Account</h6>
+                            <h6 class="dropdown-header ">Your Account</h6>
                             <a class="dropdown-item" href="{{ route('super.account') }}">Setting Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout</a>

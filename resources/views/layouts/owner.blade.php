@@ -127,12 +127,12 @@
               <nav class="navbar navbar-light bg-lab-2 py-2">
               <div class="container">
               <a class="navbar-brand text-white" href="#">
-                    <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 text-uppercase fw-bold h5">Labora OWN</span>
+                    <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 fw-bold h5">Owner</span>
                 </a>
               </div>
             </nav>
               <div class="list-group list-group-flush nav-res">
-                <a href="{{ route('dashboard.owner') }}" class="list-group-item list-group-item-action">
+                <a href="{{ route('dashboard.owner') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'dashboard.owner')? 'active-res' : '' }}">
                   <img src="data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_10_34)'%3E%3Cpath d='M15.5232 8.94116H8.54412L13.1921 13.5891C13.3697 13.7667 13.6621 13.7812 13.8447 13.6091C14.9829 12.5367 15.7659 11.0912 15.9956 9.46616C16.035 9.18793 15.8041 8.94116 15.5232 8.94116V8.94116ZM15.0576 7.03528C14.8153 3.52176 12.0076 0.714119 8.49412 0.471767C8.22589 0.453237 8 0.679413 8 0.948236V7.5294H14.5815C14.8503 7.5294 15.0762 7.30352 15.0576 7.03528ZM6.58824 8.94116V1.96206C6.58824 1.68118 6.34147 1.45029 6.06353 1.48971C2.55853 1.985 -0.120585 5.04705 0.00412089 8.71675C0.132356 12.4856 3.37736 15.5761 7.14794 15.5288C8.6303 15.5103 10 15.0326 11.1262 14.2338C11.3585 14.0691 11.3738 13.727 11.1724 13.5256L6.58824 8.94116Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_10_34'%3E%3Crect width='16' height='16' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A" class="me-3" alt="">Dashboard
                 </a>
                 <!-- <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between" data-bs-toggle="collapse" data-bs-target="#nav-1" aria-expanded="false">
@@ -171,11 +171,11 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.user')? 'show' : '' || (Route::currentRouteName() == 'super.user_edit')? 'show' : '' || (Route::currentRouteName() == 'super.user_new')? 'show' : '' }}" id="nav-3" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'owner.user')? 'show' : '' || (Route::currentRouteName() == 'owner.user_edit')? 'show' : '' || (Route::currentRouteName() == 'owner.user_new')? 'show' : '' }}" id="nav-3" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('owner.user') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user')? 'active-res' : '' || (Route::currentRouteName() == 'super.user_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table User</a>
-                  <a href="{{ route('owner.user_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah User</a>
+                  <a href="{{ route('owner.user') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'owner.user')? 'active-res' : '' || (Route::currentRouteName() == 'owner.user_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table User</a>
+                  <a href="{{ route('owner.user_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'owner.user_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah User</a>
                 </div>
                 </div>
 
@@ -221,10 +221,10 @@
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle text-dark" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle rounded-pill">
-                            <span class="align-middle text-uppercase title-3 fw-bold ms-2">Account</span>
+                            <span class="align-middle title-3 fw-bold ms-2">Account</span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">
-                            <h6 class="dropdown-header text-uppercase">Your Account</h6>
+                            <h6 class="dropdown-header">Your Account</h6>
                             <a class="dropdown-item" href="javascript:void(0)">Setting Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout</a>

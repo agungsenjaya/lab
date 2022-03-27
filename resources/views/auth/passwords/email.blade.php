@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="images">
-<section class="vh-100 bg-lab align-items-center d-flex">
+<section class="vh-100 bg-primaryalign-items-center d-flex">
 <div class="container z-index-100">
     <div class="card col-md-4 offset-md-4">
     <div class="card-header text-center bg-transparent border-0 pt-4">
@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="mt-4 text-center">
-                        <button type="submit" class="btn btn-lab">
+                        <button type="submit" class="btn btn-primary">
                         <span class="btn-inner--text">Reset Password</span>
                       </button>
                     </div>

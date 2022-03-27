@@ -26,9 +26,9 @@
     <label class="form-label">Nama Lengkap</label>
     <input type="text" class="form-control" name="name" placeholder="Masukan nama" required>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 d-none">
     <label class="form-label">Specialist</label>
-    <select name="specialist" class="form-select" required>
+    <select name="specialist" class="form-select">
         <option value="">-- Select Option --</option>
         <option value="umum">umum</option>
         <option value="gigi">gigi</option>
@@ -38,7 +38,7 @@
         <option value="anak">anak</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-lab">Tambah Dokter</button>
+  <button type="submit" class="btn btn-primary">Tambah Dokter</button>
 </form>
     </div>
     </div>

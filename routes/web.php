@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::GET('/','ClientController@index')->name('index');
 
-Auth::routes(['register' => false]);
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'request' => false,
+]);
 
 Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
    
@@ -35,6 +39,7 @@ Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
     Route::GET('/pasien/detail/{id}', 'AdminController@pasien_detail')->name('admin.pasien_detail');
     
     Route::GET('/diagnosa/{id}', 'AdminController@diagnosa')->name('admin.diagnosa');
+    Route::GET('/cetak/{id}', 'AdminController@cetak')->name('admin.cetak');
 });
 
 Route::GROUP(['prefix' => 'superadmin',  'middleware' => ['role:superadmin']], function(){

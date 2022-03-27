@@ -11,7 +11,7 @@ $no = 1;
 			<div class="card-body">
 				<div class="d-flex justify-content-between mb-4">
 					<div>
-						<h4 class="title-3 text-uppercase fw-bold mb-0 text-lab">Pencarian Pasien</h4>
+						<h4 class="title-3 text-uppercase fw-bold mb-0 text-primary">Pencarian Pasien</h4>
 						<p class="mb-0 text-secondary">List nama pasien</p>
 					</div>
 					<div>
@@ -25,7 +25,7 @@ $no = 1;
 					</div>
 				</div>
 				<table id="table1" class="table table-striped w-100 table-bordered">
-						<thead class="title-3 text-uppercase text-lab">
+						<thead class="title-3 text-uppercase text-primary">
 							<tr>
 								<th scope="col" class="border-top-0 py-2">#</th>
 								<th scope="col" class="border-top-0 py-2">Nama Lengkap</th>
@@ -40,7 +40,7 @@ $no = 1;
 								<td>{{ $pas->name }}</td>
 								<td>{{ $pas->ktp }}</td>
 								<td>@php $data = \App\Diagnosa::where('pasien_id', $pas->id)->get(); @endphp @if($data) {{ counTing(count($data)) }} @endif</td>
-								<td><a href="{{ route('admin.pasien_detail',['id' => $pas -> id]) }}" class="btn btn-sm w-100 btn-lab">Detail</a>
+								<td><a href="{{ route('admin.pasien_detail',['id' => $pas -> id]) }}" class="btn btn-sm w-100 btn-primary">Detail</a>
 								</td>
 							</tr>@endforeach</tbody>
 					</table>

@@ -9,11 +9,11 @@ $no = 1;
       <div class="col-md-4">
 
       <div class="position-relative">
-  <div class="card shadow bg-lab text-white">
+  <div class="card shadow bg-primary text-white">
   <div class="card-body z-index-100">
-      <h4 class="card-title">Jumlah Dokter</h4>
+      <h5 class="card-title">Jumlah Dokter</h5>
       <h1 class="text-warn title-2">{{ counTing(count($data)) }}</h1>
-      <p class="lead">Total dokter yang bertugas di laboratorium</p>
+      <p class="">Total dokter laboratorium <span class="text-capitalize">{{ Auth::user()->cabang->name }}</span></p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -32,12 +32,11 @@ $no = 1;
     <div class="card card-body shadow">
         <div>
         <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-lab">
+    <thead class="title-3 text-uppercase fw-bold text-primary">
       <tr>
         <td>No</td>
         <td>Nama</td>
         <td>Status</td>
-        <td>Spesialis</td>
         <td>Date Reg</td>
         <td>Actions</td>
       </tr>
@@ -50,10 +49,9 @@ $no = 1;
             <td>
               @if($dat->deleted_at)
               @else
-              <span class="badge bg-lab w-100">Aktif</span>
+              <span class="badge bg-primary text-uppercae rounded-pill w-100">Aktif</span>
               @endif
             </td>
-            <td><i class="bi bi-activity text-lab me-2"></i>{{ $dat->specialist }}</td>
             <td>
               @if($dat->created_at)
               {{ $dat->created_at }}

@@ -9,11 +9,11 @@ $no = 1;
       <div class="col-md-4">
 
       <div class="position-relative">
-  <div class="card shadow bg-lab text-white">
+  <div class="card shadow bg-primary text-white">
   <div class="card-body z-index-100">
-      <h4 class="card-title">Jumlah Pasien</h4>
+      <h5 class="card-title">Jumlah Pasien</h5>
       <h1 class="text-warn title-2">{{ counTing(count($data)) }}</h1>
-      <p class="lead">Total pasien yang telah berobat di laboratorium</p>
+      <p class="">Total pasien di laboratorium <span class="text-capitalize">{{ Auth::user()->cabang->name }}</span></p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -31,11 +31,10 @@ $no = 1;
   <div class="container">
     <div class="card card-body shadow">
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-lab">
+    <thead class="title-3 text-uppercase fw-bold text-primary">
       <tr>
         <td>No</td>
         <td>Nama</td>
-        <td>Diagnosa</td>
         <td>Tgl</td>
         <td>Dokter</td>
         <td>Actions</td>
@@ -48,13 +47,10 @@ $no = 1;
         <td>{{ counTing($no++) }}</td>
         <td>{{ $dat->pasien->name }}</td>
         <td>
-        <i class="text-lab bi bi-activity me-2"></i>{{ $dat->formula->judul }}
-        </td>
-        <td>
           {{ $dat->created_at }}
         </td>
         <td>
-          <i class="text-lab bi bi-person-badge me-2"></i>{{ $dat->dokter->name }}
+          <i class="text-primary bi bi-person-badge me-2"></i>{{ $dat->dokter->name }}
         </td>
         <td>
           <a href="{{ route('super.diagnosa',['id' => $dat -> kode]) }}" class="btn btn-warn w-100 btn-sm">Details</a>

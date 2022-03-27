@@ -16,7 +16,7 @@ class CreatePasiensTable extends Migration
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('tanggal_lahir');
+            $table->string('tanggal_lahir');
             $table->bigInteger('ktp')->nullable();
             $table->enum('kelamin',['laki-laki','perempuan']);
             $table->longText('alamat');

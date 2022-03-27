@@ -5,15 +5,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalDelLabel">Notifications</h5>
+        <h5 class="modal-title fw-bold" id="modalDelLabel"><i class="bi bi-info-circle me-2"></i>Notifications</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        Apakah anda yakin akan menghapus user {{ $data->email }} dari database?
+        Apakah anda yakin akan menghapus user <span class="fw-bold">{{ $data->email }}</span> dari cabang <span class="text-capitalize fw-bold">{{ $data->cabang->name }}</span> laboratorium?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="{{ route('super.user_delete',['id' => $data -> id]) }}" class="btn btn-lab">Delete Now</a>
+        <a href="{{ route('owner.user_delete',['id' => $data -> id]) }}" class="btn btn-primary">Delete Now</a>
       </div>
     </div>
   </div>
@@ -61,30 +61,33 @@
           <input type="email" class="form-control" name="email" placeholder="Masukan email" required value="{{ $data->email }}">
         </div>
       </div>
-  <div class="row">
-    <div class="mb-3 col">
-    <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
-    <select name="kelamin" class="form-select" required>
-        <option value="">-- Select Option --</option>
-        <option value="laki-laki" {{ ($data->kelamin == 'laki-laki') ? 'selected' : '' }}>laki-laki</option>
-        <option value="perempuan" {{ ($data->kelamin == 'perempuan') ? 'selected' : '' }}>perempuan</option>
-    </select>
-  </div>
-  <div class="mb-3 col">
-          <label class="form-label">Nomor Telepon <span class="text-danger">*</span></label>
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">+62</span>
-            <input class="form-control" id="number" name="phone" placeholder="Masukan phone" required value="{{ $data->phone }}">
-          </div>
-        </div>
-  </div>
-                        <div class="mb-3">
-      <label class="form-label">Alamat Lengkap <span class="text-danger">*</span></label>
-      <textarea name="alamat" id="" cols="30" rows="5" class="form-control" placeholder="Masukan alamat" required>{{ $data->alamat }}</textarea>
+
+      <div class="row mb-3">
+  <div class="col">
+      <label for="password" class="form-label">new {{ __('Password') }}</label>
+
+      <div class="">
+          <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+
+          @error('password')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+      </div>
   </div>
 
-  <button type="submit" class="btn btn-lab">Update User</button>
-  <button type="button" class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#modalDel"><i class="bi bi-dash-circle-fill me-2"></i>Delete User</button>
+  <div class="col">
+      <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+
+      <div class="">
+          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+      </div>
+  </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update User</button>
+  <button type="button" class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#modalDel">Delete User</button>
 </form>
 
         </div>

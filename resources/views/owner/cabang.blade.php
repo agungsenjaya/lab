@@ -7,14 +7,15 @@ $no = 1;
   <div class="container">
     <div class="card card-body shadow">
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-lab">
+    <thead class="text-primary">
       <tr>
-        <td>No</td>
-        <td>Nama</td>
-        <td>Karyawan</td>
-        <td>Date Reg</td>
-        <td>Cabang</td>
-        <td>Actions</td>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Kode Cabang</th>
+        <th>Jml Users</th>
+        <!-- <th>Date Reg</th> -->
+        <th>Cabang</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody class="text-capitalize">
@@ -23,31 +24,29 @@ $no = 1;
       <tr>
         <td>{{ counTing($no++) }}</td>
         <td>{{ $cab->name }}</td>
+        <td class="text-uppercase">
+          <div class="badge alert-primary w-100">
+            {{ $cab->kode }}
+          </div>
+        </td>
         <td>
-        <i class="text-lab bi bi-person-badge me-2"></i>
+        <i class="text-primary bi bi-person-badge me-2"></i>
         @php
         $nan = \App\User::where('cabang_id', $cab->id )->get();
         @endphp
         {{ counTing(count($nan)) }}
         </td>
-        <td>
+        <!-- <td>
           @if($cab->created_at)
-          {{ $cab->created_at }}
+          {{ $cab->created_at->format('d M Y') }}
           @else
           -
           @endif
-        </td>
-        {{--<td>
-            @foreach($nan as $na)
-            @if($na->hasRole('superadmin'))
-            {{ $na->name }}
-            @endif
-            @endforeach
-        </td>--}}
+        </td> -->
         <td>{{ $cab->kota }}</td>
         <td>
-          <a href="{{ route('owner.cabang_detail',['id' => $cab -> id]) }}" class="btn btn-warn btn-sm">Details</a>
-          <a href="{{ route('owner.cabang_edit',['id' => $cab -> id]) }}" class="btn btn-warn btn-sm"> <i class="bi bi-pencil-square"></i> </a>
+          <a href="{{ route('owner.cabang_detail',['id' => $cab -> id]) }}" class="btn btn-warn btn-sm w-100">Details</a>
+          <!-- <a href="{{ route('owner.cabang_edit',['id' => $cab -> id]) }}" class="btn btn-warn btn-sm"> <i class="bi bi-pencil-square"></i> </a> -->
         </td>
       </tr>
       @endforeach

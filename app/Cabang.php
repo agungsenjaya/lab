@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cabang extends Model
 {
 
-    protected $fillable = ['name','kota','phone','alamat','map','img'];
+    protected $fillable = ['name','kota','alamat','map','img','kode'];
     
     public function diagnosas()
     {

@@ -177,7 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
 
     ],
 
@@ -234,7 +234,10 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
+
 
     ],
 

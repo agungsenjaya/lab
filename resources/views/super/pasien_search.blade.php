@@ -15,7 +15,7 @@ $no = 1;
   
 </svg>
 
-        <div class="alert alert-success d-flex align-items-center" role="alert">
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
             <div>
                 Fitur untuk mencari pasien diseluruh cabang laboratorium
@@ -23,7 +23,7 @@ $no = 1;
         </div>
 
         <table id="table1" class="table table-striped w-100 table-bordered">
-            <thead class="title-3 text-uppercase text-lab">
+            <thead class="title-3 text-uppercase text-primary">
                 <tr>
                     <th scope="col" class="border-top-0 py-2">#</th>
                     <th scope="col" class="border-top-0 py-2">Nama Lengkap</th>
