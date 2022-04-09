@@ -13,13 +13,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf_viewer.min.css" integrity="sha512-QgMseQTq9BTHUqgaL1BvhJeR/LzcBL1pqisRRZycVB+wf5yu8Qwl+4Hm0gDBMEc0Iko/rv4YZpfLFH/Vql6h5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf_viewer.min.css" integrity="sha512-QgMseQTq9BTHUqgaL1BvhJeR/LzcBL1pqisRRZycVB+wf5yu8Qwl+4Hm0gDBMEc0Iko/rv4YZpfLFH/Vql6h5A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+		<style>
+			.table-1 > tbody > tr > td,
+	.table-1 > tbody > tr > th,
+	.table-1 > tfoot > tr > td,
+	.table-1 > tfoot > tr > th,
+	.table-1 > thead > tr > td,
+	.table-1 > thead > tr > th {
+		border: none;
+	}
+
+	thead, tbody, tfoot, tr, td, th {
+		border-color: #000;
+	}
+		</style>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-		<div style="height:100px"></div>
+		<!-- <div style="height:100px"></div> -->
+		<div class="container">
+		<div class="row">
+		<div class="col-md-10 offset-md-1">
+			<img src="https://dummyimage.com/1349x200" alt="" width="100%">
 		<div class="row py-2">
 			<div class="col-md-6">
 				<table class="table table-1 table-sm">
@@ -47,15 +65,15 @@
 			</div>
 			<div class="col-md-6">
 				<table class="table table-1 table-sm">
-						<!-- <tr class="d-flex">
+						<tr class="d-flex">
 						<td class="col-4">Status Dokumen</td>
 							<td>:</td>
 							<td class="text-capitalize col">
-								Copy
+								Asli
 							</td>
-						</tr> -->
+						</tr>
 						<tr class="d-flex">
-						<td class="col-4">Dokter Pemeriksa</td>
+						<td class="col-4">Dokter</td>
 							<td>:</td>
 							<td class="text-capitalize col">
 								Dr. {{ $data->dokter->name }}
@@ -64,7 +82,7 @@
 							<tr class="d-flex">
 							<td class="col-4">Tanggal Diagnosa</td>
 								<td>:</td>
-								<td>{{ $data->created_at->format('d M Y') }}</td>
+								<td class="col">{{ $data->created_at->format('d M Y') }}</td>
 							</tr>
 						<tr class="d-flex">
 							<td class="col-4">Alamat Lengkap</td>
@@ -114,6 +132,9 @@
 					<p>Analis</p>
 				</div>
 			</div>
+		</div>
+		</div>
+		</div>
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" integrity="sha512-IM60GPudO4jk+ZQm3UlJgKHhXQi5pNDM6mP+pLKL968YgkHMc7He3aGJOVHEZ9rJ4vAaEtJ8W6SKa7Qq4inzBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

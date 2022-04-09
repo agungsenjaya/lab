@@ -46,7 +46,7 @@
 							</td>
 						</tr> -->
 						<tr class="d-flex">
-						<td class="col-4">Dokter Pemeriksa</td>
+						<td class="col-4">Dokter</td>
 							<td>:</td>
 							<td class="text-capitalize col">
 								Dr. {{ $data->dokter->name }}
@@ -145,7 +145,7 @@
 							<td class="col">{{ $data->pasien->name }}</td>
 						</tr>
 						<tr class="d-flex">
-							<td class="col-3">Dokter Pemeriksa</td>
+							<td class="col-3">Dokter</td>
 							<td>:</td>
 							<td class="col">
 								<!-- <span class="badge badge-warning badge-pill px-3"></span> -->
@@ -153,7 +153,7 @@
 							</td>
 						</tr>
 						<tr class="d-flex">
-							<td class="col-3">Tgl Berobat</td>
+							<td class="col-3">Tanggal</td>
 							<td>:</td>
 							<td class="col">{{ $data->created_at }}</td>
 						</tr>

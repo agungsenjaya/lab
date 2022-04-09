@@ -29,7 +29,7 @@ $no = 1;
 							<tr>
 								<th scope="col" class="border-top-0 py-2">#</th>
 								<th scope="col" class="border-top-0 py-2">Nama Lengkap</th>
-								<th scope="col" class="border-top-0 py-2">Dokter Pemeriksa</th>
+								<th scope="col" class="border-top-0 py-2">Dokter</th>
 								<th scope="col" class="border-top-0 py-2">Kode Transaksi</th>
 								<th scope="col" class="border-top-0 py-2">Tgl Berobat</th>
 								<th scope="col" class="border-top-0 py-2">Actions</th>

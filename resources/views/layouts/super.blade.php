@@ -141,11 +141,10 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.pasien')? 'show' : '' || (Route::currentRouteName() == 'super.pasien_detail')? 'show' : '' || (Route::currentRouteName() == 'super.diagnosa')? 'show' : '' || (Route::currentRouteName() == 'super.pasien_search')? 'show' : '' }}" id="nav-1" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.pasien' || 'super.pasien_detail' || 'super.diagnosa' || 'super.pasien_search')? 'show' : '' }}" id="nav-1" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien')? 'active-res' : '' || (Route::currentRouteName() == 'super.diagnosa')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
-                  <!-- <a href="{{ route('super.pasien_search') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien_detail')? 'active-res' : '' || (Route::currentRouteName() == 'super.pasien_search')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Cari Pasien</a> -->
+                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien' || 'super.diagnosa')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
                 </div>
                 
               </div>
@@ -155,10 +154,10 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.dokter')? 'show' : '' || (Route::currentRouteName() == 'super.dokter_edit')? 'show' : '' || (Route::currentRouteName() == 'super.dokter_new')? 'show' : '' }}" id="nav-2" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.doketer' || 'super.dokter_new' || 'super.dokter_edit')? 'active-res' : '' }}" id="nav-2" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.dokter') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter')? 'active-res' : '' || (Route::currentRouteName() == 'super.dokter_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Dokter</a>
+                  <a href="{{ route('super.dokter') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter' || 'super.dokter_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Dokter</a>
                   <a href="{{ route('super.dokter_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah Dokter</a>
                 </div>
                 
@@ -173,7 +172,7 @@
                 <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.price')? 'show' : '' }}" id="nav-4" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.price') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.price')? 'active-res' : '' || (Route::currentRouteName() == 'super.price_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Price</a>
+                  <a href="{{ route('super.price') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.price' || 'super.price_edit' )? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Price</a>
                 </div>
                 
               </div>
@@ -184,10 +183,10 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.user')? 'show' : '' || (Route::currentRouteName() == 'super.user_edit')? 'show' : '' || (Route::currentRouteName() == 'super.user_new')? 'show' : '' }}" id="nav-3" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.user' || 'super.user_edit' || 'super.user_new')? 'show' : '' }}" id="nav-3" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.user') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user')? 'active-res' : '' || (Route::currentRouteName() == 'super.user_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table User</a>
+                  <a href="{{ route('super.user') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user' || 'super.user_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table User</a>
                   <a href="{{ route('super.user_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah User</a>
                 </div>
                 </div>

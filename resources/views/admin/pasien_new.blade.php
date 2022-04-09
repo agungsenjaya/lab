@@ -109,7 +109,7 @@
 					<div class="mb-4 col">
 						<input type="hidden" name="data[]">
 						<input type="hidden" name="pembayaran">
-							<label class="form-label" for="">Dokter Pemeriksa <span class="text-danger">*</span>
+							<label class="form-label" for="">Dokter <span class="text-danger">*</span>
 							</label>
 							<select required class="form-select kat_dd" name="dokter">
 								<option class="text-secondary">Chose Doctor</option>
