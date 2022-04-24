@@ -29,8 +29,8 @@ $no = 1;
       <tr>
         <th>No</th>
         <th>Nama Dokter</th>
-        <th>Unit Cabang</th>
-        <th>Tanggal Add</th>
+        <th>Jml Pemeriksaan</th>
+        <th>Date Reg</th>
       </tr>
     </thead>
     <tbody class="text-capitalize">
@@ -39,7 +39,12 @@ $no = 1;
       <tr>
         <td>{{ counTing($no++) }}</td>
         <td>{{ $dat->name }}</td>
-        <td>{{ $dat->cabang->name }}</td>
+        <td>
+          @php
+          $data = App\Diagnosa::where('dokter_id', $dat->id)->count();
+          echo counTing($data);
+          @endphp
+        </td>
         <td>
           @if($dat->created_at)
           {{ $dat->created_at }}

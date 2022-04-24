@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCetaksTable extends Migration
+class CreateNilaisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCetaksTable extends Migration
      */
     public function up()
     {
-        Schema::create('cetaks', function (Blueprint $table) {
+        Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->integer('diagnosa_id');
-            $table->integer('user_id');
+            $table->integer('formula_id');
+            $table->enum('kelamin',['laki-laki','laki-laki dewasa','laki-laki bayi','perempuan','perempuan dewasa','perempuan bayi','all']);
+            $table->longText('normal');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCetaksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cetaks');
+        Schema::dropIfExists('nilais');
     }
 }

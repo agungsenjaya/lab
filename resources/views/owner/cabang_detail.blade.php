@@ -4,7 +4,18 @@
     <div class="container">
         <div class="card card-body shadow">
         <div class="d-flex justify-content-between mb-4">
-					<div></div>
+					<div class="d-flex">
+            <div>
+              <a href="{{ route('owner.laporan',['id' => $data -> id]) }}" class="btn btn-primary">Laporan Keuangan</a>
+            </div>
+
+            <!-- <div class="ms-3">
+          <select name="" id="" class="form-select">
+            <option value="">--Select Option--</option>
+          </select>
+        </div> -->
+
+          </div>
 					<div>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
@@ -15,27 +26,68 @@
 						</nav>
 					</div>
 				</div>
+
+        <div class="card-deck mb-3">
+  <div class="card alert-primary">
+    <div class="card-body">
+      <h5 class="card-title title-2 text-primary">Jumlah Dokter</h5>
+      <h1 class="title-2 text-primary">@php
+                        $non = \App\Dokter::where('cabang_id', $data->id )->get();
+                        @endphp
+                        {{ counTing(count($non)) }}</h1>
+      
+      
+    </div>
+  </div>
+  <div class="card alert-primary">
+    <div class="card-body">
+      <h5 class="card-title title-2 text-primary">Jumlah Transaksi</h5>
+      <h1 class="title-2 text-primary">
+      @php
+                      $nen = \App\Diagnosa::where('cabang_id', $data->id )->get();
+                      @endphp
+                      {{ counTing(count($nen)) }}
+      </h1>
+      
+      
+    </div>
+  </div>
+  <div class="card alert-primary">
+    <div class="card-body">
+      <h5 class="card-title title-2 text-primary">Jumlah User</h5>
+      <h1 class="title-2 text-primary">
+      @php
+                      $nan = \App\User::where('cabang_id', $data->id )->get();
+                      @endphp
+                      {{ counTing(count($nan)) }}
+      </h1>
+      
+      
+    </div>
+  </div>
+</div>
+
         <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <table class="table line-h-2">
-                <tr>
-                    <td class="title-3 text-capitalize">Kode Cabang</td>
-                    <td>:</td>
-                    <td class="text-uppercase">
+                <tr class="row">
+                    <td class="title-3 col-4 text-capitalize">Kode Cabang</td>
+                    <td class="col-1">:</td>
+                    <td class="text-uppercase col">
                       <div class="badge alert-primary">
                         {{ $data->kode }}
                       </div>
                     </td>
                 </tr>
-                <tr>
-                    <td class="title-3 text-capitalize">Nama Cabang</td>
-                    <td>:</td>
-                    <td class="text-capitalize">{{ $data->name }}</td>
+                <tr class="row">
+                    <td class="title-3 col-4 text-capitalize">Nama Cabang</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">{{ $data->name }}</td>
                 </tr>
                 <tr class="d-none">
-                    <td class="title-3 text-capitalize">Nomor Telepon</td>
-                    <td>:</td>
-                    <td class="text-capitalize">
+                    <td class="title-3 col-4 text-capitalize">Nomor Telepon</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">
                         @if($data->phone)
                         {{ $data->phone }}
                         @else
@@ -43,43 +95,30 @@
                         @endif
                     </td>
                 </tr>
-                <tr>
-                    <td class="title-3 text-capitalize">Jumlah Users</td>
-                    <td>:</td>
-                    <td class="text-capitalize">
-                        @php
-                        $nan = \App\User::where('cabang_id', $data->id )->get();
-                        @endphp
-                        {{ counTing(count($nan)) }}
-                    </td>
+                <tr class="row">
+                    <td class="title-3 col-4 text-capitalize">Kota/Kabupaten</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">{{ $data->kota }}</td>
                 </tr>
-                <tr class="border-transparent">
-                    <td class="title-3 text-capitalize">Kota/Kabupaten</td>
-                    <td>:</td>
-                    <td class="text-capitalize">{{ $data->kota }}</td>
+                <tr class="border-transparent row">
+                    <td class="title-3 col-4 text-capitalize">Alamat</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">{{ $data->alamat }}</td>
                 </tr>
             </table>
-        </div>
-        <div class="col-md-4">
-        <div class="alert alert-primary h-100" role="alert">
-        <p class="alert-heading fw-bold"><i class="bi bi-info-circle-fill me-2"></i>Alamat Cabang</p>
-        <p class="text-capitalize mb-0">{{ $data->alamat }}</p>
-        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, perferendis repellat, nemo ex impedit pariatur rem obcaecati</p> -->
-        </div>
         </div>
         </div>
         </div>
     </div>
 </section>
-<!-- <section class="space-m">
-  <div class="container">
-  </div>
-</section> -->
 <section class="space-m">
     <div class="container">
-    <div class="card card-body shadow">
+    <div class="card shadow">
+      <div class="card-header">
+        <h5 class="title-2 mb-0">Table Users</h5>
+      </div>
+    <div class="card-body">
 
-    <h5 class="title-2 mb-4">Table Users</h5>
 
     @php
     $no = 1;
@@ -87,7 +126,7 @@
     @endphp
 
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-primary">
+    <thead class="title-3 fw-bold bg-primary text-white">
       <tr>
         <td>No</td>
         <td>Nama</td>
@@ -113,7 +152,7 @@
           <!-- - -->
         </td>
         <td>
-          <a href="{{ route('super.user_edit',['id' => $dat -> id]) }}" class="btn btn-warn w-100 btn-sm">Edit</a>
+          <a href="{{ route('owner.user_edit',['id' => $dat -> id]) }}" class="btn btn-warn w-100 btn-sm">Edit</a>
         </td>
       </tr>
       @endif
@@ -122,6 +161,7 @@
     </tbody>
   </table>
         
+    </div>
     </div>
     </div>
 </section>

@@ -45,7 +45,7 @@
 							<label class="form-label" for="">Jenis Kelamin <span class="text-danger">*</span>
 							</label>
 							<select required class="form-select" name="kelamin">
-								<option class="text-secondary">Chose Option</option>
+								<option class="text-secondary">Choose Option</option>
 								<option class="text-secondary" value="laki-laki">Laki-laki</option>
 								<option class="text-secondary" value="perempuan">Perempuan</option>
 							</select>
@@ -112,16 +112,16 @@
 							<label class="form-label" for="">Dokter <span class="text-danger">*</span>
 							</label>
 							<select required class="form-select kat_dd" name="dokter">
-								<option class="text-secondary">Chose Doctor</option>
+								<option class="text-secondary">Choose Doctor</option>
 								@foreach($dokter as $dok)
 								<option class="text-secondary" value="{{ $dok->id }}">{{ $dok->name }}</option>
 								@endforeach
 							</select>
 						</div>
 						<div class="mb-4 col">
-							<label class="form-label" for="">Tambah Diagnosa</label>
+							<label class="form-label" for="">Item Pemeriksaan</label>
 							<select id="form-diagnosa" class="form-select kat_dd">
-								<option>Chose Diagnosa</option>
+								<option>Choose Items</option>
 								@foreach($formula as $for)
 								<option value="{{ $for }}">
 									@if($for->sub_kat)
@@ -167,6 +167,7 @@
 <script>
 
 var formula = <?php echo $formula ?>;
+var nilai = <?php echo $nilai ?>;
 // var bar = formula.find(element => element.id == 1);
 // if (bar) {
 // 	console.log(bar.judul);

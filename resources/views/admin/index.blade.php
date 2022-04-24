@@ -11,15 +11,15 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md">
-            <p class="mb-0 small">Kode Cabang</p>
-            <h5 class=" fw-bold text-primary text-uppercase">{{ Auth::user()->cabang->kode }}</h5>
+            <p class="mb-0 small">Nama Laboratorium</p>
+            <h5 class=" fw-bold text-primary text-uppercase">{{ Auth::user()->cabang->name }}</h5>
           </div>
           <div class="col-md border-start">
             <p class="mb-0 small">Tanggal</p>
             <h5 class=" fw-bold text-primary">{{ date('d M Y') }}</h5>
           </div>
           <div class="col-md border-start">
-          <p class="mb-0 small">Total Pasien</p>
+          <p class="mb-0 small">Pasien Hari Ini</p>
             <h5 class=" fw-bold text-primary">{{ counTing(count($data)) }}</h5>
           </div>
         </div>

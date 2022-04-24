@@ -98,5 +98,9 @@ Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){
     Route::GET('/cabang/new', 'OwnerController@cabang_new')->name('owner.cabang_new');
     Route::POST('/cabang/store', 'OwnerController@cabang_store')->name('owner.cabang_store');
 
-    Route::GET('/laporan', 'OwnerController@laporan')->name('owner.laporan');
+    Route::GET('/cabang/laporan/{id}', 'OwnerController@laporan')->name('owner.laporan');
+
+    Route::GET('/account', 'OwnerController@account')->name('owner.account');
+    Route::GET('/pricing', 'OwnerController@pricing')->name('owner.pricing');
+
 });

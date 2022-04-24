@@ -101,7 +101,7 @@
 					<br>
 					<br>
 					<br>
-					<p>Analis</p>
+					<p>ATLM</p>
 				</div>
 			</div>
 		</div>
@@ -110,8 +110,8 @@
             <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
 					<div>
-						<h5 class="title-3 fw-bold mb-0">Diagnosa Pasien</h5>
-						<p class="mb-0 text-secondary">Informasi diagnosa pasien</p>
+						<h5 class="title-3 fw-bold mb-0">Hasil Pemeriksaan Pasien</h5>
+						<p class="mb-0 text-secondary">Informasi hasil pemeriksaan pasien</p>
 					</div>
 					<div>
 						<nav aria-label="breadcrumb">
@@ -153,12 +153,12 @@
 							</td>
 						</tr>
 						<tr class="d-flex">
-							<td class="col-3">Tanggal</td>
+							<td class="col-3">Tanggal Periksa</td>
 							<td>:</td>
 							<td class="col">{{ $data->created_at }}</td>
 						</tr>
 						<tr class="d-flex">
-							<td class="col-3">Cabang</td>
+							<td class="col-3">Laboratorium</td>
 							<td>:</td>
 							<td class="text-uppercase title-3 col">{{ $data->cabang->name }}</td>
 						</tr>
@@ -182,7 +182,7 @@
 						<div class="bg-light rounded" style="height:50vh"></div>
 						<div class="mt-4 text-center">
 							<!-- <a href="{{ route('admin.pasien_detail',['id' =>$data ->pasien_id]) }}" class="btn btn-warn me-2">Track Record</a> -->
-							<a href="{{ route('admin.cetak',['id' => $data -> kode]) }}" target="_blank" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak pembayaran</a>
+							<a href="{{ route('admin.cetak',['id' => $data -> kode]) }}" target="_blank" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak Hasil Pemeriksaan</a>
 						</div>
 					</div>
 				</div>

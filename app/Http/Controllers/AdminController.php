@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\Pasien;
 use App\Dokter;
 use App\Cabang;
+use App\Nilai;
 use App\Formula;
 use App\Formula_kat;
 use App\Diagnosa;
+use App\Pricing;
+use App\Cetak;
 use Carbon\Carbon;
+use Faker\Factory as Faker; 
 use PDF;
 use DB,Session,Uuid,Validator,Auth;
 
@@ -38,8 +42,15 @@ class AdminController extends Controller
 
     public function pasien()
     {
-        $pasien = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
-        return view('admin.pasien',compact('pasien'));
+        // $data =Diagnosa::select('*')
+        $data =Diagnosa::where('cabang_id', Auth::user()->cabang_id)
+        ->whereBetween('created_at', 
+            [Carbon::now()->subMonth(3), Carbon::now()]
+        )
+        ->get();
+
+        // $pasien = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
+        return view('admin.pasien',compact('data'));
     }
     
     public function pasien_search()
@@ -50,7 +61,7 @@ class AdminController extends Controller
     public function pasien_new()
     {
         $dokter = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
-        return view('admin.pasien_new',compact('dokter'))->with('pasien', Pasien::all())->with('formula', Formula::all());
+        return view('admin.pasien_new',compact('dokter'))->with('pasien', Pasien::all())->with('formula', Formula::all())->with('nilai', Nilai::all());
     }
 
     public function pasien_store(Request $request)
@@ -148,27 +159,47 @@ class AdminController extends Controller
 
     public function cetak($id)
     {
-
-        $data = Diagnosa::where('kode', $id)->first();
-        $dat = json_decode($data->data);
-        $da = json_decode($dat[0]);
+        // $data = Diagnosa::where('kode', $id)->first();
+        // $dat = json_decode($data->data);
+        // $da = json_decode($dat[0]);
         
-        for ($i=0; $i < count($da) ; $i++) {
-            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
-            $da[$i]->no_kategori = $ded->id;
-            $da[$i]->kategori = $ded->judul;
-        }
-        $data->data = $da;
+        // for ($i=0; $i < count($da) ; $i++) {
+        //     $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+        //     $da[$i]->no_kategori = $ded->id;
+        //     $da[$i]->kategori = $ded->judul;
+        // }
+        // $data->data = $da;
 
-        $gas = array();
-        foreach ($data->data as $element) {
-            $gas[$element->kategori][] = $element;
-        }
+        // $gas = array();
+        // foreach ($data->data as $element) {
+        //     $gas[$element->kategori][] = $element;
+        // }
 
         // $pdf = PDF::loadView('pdf.pasien',compact('data','gas'));
-        // return $pdf->setPaper('a4', 'portrait')->stream();
-        return view('pdf.pasien',compact('data','gas'));
-        
+        // return $pdf->setPaper('a4', 'portrait')->stream('table.pdf');
 
+
+        $dataDummy = [];
+        $faker = Faker::create();
+        $MAX_DATA = 100;
+        for ($i = 0; $i < $MAX_DATA; $i++) {
+            $people = (Object) [
+                "id" => $i,
+                "name" => $faker->name,
+                "address" => $faker->address,
+                "email" => $faker->email,
+                "company" => $faker->company
+            ];
+
+            array_push($dataDummy, $people);
+        }
+        $data = [
+            "dataDummy" => $dataDummy
+        ];
+        
+        $pdf = PDF::loadView('pdf.test_1', $data)
+        ->setOption('margin-top', '40mm')
+        ->setOption('margin-bottom', '40mm');
+        return $pdf->stream('tableee.pdf');
     }
 }

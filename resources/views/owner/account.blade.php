@@ -1,9 +1,9 @@
-@extends('layouts.super')
+@extends('layouts.owner')
 @section('content')
 <section>
     <div class="container">
         <div class="card shadow mb-4">
-        <div class="card-header">
+            <div class="card-header">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout Now</button>
             </div>
             <div class="row card-body">
@@ -47,7 +47,7 @@
 
         <h5 class="title-2 mb-4">Update Account</h5>
 
-        <form action="{{ route('super.user_update',['id' => Auth::user() -> id]) }}" method="POST">
+        <form action="{{ route('owner.user_update',['id' => Auth::user() -> id]) }}" method="POST">
       @csrf
       <div class="row">
         <div class="mb-3 col">

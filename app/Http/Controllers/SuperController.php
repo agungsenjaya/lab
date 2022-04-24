@@ -12,8 +12,10 @@ use App\User;
 use App\Price;
 use App\Cabang;
 use App\Role;
+use App\Pricing;
+use App\Cetak;
 use Carbon\Carbon;
-use DB,Session,Uuid,Validator,Auth,Hash;
+use DB,Session,Uuid,Validator,Auth,Hash,Str;
 
 class SuperController extends Controller
 {
@@ -37,6 +39,9 @@ class SuperController extends Controller
         $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->whereDate('created_at', Carbon::today())->get();
         $dokter = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
         $total = 0;
+        for ($i=0;  $i < count($data) ; $i++) { 
+            $total += (int)preg_replace("/\s/u","",Str::replaceFirst('.','',$data[$i]->pembayaran),1);
+        }
         return view('super.home',compact('data','total','dokter'));
     }
 
@@ -220,19 +225,24 @@ class SuperController extends Controller
 
     public function laporan()
     {
-        $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
+        $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->whereDate('created_at', Carbon::today())->get();
         $dokter = Dokter::where('cabang_id', Auth::user()->cabang_id)->get();
         $total = 0;
         for ($i=0;  $i < count($data) ; $i++) { 
-            $total += str_replace('.','',$data[$i]->pembayaran);
+            $total += (int)preg_replace("/\s/u","",Str::replaceFirst('.','',$data[$i]->pembayaran),1);
         }
         return view('super.laporan',compact('data','total','dokter'));
     }
 
     public function price()
     {
-        return view('super.price')->with('for_kat',Formula_kat::all());
+        $status = Pricing::where('cabang_id', Auth::user()->cabang_id)->first();
+        if ($status->status == '1') {
+            return view('super.price')->with('for_kat',Formula_kat::all());
+        }
+        return redirect()->route('dashboard.super');
     }
+    
     // public function formula()
     // {
     //     $data = Formula::where('cabang_id', Auth::user()->cabang_id)->get();

@@ -17,8 +17,12 @@ class Cabang extends Model
     {
         return $this->hasMany('App\User');
     }
-    public function doktes()
+    public function dokters()
     {
         return $this->hasMany('App\Dokter');
+    }
+    public function pricings()
+    {
+    	return $this->hasMany('App\Pricing');
     }
 }

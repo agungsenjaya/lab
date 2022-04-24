@@ -32,11 +32,12 @@ $no = 1;
     <div class="card card-body shadow">
         <div>
         <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-primary">
+    <thead class="title-3 fw-bold bg-primary text-white">
       <tr>
         <td>No</td>
         <td>Nama</td>
-        <td>Status</td>
+        <!-- <td>Status</td> -->
+        <td>Jml Pemeriksaan</td>
         <td>Date Reg</td>
         <td>Actions</td>
       </tr>
@@ -46,11 +47,17 @@ $no = 1;
           <tr>
             <td>{{ counTing($no++) }}</td>
             <td>{{ $dat->name }}</td>
-            <td>
+            <!-- <td>
               @if($dat->deleted_at)
               @else
-              <span class="badge bg-primary text-uppercae rounded-pill w-100">Aktif</span>
+              <span class="badge alert-primary text-uppercae rounded-pill w-100">Aktif</span>
               @endif
+            </td> -->
+            <td>
+            @php
+            $data = App\Diagnosa::where('dokter_id', $dat->id)->count();
+            echo counTing($data);
+            @endphp
             </td>
             <td>
               @if($dat->created_at)

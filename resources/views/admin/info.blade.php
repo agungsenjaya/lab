@@ -23,24 +23,24 @@
 				</div>
 
         <table class="table line-h-2">
-            <tr>
-                    <td class="title-3 text-capitalize">Kode Cabang</td>
-                    <td>:</td>
-                    <td class="text-uppercase">
+            <tr class="row">
+                    <td class="title-3 col-4 text-capitalize">Kode Laboratorium</td>
+                    <td class="col-1">:</td>
+                    <td class="text-uppercase col">
                       <div class="badge alert-primary">
                         {{ Auth::user()->cabang->kode }}
                       </div>
                     </td>
                 </tr>
-                <tr>
-                    <td class="title-3 ">Nama Cabang</td>
-                    <td>:</td>
-                    <td class="text-capitalize">{{ Auth::user()->cabang->name }}</td>
+                <tr class="row">
+                    <td class="title-3 col-4 ">Nama Laboratorium</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">{{ Auth::user()->cabang->name }}</td>
                 </tr>
                 <tr class="d-none">
-                    <td class="title-3 ">Nomor Telepon</td>
-                    <td>:</td>
-                    <td class="text-capitalize">
+                    <td class="title-3 col-4 ">Nomor Telepon</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">
                         @if(Auth::user()->cabang->phone)
                         {{ Auth::user()->cabang->phone }}
                         @else
@@ -48,20 +48,25 @@
                         @endif
                     </td>
                 </tr>
-                <tr>
-                    <td class="title-3 ">Jumlah Karyawan</td>
-                    <td>:</td>
-                    <td class="text-capitalize">
+                <tr class="row">
+                    <td class="title-3 col-4 ">Jumlah Karyawan</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">
                         @php
                         $nan = \App\User::where('cabang_id', Auth::user()->cabang->id )->get();
                         @endphp
                         {{ counTing(count($nan)) }}
                     </td>
                 </tr>
-                <tr class="border-transparent">
-                    <td class="title-3 ">Kota/Kabupaten</td>
-                    <td>:</td>
-                    <td class="text-capitalize">{{ Auth::user()->cabang->kota }}</td>
+                <tr class="row">
+                    <td class="title-3 col-4 ">Kota/Kabupaten</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">{{ Auth::user()->cabang->kota }}</td>
+                </tr>
+                <tr class="border-transparent row">
+                    <td class="title-3 col-4 ">Alamat</td>
+                    <td class="col-1">:</td>
+                    <td class="text-capitalize col">{{ Auth::user()->cabang->alamat }}</td>
                 </tr>
             </table>
 

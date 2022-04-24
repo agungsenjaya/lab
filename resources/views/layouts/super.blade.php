@@ -141,10 +141,10 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.pasien' || 'super.pasien_detail' || 'super.diagnosa' || 'super.pasien_search')? 'show' : '' }}" id="nav-1" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.pasien' || Route::currentRouteName() == 'super.pasien_detail' || Route::currentRouteName() == 'super.diagnosa' || Route::currentRouteName() == 'super.pasien_search') ? 'show' : '' }}" id="nav-1" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien' || 'super.diagnosa')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
+                  <a href="{{ route('super.pasien') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.pasien' || Route::currentRouteName() == 'super.diagnosa')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Pasien</a>
                 </div>
                 
               </div>
@@ -154,15 +154,18 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.doketer' || 'super.dokter_new' || 'super.dokter_edit')? 'active-res' : '' }}" id="nav-2" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.dokter' || Route::currentRouteName() == 'super.dokter_new' || Route::currentRouteName() == 'super.dokter_edit')? 'show' : '' }}" id="nav-2" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.dokter') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter' || 'super.dokter_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Dokter</a>
+                  <a href="{{ route('super.dokter') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter' || Route::currentRouteName() == 'super.dokter_edit') ? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Dokter</a>
                   <a href="{{ route('super.dokter_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.dokter_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah Dokter</a>
                 </div>
                 
               </div>
-                  
+              @php
+              $status = App\Pricing::where('cabang_id', Auth::user()->cabang_id)->first();
+              @endphp
+              @if($status->status == '1')
               <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between" data-bs-toggle="collapse" data-bs-target="#nav-4" aria-expanded="false">
                     <div>
                     <i class="bi bi-chat-left-text-fill me-3"></i>Price
@@ -172,10 +175,11 @@
                 <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.price')? 'show' : '' }}" id="nav-4" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.price') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.price' || 'super.price_edit' )? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Price</a>
+                  <a href="{{ route('super.price') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.price' || Route::currentRouteName() == 'super.price_edit' )? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table Price</a>
                 </div>
                 
               </div>
+              @endif
 
               <a href="javascript:void(0)" class="list-group-item list-group-item-action d-flex justify-content-between" data-bs-toggle="collapse" data-bs-target="#nav-3" aria-expanded="false">
                   <div>
@@ -183,17 +187,17 @@
                   </div>
                   <div><i class="bi bi-chevron-down"></i></div>
                 </a>
-                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.user' || 'super.user_edit' || 'super.user_new')? 'show' : '' }}" id="nav-3" style="">
+                <div class="collapse bg-lab-2 {{ (Route::currentRouteName() == 'super.user' || Route::currentRouteName() == 'super.user_edit' || Route::currentRouteName() == 'super.user_new')? 'show' : '' }}" id="nav-3" style="">
 
                 <div class="list-group list-group-flush nav-res">
-                  <a href="{{ route('super.user') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user' || 'super.user_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table User</a>
+                  <a href="{{ route('super.user') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user' || Route::currentRouteName() == 'super.user_edit')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Table User</a>
                   <a href="{{ route('super.user_new') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.user_new')? 'active-res' : '' }}"><i class="bi bi-dot me-3"></i>Tambah User</a>
                 </div>
                 </div>
 
-                <a href="{{ route('super.laporan') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.laporan')? 'active-res' : '' }}">
+                <!-- <a href="{{ route('super.laporan') }}" class="list-group-item list-group-item-action {{ (Route::currentRouteName() == 'super.laporan')? 'active-res' : '' }}">
                   <img src="data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55556 5.33334H12.4444V10.6667H3.55556V5.33334ZM14.6667 8C14.6667 8.73639 15.2636 9.33334 16 9.33334V12C16 12.7364 15.4031 13.3333 14.6667 13.3333H1.33333C0.596944 13.3333 0 12.7364 0 12V9.33334C0.736389 9.33334 1.33333 8.73639 1.33333 8C1.33333 7.26362 0.736389 6.66667 0 6.66667V4.00001C0 3.26362 0.596944 2.66667 1.33333 2.66667H14.6667C15.4031 2.66667 16 3.26362 16 4.00001V6.66667C15.2636 6.66667 14.6667 7.26362 14.6667 8ZM13.3333 5.11112C13.3333 4.74292 13.0349 4.44445 12.6667 4.44445H3.33333C2.96514 4.44445 2.66667 4.74292 2.66667 5.11112V10.8889C2.66667 11.2571 2.96514 11.5556 3.33333 11.5556H12.6667C13.0349 11.5556 13.3333 11.2571 13.3333 10.8889V5.11112Z' fill='white'/%3E%3C/svg%3E%0A" class="me-3" alt="">Laporan
-                </a>
+                </a> -->
 
                 <a class="list-group-item title-3 text-uppercase small">
                   Other
@@ -234,9 +238,12 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item align-self-center">
+                              <a class="nav-link"><span class="badge p-2 px-4 alert-primary text-uppercase">{{ Auth::user()->cabang->kode  }}</span></a>
+                          </li>
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle text-dark" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset('img/user.png') }}" width="40" alt="" class="align-middle rounded-pill">
+                          <img src="https://dummyimage.com/200x200" width="40" alt="" class="align-middle rounded-pill">
                             <span class="align-middle  title-3 fw-bold ms-2">Account</span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown animate__faster" aria-labelledby="navbarDropdown">

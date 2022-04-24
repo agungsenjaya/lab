@@ -7,7 +7,7 @@ $no = 1;
   <div class="container">
     <div class="card card-body shadow">
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="text-primary">
+    <thead class="title-3 fw-bold bg-primary text-white">
       <tr>
         <th>No</th>
         <th>Nama</th>

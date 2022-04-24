@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'mode'                     => '',
+    'mode'                     => 'landscape',
     'format'                   => 'A4',
     'default_font_size'        => '12',
     'default_font'             => 'sans-serif',

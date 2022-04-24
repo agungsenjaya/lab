@@ -72,7 +72,7 @@
 						<div class="bg-light rounded" style="height:50vh"></div>
 						<div class="mt-4 text-center">
 							<!-- <a href="{{ route('super.pasien_detail',['id' =>$data ->pasien_id]) }}" class="btn btn-warn me-2">Track Record</a> -->
-							<a href="javascript:void(0)" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak pembayaran</a>
+							<a href="javascript:void(0)" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak Hasil Pemeriksaan</a>
 						</div>
 					</div>
 				</div>

@@ -8,6 +8,9 @@ use App\Dokter;
 use App\Formula;
 use App\Price;
 use App\Diagnosa;
+use App\Pricing;
+use App\Cetak;
+use Carbon\Carbon;
 use DB,Session,Uuid,Validator,Auth,Hash, Response;
 
 class ApiController extends Controller
@@ -118,4 +121,49 @@ class ApiController extends Controller
             'data' => $embose
         ]);
     }
+
+    public function laporan_keuangan(Request $request) {
+        $data;
+        $periode;
+        if ($request->start && $request->end) {
+            $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->whereDate('created_at','<=',$request->end)->get();
+            $periode = $request->start . ' - ' . $request->end;
+            
+        }elseif($request->start){
+            $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at',$request->start)->get();
+            $periode = $request->start;
+        }
+
+        return Response::json([
+            'code'  => 200,
+            'data'  => $data,
+            'periode' => $periode,
+        ]);
+    }
+
+    public function pricing(Request $request) {
+        $data = Pricing::where('cabang_id',$request->id )->first();
+        if ($data->status == '0') {
+            $data->status = '1';
+            $data->save();
+        }else{
+            $data->status = '0';
+            $data->save();
+        }
+        return Response::json([
+            'code'  => 200,
+            'data'  => $data,
+        ]);
+    }
+
+    public function nliai(Request $request) {
+        $data = Nilai::where('formula_id',$request->id)->get();
+        if ($data) {
+            return Response::json([
+                'code'  => 200,
+                'data'  => $data,
+            ]);
+        }
+    }
+
 }

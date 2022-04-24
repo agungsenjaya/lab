@@ -30,7 +30,23 @@
 		$.getJSON(`http://localhost:8000/api/v1/formulas/${a}`, function (data) {
 			$.each(data.data, function (index, value) {
 				var pro = data.price.filter(x => x.formula_id === value.id).map(x => x.pembayaran.replace('.',''));
-				$('#kat').append(`
+				if(value.sub_kat){
+					$.each(data.data, function (ind, vale) { 
+						if (vale.id == value.sub_kat) {
+							$('#kat').append(`
+							<div class="col-md-6">
+								<label class="form-label">${value.judul} - ${vale.judul}</label>
+								<div class="input-group mb-3">
+								<span class="input-group-text text-white bg-primary" id="basic-addon1">Rp</span>
+								<input class="form-control kat_val" id="${value.id}" value="${pro}">
+								</div>
+							</div>
+							`);
+							// console.log(vale);
+						}
+					});
+				}else{
+					$('#kat').append(`
 				<div class="col-md-6">
 					<label class="form-label">${value.judul}</label>
 					<div class="input-group mb-3">
@@ -39,6 +55,8 @@
 					</div>
 				</div>
 				`);
+
+				}
 			});
 
 			var items = document.getElementsByClassName('kat_val');

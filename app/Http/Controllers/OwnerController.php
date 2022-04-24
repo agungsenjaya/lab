@@ -8,8 +8,12 @@ use App\Cabang;
 use App\Role;
 use App\Formula;
 use App\Diagnosa;
+use App\Dokter;
 use App\Pasien;
-use DB,Session,Uuid,Validator,Auth,Hash;
+use App\Pricing;
+use App\Cetak;
+use Carbon\Carbon;
+use DB,Session,Uuid,Validator,Auth,Hash,Str;
 
 class OwnerController extends Controller
 {
@@ -30,7 +34,24 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        return view('owner.home');
+        $today = Diagnosa::whereDate('created_at', Carbon::today())->get();
+        $data = Diagnosa::all();
+        
+        $totall = 0;
+        for ($i=0;  $i < count($today) ; $i++) { 
+            $totall += (int)preg_replace("/\s/u","",Str::replaceFirst('.','',$today[$i]->pembayaran),1);
+        }
+        
+        $total = 0;
+        for ($i=0;  $i < count($data) ; $i++) { 
+            $total += (int)preg_replace("/\s/u","",Str::replaceFirst('.','',$data[$i]->pembayaran),1);
+        }
+        return view('owner.home',compact('total','totall','today'))
+        ->with('cabang',Cabang::all())
+        ->with('user',User::all())
+        ->with('pasien',Pasien::all())
+        ->with('diagnosa',Diagnosa::all())
+        ->with('dokter',Dokter::all());
     }
 
     public function user()
@@ -148,6 +169,12 @@ class OwnerController extends Controller
                 'kota' => $request->kota,
                 'alamat' => strtolower($request->alamat),
             ]);
+
+            Pricing::create([
+                'user_id' => Auth::user()->id,
+                'cabang_id' => $data->id,
+                'status' => '0',
+            ]);
             
             if ($data) {
                 Session::flash('success','Data berhasil ditambahkan');
@@ -202,8 +229,23 @@ class OwnerController extends Controller
         }
     }
 
-    public function laporan()
+    public function laporan($id)
     {
-        return view('owner.laporan');
+        $data = Diagnosa::where('cabang_id', $id)->get();
+        $cab = Cabang::find($id);
+        $dokter = Dokter::where('cabang_id', $id)->get();
+        $total = 0;
+        for ($i=0;  $i < count($data) ; $i++) { 
+            $total += (int)str_replace('.','',$data[$i]->pembayaran);
+        }
+        return view('owner.laporan',compact('cab','dokter','data'))->with('cabang', Cabang::all());
+    }
+
+    public function account() {
+        return view('owner.account');
+    }
+
+    public function pricing() {
+        return view('owner.pricing')->with('cabang',Cabang::all());
     }
 }

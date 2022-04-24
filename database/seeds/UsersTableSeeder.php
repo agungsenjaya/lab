@@ -4,8 +4,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-Use App\Role;
-Use App\User;
+use App\Role;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {

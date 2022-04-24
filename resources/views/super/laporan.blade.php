@@ -8,7 +8,7 @@ $no = 1;
 <div class="row row-cols-1 row-cols-md-3 g-4 text-white">
   <div class="col">
     <div class="position-relative">
-  <div class="card shadow bg-lab">
+  <div class="card shadow bg-primary">
     <div class="card-body z-index-100">
       <h5 class="card-title">Jumlah Dokter</h5>
       <h1 class="text-warn title-2">{{ counTing(count($dokter)) }}</h1>
@@ -24,7 +24,7 @@ $no = 1;
   </div>
   <div class="col">
     <div class="position-relative">
-  <div class="card shadow bg-lab">
+  <div class="card shadow bg-primary">
   <div class="card-body z-index-100">
       <h5 class="card-title">Jumlah Pasien</h5>
       <h1 class="text-warn title-2">{{ counTing(count($data)) }}</h1>
@@ -40,7 +40,7 @@ $no = 1;
   </div>
   <div class="col">
     <div class="position-relative">
-  <div class="card shadow bg-lab">
+  <div class="card shadow bg-primary">
   <div class="card-body z-index-100">
       <h5 class="card-title">Total Pendapatan</h5>
       <h1 class="text-warn title-2">Rp<span id="pr"></span></h1>
@@ -76,7 +76,7 @@ $no = 1;
 
 
   <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-primary">
+    <thead class="title-3 fw-bold bg-primary text-white">
       <tr>
         <td>No</td>
         <td>Nama</td>
@@ -150,7 +150,7 @@ $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date( data[3] );
+        var date = new Date( data[4] );
  
         if (
             ( min === null && max === null ) ||

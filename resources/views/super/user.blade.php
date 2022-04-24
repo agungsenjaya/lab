@@ -7,7 +7,7 @@ $no = 1;
   <div class="container">
     <div class="card card-body shadow">
     <table id="table1" class="table table-striped w-100 table-bordered">
-    <thead class="title-3 text-uppercase fw-bold text-primary">
+    <thead class="title-3 fw-bold bg-primary text-white">
       <tr>
         <td>No</td>
         <td>Nama</td>
@@ -28,9 +28,9 @@ $no = 1;
         <td class="text-lowercase">{{ $dat->email }}</td>
         <td>
             @if($dat->deleted_at)
-            <span class="badge bg-secondary w-100">Deactive</span>
+            <span class="badge alert-secondary w-100">Deactive</span>
             @else
-            <span class="badge bg-primary text-uppercase rounded-pill w-100">Aktif</span>
+            <span class="badge alert-primary text-uppercase w-100">Aktif</span>
             @endif
         </td>
         <td>

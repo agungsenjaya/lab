@@ -29,4 +29,13 @@
       Harga berhasil diinput
   </div>
 </div>
+<div id="ToastStatus" class="toast bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header bg-transparent text-white">
+    <strong class="me-auto"> <i class="bi bi-check-circle-fill me-2"></i>Success</strong>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+      Price status berhasil diubah
+  </div>
+</div>
 </div>

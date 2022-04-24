@@ -4,6 +4,9 @@
         <img src="{{ asset('img/logo.svg') }}" alt="" width="40" class="d-inline-block align-middle me-2"><span class="title-3 fw-bold h5">Admin</span>
     </a>
     <ul class="nav ms-auto nav-top d-flex align-items-center">
+    <li class="nav-item align-self-center">
+        <a class="nav-link"><span class="badge p-2 px-4 alert-primary text-uppercase">{{ Auth::user()->cabang->kode  }}</span></a>
+    </li>
       <li class="nav-item">
         <a type="button" class="nav-link px-0 fw-bold h5 m-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
           Menu<i class="ms-2 bi bi-list"></i>

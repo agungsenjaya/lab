@@ -19,7 +19,6 @@ class CreateFormulasTable extends Migration
             $table->integer('formula_kat_id');
             $table->integer('formula_sub_id')->nullable();
             $table->integer('sub_kat')->nullable();
-            $table->longText('content')->nullable();
             $table->timestamps();
         });
     }
