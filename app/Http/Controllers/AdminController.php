@@ -15,6 +15,7 @@ use App\Cetak;
 use Carbon\Carbon;
 use Faker\Factory as Faker; 
 use PDF;
+// use Barryvdh\DomPDF\Facade\PDF;
 use DB,Session,Uuid,Validator,Auth;
 
 class AdminController extends Controller
@@ -179,6 +180,10 @@ class AdminController extends Controller
         // return $pdf->setPaper('a4', 'portrait')->stream('table.pdf');
 
 
+        $headerHtml = view()->make('pdf.header')->render();
+        $footerHtml = view()->make('pdf.footer')->render();
+
+
         $dataDummy = [];
         $faker = Faker::create();
         $MAX_DATA = 100;
@@ -197,9 +202,12 @@ class AdminController extends Controller
             "dataDummy" => $dataDummy
         ];
         
-        $pdf = PDF::loadView('pdf.test_1', $data)
+        $pdf = PDF::loadView('pdf.test_1', $data);
+        return $pdf->setPaper('a4')
         ->setOption('margin-top', '40mm')
-        ->setOption('margin-bottom', '40mm');
-        return $pdf->stream('tableee.pdf');
+        ->setOption('margin-bottom', '30mm')
+        ->setOption('header-html',$headerHtml)
+        ->setOption('footer-html',$footerHtml)
+        ->inline();
     }
 }

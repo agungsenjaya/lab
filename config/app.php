@@ -242,7 +242,6 @@ return [
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
-
     ],
 
 ];

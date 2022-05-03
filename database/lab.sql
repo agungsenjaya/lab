@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 24, 2022 at 05:04 PM
+-- Generation Time: May 03, 2022 at 12:48 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -80,6 +80,14 @@ CREATE TABLE `diagnosas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `diagnosas`
+--
+
+INSERT INTO `diagnosas` (`id`, `kode`, `dokter_id`, `data`, `cabang_id`, `pasien_id`, `user_id`, `catatan`, `pembayaran`, `created_at`, `updated_at`) VALUES
+(1, '10fc3700-c70d-11ec-bcce-fd3b95132582', 5, '[\"[{\\\"id\\\":1,\\\"data\\\":{\\\"id\\\":1,\\\"judul\\\":\\\"Hemoglobin\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":0,\\\"created_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\",\\\"content\\\":\\\"14 - 18 f\\/dl\\\"},\\\"nilai\\\":\\\"4\\\",\\\"price\\\":\\\"10.000\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":4,\\\"data\\\":{\\\"id\\\":4,\\\"judul\\\":\\\"Hitung Jenis\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":0,\\\"created_at\\\":\\\"2021-10-16T16:18:07.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:07.000000Z\\\",\\\"content\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"56.000\\\"},{\\\"id\\\":5,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":5,\\\"judul\\\":\\\"Basofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:08.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:08.000000Z\\\",\\\"content\\\":\\\"0 - 1 %\\\"},\\\"nilai\\\":\\\"12\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":6,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":6,\\\"judul\\\":\\\"Eosinofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:09.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:09.000000Z\\\",\\\"content\\\":\\\"1 - 3 %\\\"},\\\"nilai\\\":\\\"22\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":7,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":7,\\\"judul\\\":\\\"N Batang\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:10.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:10.000000Z\\\",\\\"content\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"3\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":8,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":8,\\\"judul\\\":\\\"N Segmen\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:11.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:11.000000Z\\\",\\\"content\\\":\\\"50 - 70 %\\\"},\\\"nilai\\\":\\\"24\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":9,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":9,\\\"judul\\\":\\\"Limfosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:12.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:12.000000Z\\\",\\\"content\\\":\\\"20 - 40 %\\\"},\\\"nilai\\\":\\\"44\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":10,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":10,\\\"judul\\\":\\\"Monosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:13.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:13.000000Z\\\",\\\"content\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"11\\\",\\\"price\\\":\\\"0\\\"}]\"]', 1, 10, 3, NULL, ' 66.000', '2022-04-28 09:05:47', '2022-04-28 09:05:47'),
+(2, '626c61c0-c785-11ec-a671-a514f7139d7b', 3, '[\"[{\\\"id\\\":1,\\\"data\\\":{\\\"id\\\":1,\\\"judul\\\":\\\"Hemoglobin\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":0,\\\"created_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:04.000000Z\\\",\\\"content\\\":\\\"14 - 18 f\\/dl\\\"},\\\"nilai\\\":\\\"15\\\",\\\"price\\\":\\\"10.000\\\"},{\\\"id\\\":4,\\\"data\\\":{\\\"id\\\":4,\\\"judul\\\":\\\"Hitung Jenis\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":0,\\\"created_at\\\":\\\"2021-10-16T16:18:07.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:07.000000Z\\\",\\\"content\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"56.000\\\"},{\\\"id\\\":5,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":5,\\\"judul\\\":\\\"Basofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:08.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:08.000000Z\\\",\\\"content\\\":\\\"0 - 1 %\\\"},\\\"nilai\\\":\\\"1%\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":6,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":6,\\\"judul\\\":\\\"Eosinofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:09.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:09.000000Z\\\",\\\"content\\\":\\\"1 - 3 %\\\"},\\\"nilai\\\":\\\"2%\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":7,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":7,\\\"judul\\\":\\\"N Batang\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:10.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:10.000000Z\\\",\\\"content\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"3%\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":8,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":8,\\\"judul\\\":\\\"N Segmen\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:11.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:11.000000Z\\\",\\\"content\\\":\\\"50 - 70 %\\\"},\\\"nilai\\\":\\\"50%\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":9,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":9,\\\"judul\\\":\\\"Limfosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:12.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:12.000000Z\\\",\\\"content\\\":\\\"20 - 40 %\\\"},\\\"nilai\\\":\\\"30%\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":10,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":10,\\\"judul\\\":\\\"Monosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":0,\\\"sub_kat\\\":4,\\\"created_at\\\":\\\"2021-10-16T16:18:13.000000Z\\\",\\\"updated_at\\\":\\\"2021-10-16T16:18:13.000000Z\\\",\\\"content\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"7%\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"}]\"]', 1, 10, 3, NULL, ' 66.000', '2022-04-28 23:27:03', '2022-04-28 23:27:03');
 
 -- --------------------------------------------------------
 
@@ -727,7 +735,8 @@ INSERT INTO `pasiens` (`id`, `name`, `tanggal_lahir`, `ktp`, `kelamin`, `alamat`
 (6, 'yadi istana', 16, NULL, 'laki-laki', 'Mayofield Mall, JL. Simpang Tiga, Ramanuju, 42431 Cilegon, Indonesia, Ramanuju, Purwakarta, Cilegon City, Banten 42431', '2022-04-11 09:45:10', '2022-04-11 09:45:10'),
 (7, 'rudi senjaya', 80, 555, 'laki-laki', 'Gunungparang, Cikole, Gunungparang, Kec. Cikole, Kota Sukabumi, Jawa Barat 43111', '2022-04-11 19:02:17', '2022-04-11 19:02:17'),
 (8, 'santi wijaya', 25, 4455, 'perempuan', 'jalwdjakwdjawkldjalkwdawd', '2022-04-12 07:17:58', '2022-04-12 07:17:58'),
-(9, 'muklis robinhood', 40, 16523, 'laki-laki', 'Karangtengah, Kec. Cibadak, Kabupaten Sukabumi, Jawa Barat 43351', '2022-04-14 20:32:22', '2022-04-14 20:32:22');
+(9, 'muklis robinhood', 40, 16523, 'laki-laki', 'Karangtengah, Kec. Cibadak, Kabupaten Sukabumi, Jawa Barat 43351', '2022-04-14 20:32:22', '2022-04-14 20:32:22'),
+(10, 'agung senjaya', 30, 12345, 'laki-laki', '3XV3+R5G, Jl. Subang Jaya-Selabintana, Sukajaya, Kec. Sukabumi, Kabupaten Sukabumi, Jawa Barat 43151, Indonesia', '2022-04-28 06:37:54', '2022-04-28 06:37:54');
 
 -- --------------------------------------------------------
 
@@ -817,7 +826,20 @@ INSERT INTO `prices` (`id`, `cabang_id`, `user_id`, `formula_id`, `pembayaran`, 
 (15, 1, 1, 40, '10.000', '2022-04-22 23:08:22', '2022-04-22 23:08:22'),
 (16, 1, 1, 41, '12.000', '2022-04-22 23:08:25', '2022-04-22 23:08:25'),
 (17, 1, 1, 42, '5.000', '2022-04-22 23:08:28', '2022-04-22 23:08:28'),
-(18, 1, 1, 43, '7.000', '2022-04-22 23:08:31', '2022-04-22 23:08:31');
+(18, 1, 1, 43, '7.000', '2022-04-22 23:08:31', '2022-04-22 23:08:31'),
+(19, 1, 1, 13, '10.000', '2022-04-27 23:57:36', '2022-04-27 23:57:36'),
+(20, 1, 1, 14, '5.000', '2022-04-27 23:58:06', '2022-04-27 23:58:06'),
+(21, 1, 1, 15, '15.000', '2022-04-27 23:58:09', '2022-04-27 23:58:09'),
+(22, 1, 1, 16, '10.000', '2022-04-27 23:58:14', '2022-04-27 23:58:14'),
+(23, 1, 1, 44, '30.000', '2022-04-27 23:59:28', '2022-04-27 23:59:28'),
+(24, 1, 1, 45, '10.000', '2022-04-27 23:59:32', '2022-04-27 23:59:32'),
+(25, 1, 1, 46, '5.000', '2022-04-27 23:59:35', '2022-04-27 23:59:35'),
+(26, 1, 1, 47, '5.000', '2022-04-27 23:59:37', '2022-04-27 23:59:37'),
+(27, 1, 1, 80, '2.500', '2022-04-28 00:00:42', '2022-04-28 00:00:42'),
+(28, 1, 1, 81, '3.000', '2022-04-28 00:00:48', '2022-04-28 00:00:48'),
+(29, 1, 1, 82, '1.500', '2022-04-28 00:00:49', '2022-04-28 00:00:49'),
+(30, 1, 1, 83, '14.000', '2022-04-28 00:00:49', '2022-04-28 00:00:49'),
+(31, 1, 1, 84, '10.000', '2022-04-28 00:00:50', '2022-04-28 00:00:50');
 
 -- --------------------------------------------------------
 
@@ -1072,7 +1094,7 @@ ALTER TABLE `cetaks`
 -- AUTO_INCREMENT for table `diagnosas`
 --
 ALTER TABLE `diagnosas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `dokters`
@@ -1120,7 +1142,7 @@ ALTER TABLE `nilais`
 -- AUTO_INCREMENT for table `pasiens`
 --
 ALTER TABLE `pasiens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1132,7 +1154,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `pricings`
