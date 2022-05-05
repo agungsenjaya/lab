@@ -166,4 +166,16 @@ class ApiController extends Controller
         }
     }
 
+    public function cetak(Request $request) {
+        $cetak = Cetak::create([
+            'diagnosa_id' => $request->diagnosa_id,
+            'user_id' => $request->user_id,
+        ]);
+        if($cetak){
+            return Response::json([
+                'code'  => 200,
+            ]);
+        }
+    }
+
 }

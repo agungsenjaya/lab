@@ -36,14 +36,20 @@ return [
     'pdf' => [
         'enabled' => true,
         // 'binary'  => base_path('vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64'),
+        // 'binary'  => '"C:\Program Files (x86)\wkhtmltopdf\wkhtmltopdf"',
         'binary'  => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
         'timeout' => false,
-        'options' => [],
+        'options' => [
+        'page-size' => 'A4',
+        'orientation' => 'Portrait',
+        'footer-font-size' => 12,
+        ],
         'env'     => [],
     ],
     
     'image' => [
         'enabled' => true,
+        // 'binary'  => '"C:\Program Files (x86)\wkhtmltopdf\wkhtmltoimage"',
         'binary'  => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage"',
         'timeout' => false,
         'options' => [],

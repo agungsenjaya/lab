@@ -160,54 +160,33 @@ class AdminController extends Controller
 
     public function cetak($id)
     {
-        // $data = Diagnosa::where('kode', $id)->first();
-        // $dat = json_decode($data->data);
-        // $da = json_decode($dat[0]);
+        $data = Diagnosa::where('kode', $id)->first();
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
         
-        // for ($i=0; $i < count($da) ; $i++) {
-        //     $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
-        //     $da[$i]->no_kategori = $ded->id;
-        //     $da[$i]->kategori = $ded->judul;
-        // }
-        // $data->data = $da;
-
-        // $gas = array();
-        // foreach ($data->data as $element) {
-        //     $gas[$element->kategori][] = $element;
-        // }
-
-        // $pdf = PDF::loadView('pdf.pasien',compact('data','gas'));
-        // return $pdf->setPaper('a4', 'portrait')->stream('table.pdf');
-
-
-        $headerHtml = view()->make('pdf.header')->render();
-        $footerHtml = view()->make('pdf.footer')->render();
-
-
-        $dataDummy = [];
-        $faker = Faker::create();
-        $MAX_DATA = 100;
-        for ($i = 0; $i < $MAX_DATA; $i++) {
-            $people = (Object) [
-                "id" => $i,
-                "name" => $faker->name,
-                "address" => $faker->address,
-                "email" => $faker->email,
-                "company" => $faker->company
-            ];
-
-            array_push($dataDummy, $people);
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
         }
-        $data = [
-            "dataDummy" => $dataDummy
-        ];
-        
-        $pdf = PDF::loadView('pdf.test_1', $data);
-        return $pdf->setPaper('a4')
-        ->setOption('margin-top', '40mm')
-        ->setOption('margin-bottom', '30mm')
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+
+        $headerHtml = view()->make('pdf.header',compact('data'))->render();
+        $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
+        return $pdf
+        ->setOption('margin-top', '50mm')
+        ->setOption('footer-left','Sistem Laboratorium')
+        ->setOption('header-font-name','Verdana')
+        ->setOption('footer-font-name','Verdana')
+        ->setOption('header-font-size','6')
+        ->setOption('footer-font-size','6')
         ->setOption('header-html',$headerHtml)
-        ->setOption('footer-html',$footerHtml)
+        ->setOption('footer-right', 'Page [page] of [toPage]')
         ->inline();
     }
 }
