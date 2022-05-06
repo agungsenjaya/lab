@@ -78,6 +78,8 @@ Route::GROUP(['prefix' => 'superadmin',  'middleware' => ['role:superadmin']], f
     Route::GET('/cabang', 'SuperController@cabang_detail')->name('super.cabang_detail');
     
     Route::GET('/laporan', 'SuperController@laporan')->name('super.laporan');
+
+    Route::GET('/cetak/{id}', 'SuperController@cetak')->name('super.cetak');
 });
 
 Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){

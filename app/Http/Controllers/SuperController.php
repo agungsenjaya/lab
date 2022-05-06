@@ -15,6 +15,7 @@ use App\Role;
 use App\Pricing;
 use App\Cetak;
 use Carbon\Carbon;
+use PDF;
 use DB,Session,Uuid,Validator,Auth,Hash,Str;
 
 class SuperController extends Controller
@@ -53,8 +54,25 @@ class SuperController extends Controller
 
     public function diagnosa($id)
     {
+        // $data = Diagnosa::where('kode', $id)->first();
+        // return view('super.diagnosa',compact('data'));
         $data = Diagnosa::where('kode', $id)->first();
-        return view('super.diagnosa',compact('data'));
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
+        
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
+        }
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+        
+        return view('super.diagnosa',compact('data','gas'));
     }
 
     public function pasien_detail($id)
@@ -241,6 +259,38 @@ class SuperController extends Controller
             return view('super.price')->with('for_kat',Formula_kat::all());
         }
         return redirect()->route('dashboard.super');
+    }
+
+    public function cetak($id)
+    {
+        $data = Diagnosa::where('kode', $id)->first();
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
+        
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
+        }
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+
+        $headerHtml = view()->make('pdf.header',compact('data'))->render();
+        $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
+        return $pdf
+        ->setOption('margin-top', '50mm')
+        ->setOption('footer-left','Sistem Laboratorium')
+        ->setOption('header-font-name','Verdana')
+        ->setOption('footer-font-name','Verdana')
+        ->setOption('header-font-size','6')
+        ->setOption('footer-font-size','6')
+        ->setOption('header-html',$headerHtml)
+        ->setOption('footer-right', 'Page [page] of [toPage]')
+        ->inline();
     }
     
     // public function formula()

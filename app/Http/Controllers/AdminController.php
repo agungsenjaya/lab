@@ -15,7 +15,6 @@ use App\Cetak;
 use Carbon\Carbon;
 use Faker\Factory as Faker; 
 use PDF;
-// use Barryvdh\DomPDF\Facade\PDF;
 use DB,Session,Uuid,Validator,Auth;
 
 class AdminController extends Controller
