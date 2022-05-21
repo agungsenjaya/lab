@@ -178,8 +178,10 @@ class AdminController extends Controller
         $headerHtml = view()->make('pdf.header',compact('data'))->render();
         $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
         return $pdf
+        ->setPaper('a4')
+        ->setOrientation('portrait')
         ->setOption('margin-top', '50mm')
-        ->setOption('footer-left','Sistem Laboratorium')
+        ->setOption('footer-left','(*) Menunjukan hasil diatas atau dibawah nilai normal')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')

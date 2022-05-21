@@ -396,10 +396,16 @@
                 padding-left:0 !important;
                 padding-right:0 !important;
             }
+            .d-none {
+                display: none !important;
+            }
+            .text-center {
+                text-align: center !important;
+            }
         </style>
         <body>
             <table class="table table-bordered border-dark">
-                <thead class="bg-primary text-white">
+                <thead class="bg-light">
                     <tr class="text-center">
                         <th scope="col">Pemeriksaan</th>
                         <th scope="col">Hasil</th>
@@ -423,17 +429,18 @@
                     </tr>
                     @endforeach @endforeach
                 </tbody>
-                <tfoot class="border-transparent table-1">
+                <tfoot class="border-transparent" style="margin-bottom:40px">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <tfoot class="border-transparent table-1">
                     <tr>
                         <td colspan="5">
-                            <br />
-                            <br />
-                            <table width="100%" class="table-1">
+                            <table width="100%" class="table-1 border-transparent">
                                 <tr>
-                                    <td valign="top">
-                                        <p class="small mb-0"><span class="text-danger">*</span> Menunjukan hasil diatas atau dibawah nilai normal</p>
-                                    </td>
-                                    <td class="text-right">
+                                    <td valign="top" class="text-right">
                                         <div>
                                             <p class="mb-0"><span>Sukabumi,</span> {{ date('d M Y') }}</p>
                                             <br />
@@ -446,13 +453,10 @@
                                     </td>
                                 </tr>
                             </table>
-                            <br />
-                            <br />
-                            <br />
                         </td>
                     </tr>
                 </tfoot>
-            </table>
+            
         </body>
     </head>
 </html>

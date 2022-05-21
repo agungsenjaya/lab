@@ -392,12 +392,15 @@
                 padding-left: 0 !important;
                 padding-right: 0 !important;
             }
+            .table-1 {
+                border-color: transparent !important;
+            }
         </style>
         <body>
             @php
             $cetak = App\Cetak::where('diagnosa_id', $data->id)->count();
             @endphp
-            <table width="100%">
+            <table class="border-transparent" width="100%">
                 <tr>
                     <td align="left" width="50%">
                         <table class="table table-1 table-sm border-transparent" width="100%">
