@@ -126,8 +126,10 @@ class ApiController extends Controller
         $data;
         $periode;
         $dia = array();
+        $dk;
         if ($request->start && $request->end) {
             $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->whereDate('created_at','<=',$request->end)->get();
+            $dk = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->whereDate('created_at','<=',$request->end)->get()->groupBy('dokter_id');
             $periode = $request->start . ' - ' . $request->end;
             for ($i=0; $i < count($data); $i++) { 
                 $ele = $data[$i];
@@ -138,6 +140,7 @@ class ApiController extends Controller
             }
         }elseif($request->start){
             $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at',$request->start)->get();
+            $dk = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->get()->groupBy('dokter_id');
             $periode = $request->start;
             for ($i=0; $i < count($data); $i++) { 
                 $ele = $data[$i];
@@ -147,11 +150,12 @@ class ApiController extends Controller
                 array_push($dia, $ele);
             }
         }
-
+        
         return Response::json([
             'code'  => 200,
             'data'  => $data,
             'dia'  => $dia,
+            'dk'  => $dk,
             'periode' => $periode,
         ]);
     }

@@ -114,19 +114,10 @@
             <p class="mb-0 title-2">Download Laporan</p>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="bi-download me-2"></i>Laporan Klinik</a>
-                    </div>
-                    <div class="col-md-4">
-                        <select name="" id="" class="form-select">
-                            <option value="">--Select Doctor--</option>
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="bi-download me-2"></i>Dokter Basyar</a>
-                    </div>
+                <div>
+                    <a href="javascript:void(0)" class="btn btn-primary"><i class="bi-download me-2"></i>Laporan Klinik</a>
+                </div>
+                <div class="row mt-3" id="dokter">
                 </div>
             </div>
         </div>
@@ -193,6 +184,17 @@
                     for (let index = 0; index < response.dia.length; index++) {
                         const element = response.dia[index];
                         table.row.add([index+1,element.ctd,element.pasien_id,element.dokter_id,'Rp ' + element.pembayaran]).draw(false);
+                    }
+                    $('#dokter').empty();
+                    for (const key of Object.keys(response.dk)) {
+                        $('#dokter').append(`<div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-title">Card title</p>
+                            </div>
+                        </div>
+                    </div>`);
+                        // console.log(key, response.dk[key]);
                     }
                     console.log(response);
                 }else{

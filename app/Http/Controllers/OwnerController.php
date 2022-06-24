@@ -13,6 +13,7 @@ use App\Pasien;
 use App\Pricing;
 use App\Cetak;
 use Carbon\Carbon;
+use PDF;
 use DB,Session,Uuid,Validator,Auth,Hash,Str;
 
 class OwnerController extends Controller
@@ -248,5 +249,42 @@ class OwnerController extends Controller
 
     public function pricing() {
         return view('owner.pricing')->with('cabang',Cabang::all());
+    }
+
+    public function cetak_klinik(Request $request) {
+        $data = Diagnosa::where('kode', $id)->first();
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
+        
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
+        }
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+
+        $headerHtml = view()->make('pdf.header',compact('data'))->render();
+        $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
+        return $pdf
+        ->setPaper('a4')
+        ->setOrientation('portrait')
+        ->setOption('margin-top', '50mm')
+        ->setOption('footer-left','(*) Menunjukan hasil diatas atau dibawah nilai normal')
+        ->setOption('header-font-name','Verdana')
+        ->setOption('footer-font-name','Verdana')
+        ->setOption('header-font-size','6')
+        ->setOption('footer-font-size','6')
+        ->setOption('header-html',$headerHtml)
+        ->setOption('footer-right', 'Page [page] of [toPage]')
+        ->inline();
+    }
+
+    public function ceatk_dokter(Request $request) {
+        // 
     }
 }
