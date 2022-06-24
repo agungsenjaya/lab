@@ -75,6 +75,13 @@
                         <div class="col-md-6">
                             <table class="table table-1">
                                 <tr class="d-flex">
+                                    <td class="col-4">User</td>
+                                    <td>:</td>
+                                    <td class="text-capitalize col">
+                                        {{ $data->user->name }}
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
                                     <td class="col-4">Dokter</td>
                                     <td>:</td>
                                     <td class="text-capitalize col">

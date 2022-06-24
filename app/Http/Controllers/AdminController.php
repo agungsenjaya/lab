@@ -45,7 +45,7 @@ class AdminController extends Controller
         // $data =Diagnosa::select('*')
         $data =Diagnosa::where('cabang_id', Auth::user()->cabang_id)
         ->whereBetween('created_at', 
-            [Carbon::now()->subMonth(3), Carbon::now()]
+            [Carbon::now()->subMonth(1), Carbon::now()]
         )
         ->get();
 

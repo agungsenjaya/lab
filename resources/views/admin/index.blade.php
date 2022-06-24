@@ -81,10 +81,10 @@
     </div>
     <br>
     <br>
-    <p class="text-white small text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, et quam. Quisquam laboriosam, fuga illo ipsam nisi recusandae officiis a ducimus debitis officia, nam ab non. Soluta distinctio ullam doloremque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, et quam. Quisquam laboriosam, fuga illo ipsam nisi recusandae officiis a ducimus debitis officia, nam ab non. Soluta distinctio ullam doloremque?</p>
+    <!-- <p class="text-white small text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, et quam. Quisquam laboriosam, fuga illo ipsam nisi recusandae officiis a ducimus debitis officia, nam ab non. Soluta distinctio ullam doloremque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, et quam. Quisquam laboriosam, fuga illo ipsam nisi recusandae officiis a ducimus debitis officia, nam ab non. Soluta distinctio ullam doloremque?</p> -->
     </div>
     </div>
-    <!-- <p class="text-center text-uppercase title-3 text-white small mb-0">&copy; Copyright {{ date('Y') }} <a href="https://codejira.com/" class="text-white" target="_blank">Codejira</a>.  All rights reserved</p> -->
+    <p class="text-center text-uppercase title-3 text-white small mb-0">&copy; Copyright {{ date('Y') }} <a href="{{ url('') }}" class="text-white">Website</a>.  All rights reserved</p>
   </div>
 </div>
 </section>

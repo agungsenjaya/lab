@@ -44,9 +44,22 @@
       <h5 class="card-title title-2 text-primary">Jumlah Transaksi</h5>
       <h1 class="title-2 text-primary">
       @php
-                      $nen = \App\Diagnosa::where('cabang_id', $data->id )->get();
-                      @endphp
-                      {{ counTing(count($nen)) }}
+        $nen = \App\Diagnosa::where('cabang_id', $data->id )->get();
+        @endphp
+        {{ counTing(count($nen)) }}
+      </h1>
+      
+      
+    </div>
+  </div>
+  <div class="card alert-primary">
+    <div class="card-body">
+      <h5 class="card-title title-2 text-primary">Transaksi Hari Ini</h5>
+      <h1 class="title-2 text-primary">
+      @php
+        $nen = \App\Diagnosa::where('cabang_id', $data->id )->get();
+        @endphp
+        {{ counTing($today) }}
       </h1>
       
       
@@ -77,6 +90,20 @@
                       <div class="badge alert-primary">
                         {{ $data->kode }}
                       </div>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td class="title-3 col-4 text-capitalize">Supervisor</td>
+                    <td class="col-1">:</td>
+                    <td class="text-uppercase col">
+                      @php
+                      $usr = \App\User::where('cabang_id', $data->id )->get();
+                      @endphp
+                      @foreach($usr as $us)
+                      @if($us->hasRole('superadmin'))
+                          {{ $us->name }}
+                      @endif
+                      @endforeach
                     </td>
                 </tr>
                 <tr class="row">

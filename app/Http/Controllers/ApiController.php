@@ -125,18 +125,33 @@ class ApiController extends Controller
     public function laporan_keuangan(Request $request) {
         $data;
         $periode;
+        $dia = array();
         if ($request->start && $request->end) {
             $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->whereDate('created_at','<=',$request->end)->get();
             $periode = $request->start . ' - ' . $request->end;
-            
+            for ($i=0; $i < count($data); $i++) { 
+                $ele = $data[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
         }elseif($request->start){
             $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at',$request->start)->get();
             $periode = $request->start;
+            for ($i=0; $i < count($data); $i++) { 
+                $ele = $data[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
         }
 
         return Response::json([
             'code'  => 200,
             'data'  => $data,
+            'dia'  => $dia,
             'periode' => $periode,
         ]);
     }

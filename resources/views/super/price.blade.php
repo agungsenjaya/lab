@@ -77,7 +77,7 @@
 							data: {
 								'formula_id' : this.id,
 								'cabang_id' : {{ Auth::user()->cabang_id }},
-								'user_id' : {{ Auth::user()->cabang_id }},
+								'user_id' : {{ Auth::user()->id }},
 								'pembayaran' : this.value,
 							},
 							dataType: "JSON",

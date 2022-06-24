@@ -48,8 +48,9 @@ class SuperController extends Controller
 
     public function pasien()
     {
+        $today = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->whereDate('created_at', Carbon::today())->get();
         $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
-        return view('super.pasien',compact('data'));
+        return view('super.pasien',compact('data','today'));
     }
 
     public function diagnosa($id)

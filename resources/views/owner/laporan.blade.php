@@ -19,7 +19,71 @@
 						</nav>
 					</div>
 				</div>
+                <div class="card-deck mb-3">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <table class="table">
+                                <tr class="row">
+                        <td class="col-4">Kode Cabang</td>
+                        <td class="col-1">:</td>
+                        <td class="col">
+                            <div class="badge alert-primary text-uppercase">
+                                {{ $cab->kode }}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                    <td class="title-3 col-4 text-capitalize">Supervisor</td>
+                    <td class="col-1">:</td>
+                    <td class="text-uppercase col">
+                      @php
+                      $usr = \App\User::where('cabang_id', $cab->id )->get();
+                      @endphp
+                      @foreach($usr as $us)
+                      @if($us->hasRole('superadmin'))
+                          {{ $us->name }}
+                      @endif
+                      @endforeach
+                    </td>
+                </tr>
+                                <tr class="row">
+                        <td class="col-4">Nama Cabang</td>
+                        <td class="col-1">:</td>
+                        <td class="col text-capitalize">
+                                {{ $cab->name }}
+                        </td>
+                    </tr>
+                                <tr class="row border-transparent">
+                                    <td class="col-4">Alamat</td>
+                                    <td class="col-1">:</td>
+                                    <td class="col text-capitalize">
+                                            {{ $cab->alamat }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div>
+                            <p class="mb-0 title-2">
+                                Total Invoice
+                            </p>
+                        </div>
+                        <div>
+                            <p class="mb-0">
+                                Periode : <span id="priode">-</span>
+                            </p>
+                        </div>
+                        </div>
+                        <div class="card-body align-self-center text-center">
+                            <h1 class="mb-0 title-2 display-6">Rp <span id="price">-</span></h1>
+                            <p>Jumlah Transaksi <span id="trans">-</span></p>
+                        </div>
+                    </div>
+                </div>
             <form>
+                @csrf
                 <input type="hidden" name="cabang_id" value="{{ $cab->id }}">
                 <div class="row mb-3">
                     <div class="col">
@@ -43,72 +107,70 @@
         </div>
     </div>
 </section>
-<section class="pt-4 d-none" id="laporan">
+<section class=" pt-4">
     <div class="container">
         <div class="card">
-            <div class="card-header">
-                <h5 class="title-2 mb-0">Total Penagihan</h5>
+        <div class="card-header">
+            <p class="mb-0 title-2">Download Laporan</p>
             </div>
-            <div class="card-body oko bg-white" id="capture">
-            <div id="img-out">
-                <table class="table">
-                    <tr class="row">
-                        <td class="col-4">Kode Cabang</td>
-                        <td class="col-1">:</td>
-                        <td class="col">
-                            <div class="badge alert-primary text-uppercase">
-                                {{ $cab->kode }}
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-4">Nama Cabang</td>
-                        <td class="col-1">:</td>
-                        <td class="text-capitalize col">{{ $cab->name }}</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-4">Jumlah Transaksi</td>
-                        <td class="col-1">:</td>
-                        <td class="col"><span id="trans">-</span></td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-4">Periode Tanggal</td>
-                        <td class="col-1">:</td>
-                        <td class="col"><span id="priode">-</span></td>
-                    </tr>
-                    <tr class="row border-transparent">
-                        <td class="col-4">Total Penagihan</td>
-                        <td class="col-1">:</td>
-                        <th class="col">Rp <span id="price">-</span> </th>
-                    </tr>
-                </table>
-            </div>
-            </div>
-            <div class="card-footer">
-                <a href="javascript:viod(0)" id="snap" class="btn btn-primary"> <i class="bi bi-download me-2"></i>Download Image</a>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="bi-download me-2"></i>Laporan Klinik</a>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="" id="" class="form-select">
+                            <option value="">--Select Doctor--</option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="bi-download me-2"></i>Dokter Basyar</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<section class=" pt-4 d-none">
+<section class=" pt-4">
     <div class="container">
         <div class="card">
             <div class="card-header">
-            <h5 class="title-2 mb-0">Table Pasien</h5>
+            <p class="mb-0 title-2">Table Pasien</p>
             </div>
             <div class="card-body">
+
+            <table id="table1" class="table table-striped w-100 table-bordered">
+                <thead class="title-3 fw-bold bg-primary text-white">
+                <tr>
+                    <th scope="col" class="border-top-0 py-2">#</th>
+                    <th scope="col" class="border-top-0 py-2">Tgl Pemeriksaan</th>
+                    <th scope="col" class="border-top-0 py-2">Nama Lengkap</th>
+                    <th scope="col" class="border-top-0 py-2">Dokter</th>
+                    <th scope="col" class="border-top-0 py-2">Jml Pembayaran</th>
+                </tr>
+                </thead>
+                <tbody class="text-capitalize" id="pasien">
+                </tbody>
+            </table>
             </div>
         </div>
     </div>
 </section>
 @endsection
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+@endsection
 @section('js')
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
 <script src="{{ asset('js/canvas-toBlob.js') }}"></script>
 <script src="{{ asset('js/Blob.js') }}"></script>
 <script>
+    let table = $('#table1').DataTable();
     $('form').submit(function (stay) {
         var formdata = $(this).serializeArray();
         $.ajax({
@@ -116,6 +178,7 @@
             url: "http://localhost:8000/api/v1/laporan_keuangan",
             data: formdata,
             success: function (response) {
+                table.clear().draw();
                 if (response.data.length > 0) {
                     $('#laporan').removeClass('d-none');
                     $('#trans').text((response.data.length <= 9) ? '0' + response.data.length : response.data.length);
@@ -127,6 +190,10 @@
                         total += parseInt(element.pembayaran.replace('.',''));
                     }
                     price.text(total.toLocaleString());
+                    for (let index = 0; index < response.dia.length; index++) {
+                        const element = response.dia[index];
+                        table.row.add([index+1,element.ctd,element.pasien_id,element.dokter_id,'Rp ' + element.pembayaran]).draw(false);
+                    }
                     console.log(response);
                 }else{
                     alert('Tanggal laporan kosong');
@@ -159,6 +226,5 @@
                 }
             });
 	    });
-
 </script>
 @endsection

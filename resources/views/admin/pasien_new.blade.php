@@ -111,7 +111,7 @@
                                 </div>
                                 <div id="diagnosa" class=""></div>
                                 <div class="d-flex justify-content-between">
-                                    <a href="javascript:void(0)" class="prev btn btn-primary me-2">Kembali</a>
+                                    <a href="javascript:void(0)" class="prev btn btn-primary me-2 opacity-0">Kembali</a>
                                     <a href="javascript:void(0)" onCLick="saving()" class="simpan btn btn-primary">Masukan pasien</a>
                                     <button type="submit" id="submit" class="simpan btn btn-primary d-none">Submit</button>
                                 </div>
@@ -141,6 +141,7 @@
 
       var formula = <?php echo $formula ?>;
       var nilai = <?php echo $nilai ?>;
+	  var kelamin;
       // var bar = formula.find(element => element.id == 1);
       // if (bar) {
       // 	console.log(bar.judul);
@@ -247,7 +248,7 @@
     						`);
 
     						if (ber) {
-    							$(`.kat-${as.id}`).after(`	<div class="col-2">
+    							$(`.kat-${as.id}`).after(`	<div class="col-2 col-kategori-${as.id}">
     									<label for="" class="form-label">Kategori</label>
     									<select class="form-select kategori-${as.id}" id="${as.id}" onChange="normal(this)" name="kategori">
     									<option value="">Choose Option</option>
@@ -257,8 +258,16 @@
     							$.each(nilai, function (inex, vales) {
     						if (as.id == vales.formula_id) {
     								if (vales) {
-    									$(`.kategori-${as.id}`).append(`<option value="${vales.normal}">${vales.kelamin}</option>`);
-    									// $(`.normal-${as.id}`).val(vales.normal);
+										var kelamin = $('.b').text();
+										if (vales.kelamin == kelamin) {
+											$(`.normal-${as.id}`).val(vales.normal);
+											$(`.col-kategori-${as.id}`).remove();
+										}else if(vales.kelamin == 'all') {
+											$(`.normal-${as.id}`).val(vales.normal);
+											$(`.col-kategori-${as.id}`).remove();
+										}else{
+											$(`.kategori-${as.id}`).append(`<option value="${vales.normal}">${vales.kelamin}</option>`);
+										}
     								}
     							}
     						});
@@ -301,7 +310,7 @@
 
     						var bur = nilai.find(element => element.formula_id == val.id);
     						if (bur) {
-    							$(`.kat-${val.id}`).after(`	<div class="col-2">
+    							$(`.kat-${val.id}`).after(`	<div class="col-2 col-kategori-${val.id}">
     									<label for="" class="form-label">Kategori</label>
     									<select class="form-select kategori-${val.id}" id="${val.id}" onChange="normal(this)" name="kategori">
     									<option value="">Choose Option</option>
@@ -311,8 +320,16 @@
     							$.each(nilai, function (inex, vales) {
     						if (val.id == vales.formula_id) {
     								if (vales) {
-    									$(`.kategori-${val.id}`).append(`<option value="${vales.normal}">${vales.kelamin}</option>`);
-    									// $(`.normal-${as.id}`).val(vales.normal);
+										var kelamin = $('.b').text();
+										if (vales.kelamin == kelamin) {
+											$(`.normal-${val.id}`).val(vales.normal);
+											$(`.col-kategori-${val.id}`).remove();
+										}else if(vales.kelamin == 'all') {
+											$(`.normal-${val.id}`).val(vales.normal);
+											$(`.col-kategori-${val.id}`).remove();
+										}else{
+											$(`.kategori-${val.id}`).append(`<option value="${vales.normal}">${vales.kelamin}</option>`);
+										}
     								}
     							}
     						});

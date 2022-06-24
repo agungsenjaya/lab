@@ -23,9 +23,9 @@ for ($i=0; $i < count($user); $i++) {
     <div class="position-relative">
   <div class="card shadow bg-primary">
     <div class="card-body z-index-100">
-      <h5 class="card-title">Jumlah Dokter</h5>
-      <h1 class="text-warn title-2">{{ counTing(count($dokter)) }}</h1>
-      <p class="">Kalkulasi semua cabang</p>
+      <h5 class="card-title">Jumlah Transaksi</h5>
+      <h1 class="text-warn title-2">{{ counTing(count($diagnosa)) }}</h1>
+      <p class="">Transasksi dalam sistem</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -39,9 +39,9 @@ for ($i=0; $i < count($user); $i++) {
     <div class="position-relative">
   <div class="card shadow bg-primary">
   <div class="card-body z-index-100">
-      <h5 class="card-title">Pasien Hari Ini</h5>
-      <h1 class="text-warn title-2">{{ counTing(count($pasien)) }}</h1>
-      <p class="">Kalkulasi pasien cabang</p>
+      <h5 class="card-title">Transaksi Hari Ini</h5>
+      <h1 class="text-warn title-2">{{ counTing(count($today)) }}</h1>
+      <p class="">Total transaksi hari ini</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -57,7 +57,7 @@ for ($i=0; $i < count($user); $i++) {
   <div class="card-body z-index-100">
       <h5 class="card-title">Pendapatan Hari Ini</h5>
       <h1 class="text-warn title-2">Rp <span id="pr-1"></span></h1>
-      <p class="">Kalkulasi semua cabang</p>
+      <p class="">Kalkulasi pendapatan</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">

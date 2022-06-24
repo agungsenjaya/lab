@@ -192,7 +192,8 @@ class OwnerController extends Controller
     public function cabang_detail($id)
     {
         $data = Cabang::find($id);
-        return view('owner.cabang_detail',compact('data'));
+        $today = Diagnosa::where('cabang_id', $id)->whereDate('created_at', Carbon::today())->count();
+        return view('owner.cabang_detail',compact('data','today'));
     }
 
     public function cabang_update(Request $request, $id)

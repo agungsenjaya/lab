@@ -41,6 +41,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function diagnosas()
+    {
+        return $this->hasMany('App\Diagnosa');
+    }
+    
     public function cabang()
     {
         return $this->belongsTo('App\Cabang');
