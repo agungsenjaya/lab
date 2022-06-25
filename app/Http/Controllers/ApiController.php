@@ -140,7 +140,7 @@ class ApiController extends Controller
             }
         }elseif($request->start){
             $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at',$request->start)->get();
-            $dk = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->get()->groupBy('dokter_id');
+            $dk = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at',$request->start)->get()->groupBy('dokter_id');
             $periode = $request->start;
             for ($i=0; $i < count($data); $i++) { 
                 $ele = $data[$i];
@@ -193,6 +193,16 @@ class ApiController extends Controller
         if($cetak){
             return Response::json([
                 'code'  => 200,
+            ]);
+        }
+    }
+
+    public function dokter_detail($id) {
+        $data = Dokter::find($id);
+        if ($data) {
+            return Response::json([ 
+                'code' => 200,
+                'data' => $data
             ]);
         }
     }

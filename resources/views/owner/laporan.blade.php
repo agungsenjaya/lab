@@ -115,7 +115,7 @@
             </div>
             <div class="card-body">
                 <div>
-                    <a href="javascript:void(0)" class="btn btn-primary"><i class="bi-download me-2"></i>Laporan Klinik</a>
+                    <a href="javascript:void(0)" class="btn btn-primary"><i class="bi-file-pdf-fill me-2"></i>Download Laporan</a>
                 </div>
                 <div class="row mt-3" id="dokter">
                 </div>
@@ -138,6 +138,7 @@
                     <th scope="col" class="border-top-0 py-2">Tgl Pemeriksaan</th>
                     <th scope="col" class="border-top-0 py-2">Nama Lengkap</th>
                     <th scope="col" class="border-top-0 py-2">Dokter</th>
+                    <th scope="col" class="border-top-0 py-2">Jenis Pemeriksaan</th>
                     <th scope="col" class="border-top-0 py-2">Jml Pembayaran</th>
                 </tr>
                 </thead>
@@ -183,19 +184,40 @@
                     price.text(total.toLocaleString());
                     for (let index = 0; index < response.dia.length; index++) {
                         const element = response.dia[index];
-                        table.row.add([index+1,element.ctd,element.pasien_id,element.dokter_id,'Rp ' + element.pembayaran]).draw(false);
+                        // let jenis = [];
+                        // let pmr = JSON.parse(response.data[0].data);
+                        // let rpm = JSON.parse(pmr[0]);
+                        // for (let ind = 0; ind < rpm.length; ind++) {
+                        //     const elen = rpm[ind].data.judul;
+                        //     jenis.push(elen);
+                        // }
+                        table.row.add([index+1,element.ctd,element.pasien_id,element.dokter_id,'ABC','Rp ' + element.pembayaran]).draw(false);
                     }
                     $('#dokter').empty();
                     for (const key of Object.keys(response.dk)) {
-                        $('#dokter').append(`<div class="col-md-4">
-                        <div class="card">
+                        $.getJSON(`http://localhost:8000/api/v1/dokter_detail/${key}`, function (data) {
+                            var tot = 0;
+                            for (let index = 0; index < response.dk[key].length; index++) {
+                                const element = response.dk[key][index];
+                                tot += parseInt(element.pembayaran.replace('.',''));
+                            }
+                            $('#dokter').append(`<div class="col-md-4 mb-3">
+                            <div class="card">
                             <div class="card-body">
-                                <p class="card-title">Card title</p>
+                                <h4 class="title-2 mb-0">Rp <span>${tot.toLocaleString()}</span></h4>
+                                <p class="card-title fw-semibold mb-0 text-capitalize">${data.data.name}</p>
                             </div>
-                        </div>
-                    </div>`);
+                            <div class="card-footer">
+                                <a href="javascript:void(0)" class=""><i class="bi-file-pdf-fill me-2"></i> Download</a>
+                            </div>
+                            </div>
+                            </div>`);
+                        });
                         // console.log(key, response.dk[key]);
                     }
+                    let pmr = JSON.parse(response.data[0].data);
+                    let rpm = JSON.parse(pmr[0]);
+                    console.log(response.data);
                     console.log(response);
                 }else{
                     alert('Tanggal laporan kosong');

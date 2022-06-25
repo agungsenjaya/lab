@@ -31,3 +31,4 @@ use Illuminate\Support\Facades\Route;
     Route::POST('/v1/formulas/price_check', 'ApiController@formula_price_check');
     Route::POST('/v1/nilai', 'ApiController@nilai');
     Route::POST('/v1/cetak', 'ApiController@cetak');
+    Route::GET('/v1/dokter_detail/{id}', 'ApiController@dokter_detail');
