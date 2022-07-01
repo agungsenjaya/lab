@@ -225,12 +225,12 @@
       								<div class="col-3 kat-${as.id}">
       									<div class="d-flex justify-content-between mb-1">
       										<label for="" class="form-label me-2">Nilai Pemeriksaan</label>
-      										<div class="form-check">
+      										<div class="form-check ${(as.content) ? '' : 'd-none'}">
       											<input class="form-check-input" type="checkbox" id="flex-${as.id}">
       											<label class="form-check-label" for="flex-${as.id}">Anormali</label>
       										</div>
       									</div>
-      									<input type="text" data-nilai="${as.id}" class="form-control" required>
+      									<input type="text" data-nilai="${as.id}" class="form-control" ${(as.content) ? 'required' : ''} ${(as.content) ? '' : 'disabled'}>
       								</div>
       								<div class="col nn-${as.id}">
       								<label for="" class="form-label">Nilai Normal</label>
