@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
     Route::POST('/v1/laporan_keuangan', 'ApiController@laporan_keuangan');
     Route::POST('/v1/pricing', 'ApiController@pricing');
+    Route::POST('/v1/pasien_cabang', 'ApiController@pasien_cabang');
 
     Route::GET('/v1/pasiens', 'ApiController@pasiens');
     Route::GET('/v1/pasiens/{id}', 'ApiController@pasiens_search');

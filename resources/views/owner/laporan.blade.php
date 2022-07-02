@@ -24,42 +24,42 @@
                         <div class="card-body">
                             <table class="table">
                                 <tr class="row">
-                        <td class="col-4">Kode Cabang</td>
+                                    <td class="col-4">Kode Cabang</td>
+                                    <td class="col-1">:</td>
+                                    <td class="col">
+                                        <div class="badge alert-primary text-uppercase">
+                                            {{ $cab->kode }}
+                                        </div>
+                                    </td>
+                                </tr>
+                    <tr class="row">
+                        <td class="title-3 col-4 text-capitalize">Supervisor</td>
                         <td class="col-1">:</td>
-                        <td class="col">
-                            <div class="badge alert-primary text-uppercase">
-                                {{ $cab->kode }}
-                            </div>
+                        <td class="text-uppercase col">
+                        @php
+                        $usr = \App\User::where('cabang_id', $cab->id )->get();
+                        @endphp
+                        @foreach($usr as $us)
+                        @if($us->hasRole('superadmin'))
+                            {{ $us->name }}
+                        @endif
+                        @endforeach
                         </td>
                     </tr>
                     <tr class="row">
-                    <td class="title-3 col-4 text-capitalize">Supervisor</td>
-                    <td class="col-1">:</td>
-                    <td class="text-uppercase col">
-                      @php
-                      $usr = \App\User::where('cabang_id', $cab->id )->get();
-                      @endphp
-                      @foreach($usr as $us)
-                      @if($us->hasRole('superadmin'))
-                          {{ $us->name }}
-                      @endif
-                      @endforeach
-                    </td>
-                </tr>
-                                <tr class="row">
                         <td class="col-4">Nama Cabang</td>
                         <td class="col-1">:</td>
                         <td class="col text-capitalize">
                                 {{ $cab->name }}
                         </td>
                     </tr>
-                                <tr class="row border-transparent">
-                                    <td class="col-4">Alamat</td>
-                                    <td class="col-1">:</td>
-                                    <td class="col text-capitalize">
-                                            {{ $cab->alamat }}
-                                    </td>
-                                </tr>
+                    <tr class="row border-transparent">
+                        <td class="col-4">Alamat</td>
+                        <td class="col-1">:</td>
+                        <td class="col text-capitalize">
+                                {{ $cab->alamat }}
+                        </td>
+                    </tr>
                             </table>
                         </div>
                     </div>
@@ -82,23 +82,25 @@
                         </div>
                     </div>
                 </div>
-            <form>
+            <form id="satu">
                 @csrf
+                <input type="hidden" name="total">
+                <input type="hidden" name="cabang_name" value="{{ $cab->name }}">
                 <input type="hidden" name="cabang_id" value="{{ $cab->id }}">
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label">Start Date</label>
-                    <div class="input-group">
-                        <input type="date" name="start" class="form-control" required>
-                        <!-- <button class="btn btn-primary px-3" type="button" id="button-1"> <i class="bi bi-x-circle-fill"></i> </button> -->
-                    </div>
+                        <div class="input-group">
+                            <input type="date" name="start" class="form-control" required>
+                            <!-- <button class="btn btn-primary px-3" type="button" id="button-1"> <i class="bi bi-x-circle-fill"></i> </button> -->
+                        </div>
                     </div>
                     <div class="col">
                         <label for="" class="form-label">End Date</label>
-                    <div class="input-group">
-                        <input type="date" name="end" class="form-control">
-                        <!-- <button class="btn btn-primary px-3" type="button" id="button-2"> <i class="bi bi-x-circle-fill"></i> </button> -->
-                    </div>
+                        <div class="input-group">
+                            <input type="date" name="end" class="form-control" required>
+                            <!-- <button class="btn btn-primary px-3" type="button" id="button-2"> <i class="bi bi-x-circle-fill"></i> </button> -->
+                        </div>
                     </div>
                 </div>
                 <a href="javascript:void(0)" onCLick="window.location.reload()" class="btn btn-secondary me-2"><i class="bi bi-arrow-clockwise me-2"></i>Reset</a>
@@ -107,7 +109,7 @@
         </div>
     </div>
 </section>
-<section class=" pt-4">
+<section class="pt-4 d-none" id="lpr">
     <div class="container">
         <div class="card">
         <div class="card-header">
@@ -115,7 +117,8 @@
             </div>
             <div class="card-body">
                 <div>
-                    <a href="javascript:void(0)" class="btn btn-primary"><i class="bi-file-pdf-fill me-2"></i>Download Laporan</a>
+                    <a id="cetak_klinik" target="_blank" class="btn btn-primary me-2"><i class="bi-file-pdf-fill me-2"></i>PDF</a>
+                    <a id="excel_klinik" target="_blank" class="btn btn-outline-primary"><i class="bi-file-earmark-excel-fill me-2"></i>Excel</a>
                 </div>
                 <div class="row mt-3" id="dokter">
                 </div>
@@ -123,7 +126,7 @@
         </div>
     </div>
 </section>
-<section class=" pt-4">
+<section class="pt-4 d-none" id="psn">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -163,7 +166,8 @@
 <script src="{{ asset('js/Blob.js') }}"></script>
 <script>
     let table = $('#table1').DataTable();
-    $('form').submit(function (stay) {
+    let cetak_klinik,excel_klinik;
+    $('#satu').submit(function (stay) {
         var formdata = $(this).serializeArray();
         $.ajax({
             type: "POST",
@@ -172,6 +176,9 @@
             success: function (response) {
                 table.clear().draw();
                 if (response.data.length > 0) {
+                    $('#lpr, #psn').removeClass('d-none');
+                    cetak_klinik = null;
+                    excel_klinik = null;
                     $('#laporan').removeClass('d-none');
                     $('#trans').text((response.data.length <= 9) ? '0' + response.data.length : response.data.length);
                     $('#priode').text(response.periode);
@@ -182,16 +189,19 @@
                         total += parseInt(element.pembayaran.replace('.',''));
                     }
                     price.text(total.toLocaleString());
+                    $('input[name="total"]').val(total.toLocaleString());
                     for (let index = 0; index < response.dia.length; index++) {
                         const element = response.dia[index];
-                        // let jenis = [];
-                        // let pmr = JSON.parse(response.data[0].data);
-                        // let rpm = JSON.parse(pmr[0]);
-                        // for (let ind = 0; ind < rpm.length; ind++) {
-                        //     const elen = rpm[ind].data.judul;
-                        //     jenis.push(elen);
-                        // }
-                        table.row.add([index+1,element.ctd,element.pasien_id,element.dokter_id,'ABC','Rp ' + element.pembayaran]).draw(false);
+                        let jenis = [];
+                        let pmr = JSON.parse(response.data[index].data);
+                        let rpm = JSON.parse(pmr[0]);
+                        for (let ind = 0; ind < rpm.length; ind++) {
+                            const elen = rpm[ind];
+                            if (!elen.data.sub_kat) {
+                                jenis.push(elen.data.judul);
+                            }
+                        }
+                        table.row.add([index+1,element.ctd,element.pasien_id,element.dokter_id,jenis,'Rp ' + element.pembayaran]).draw(false);
                     }
                     $('#dokter').empty();
                     for (const key of Object.keys(response.dk)) {
@@ -208,18 +218,34 @@
                                 <p class="card-title fw-semibold mb-0 text-capitalize">${data.data.name}</p>
                             </div>
                             <div class="card-footer">
-                                <a href="javascript:void(0)" class=""><i class="bi-file-pdf-fill me-2"></i> Download</a>
+                                <a target="_blank" href="http://localhost:8000/owner/cetak/dokter?start_date=${$('input[name="start"]').val()}&end_date=${$('input[name="end"]').val()}&cabang_id=${<?php echo $cab->id; ?>}&cabang_name=${$('input[name="cabang_name"]').val()}&total=${tot.toLocaleString()}&dokter_id=${data.data.id}&dokter_name=${data.data.name}" class="me-2"><i class="bi-file-pdf-fill me-2"></i>PDF</a>
+                                <a target="_blank" href="http://localhost:8000/owner/excel/dokter?start_date=${$('input[name="start"]').val()}&end_date=${$('input[name="end"]').val()}&cabang_id=${<?php echo $cab->id; ?>}&cabang_name=${$('input[name="cabang_name"]').val()}&total=${tot.toLocaleString()}&dokter_id=${data.data.id}&dokter_name=${data.data.name}" class=""><i class="bi-file-earmark-excel-fill me-2"></i>Excel</a>
                             </div>
                             </div>
                             </div>`);
                         });
                         // console.log(key, response.dk[key]);
                     }
+
+                    if ($('input[name="start"]').val() && $('input[name="end"]').val()) {
+                        cetak_klinik = `http://localhost:8000/owner/cetak/klinik?start_date=${$('input[name="start"]').val()}&end_date=${$('input[name="end"]').val()}&cabang_id=${<?php echo $cab->id; ?>}&cabang_name=${$('input[name="cabang_name"]').val()}&total=${$('input[name="total"]').val()}`;
+                        excel_klinik = `http://localhost:8000/owner/excel/klinik?start_date=${$('input[name="start"]').val()}&end_date=${$('input[name="end"]').val()}&cabang_id=${<?php echo $cab->id; ?>}&cabang_name=${$('input[name="cabang_name"]').val()}&total=${$('input[name="total"]').val()}`;
+                    }else if ($('input[name="start"]').val()) {
+                        cetak_klinik = `http://localhost:8000/owner/cetak/klinik?start_date=${$('input[name="start"]').val()}&cabang_id=${<?php echo $cab->id; ?>}`;
+                        excel_klinik = `http://localhost:8000/owner/excel/klinik?start_date=${$('input[name="start"]').val()}&cabang_id=${<?php echo $cab->id; ?>}`;
+                    }
+                    $('#cetak_klinik').attr('href',cetak_klinik);
+                    $('#excel_klinik').attr('href',excel_klinik);
+
                     let pmr = JSON.parse(response.data[0].data);
                     let rpm = JSON.parse(pmr[0]);
-                    console.log(response.data);
+                    console.log(rpm);
                     console.log(response);
                 }else{
+                    $('#dokter').empty();
+                    $('#price, #priode, #trans').text('-');
+                    $('#cetak_klinik, #excel_klinik').removeAttr('href');
+                    $('#lpr, #psn').addClass('d-none');
                     alert('Tanggal laporan kosong');
                 }
             }

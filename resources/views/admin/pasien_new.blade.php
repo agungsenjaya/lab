@@ -232,7 +232,7 @@
       									</div>
       									<input type="text" data-nilai="${as.id}" class="form-control">
       								</div>
-      								<div class="col">
+      								<div class="col nn-${as.id}">
       								<label for="" class="form-label">Nilai Normal</label>
       								<input type="text" class="form-control normal-${as.id}" value="${(as.content) ? as.content : '-'}" disabled>
       								</div>
@@ -293,7 +293,7 @@
       									</div>
       									<input type="text" data-nilai="${val.id}" class="form-control">
       								</div>
-      								<div class="col">
+      								<div class="col nn-${val.id}">
       								<label for="" class="form-label">Nilai Normal</label>
       								<input type="text" class="form-control normal-${val.id}" value="${(val.content) ? val.content : '-'}" disabled>
       								</div>

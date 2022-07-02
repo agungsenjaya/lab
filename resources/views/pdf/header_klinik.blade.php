@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Table</title>
+        <title>{{ strtoupper(Request::get('cabang_name')) . ' - ' . strtoupper(date_format(date_create(Request::get('start_date')),"d M Y")) . ' - ' . strtoupper(date_format(date_create(Request::get('end_date')),"d M Y")) }}</title>
         <style type="text/css">
             body {
                 font-size: 10px !important;
@@ -243,10 +243,6 @@
                 color: #fff;
             }
 
-            .text-danger {
-                color: #e3342f;
-            }
-
             .text-lowercase {
                 text-transform: lowercase !important;
             }
@@ -392,78 +388,28 @@
             .fw-bold {
                 font-weight: 700 !important;
             }
-            .table-1  tr, .table-1  td {
-                padding-left:0 !important;
-                padding-right:0 !important;
+            .table-1 tr,
+            .table-1 td {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
-            .d-none {
-                display: none !important;
+            .table-1 {
+                border-color: transparent !important;
             }
             .text-center {
-                text-align: center !important;
+                text-align: center;
             }
         </style>
         <body>
-            <table class="table table-bordered border-dark">
-                <thead class="bg-light">
-                    <tr class="text-center">
-                        <th scope="col">Pemeriksaan</th>
-                        <th scope="col">Hasil</th>
-                        <th scope="col">Nilai Normal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($gas as $ga => $item)
-                    <tr>
-                        <td class="text-uppercase">
-                            {{ $ga }}
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    @foreach($item as $it)
-                    @php
-                    $dat = App\Formula::find($it->data->id);
-                    @endphp
-                    <tr>
-                        <td class="">{{ $it->data->judul }}</td>
-                        <td class="text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
-                        <td class="text-center">
-                        @if($dat)
-                            {{ $dat->content }}
-                        @endif
-                        </td>
-                    </tr>
-                    @endforeach @endforeach
-                </tbody>
-                <tfoot class="border-transparent" style="margin-bottom:40px">
-                    <tr>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
-            <tfoot class="border-transparent table-1">
-                    <tr>
-                        <td colspan="5">
-                            <table width="100%" class="table-1 border-transparent">
-                                <tr>
-                                    <td valign="top" class="text-right">
-                                        <div>
-                                            <p class="mb-0"><span>Sukabumi,</span> {{ date('d M Y') }}</p>
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <p>ATLM</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </tfoot>
-            
+            @php
+            $start = date_format(date_create(Request::get('start_date')),"d M Y");
+            $end = date_format(date_create(Request::get('end_date')),"d M Y");
+            @endphp
+            <div class="text-center text-uppercase">
+                <h3>Laporan pemeriksaan laboratorium {{ Request::get('cabang_name') }}</h3>
+                <h3>Periode {{  $start . ' - ' . $end }}</h3>
+            </div>
+            <br>
         </body>
     </head>
 </html>

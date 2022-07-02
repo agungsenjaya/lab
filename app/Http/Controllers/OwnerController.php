@@ -13,7 +13,9 @@ use App\Pasien;
 use App\Pricing;
 use App\Cetak;
 use Carbon\Carbon;
-use PDF;
+use App\Exports\KlinikExport;
+use App\Exports\DokterExport;
+use PDF,Excel;
 use DB,Session,Uuid,Validator,Auth,Hash,Str;
 
 class OwnerController extends Controller
@@ -252,29 +254,84 @@ class OwnerController extends Controller
     }
 
     public function cetak_klinik(Request $request) {
-        $data = Diagnosa::where('kode', $id)->first();
-        $dat = json_decode($data->data);
-        $da = json_decode($dat[0]);
-        
-        for ($i=0; $i < count($da) ; $i++) {
-            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
-            $da[$i]->no_kategori = $ded->id;
-            $da[$i]->kategori = $ded->judul;
+        $dataa;
+        $periode;
+        $dia = array();
+        $dk;
+        if ($request->query('start_date') && $request->query('end_date')) {
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date') . ' - ' . $request->query('end_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }elseif($request->query('start_date')){
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at',$request->query('start_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at',$request->query('start_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
         }
-        $data->data = $da;
-
-        $gas = array();
-        foreach ($data->data as $element) {
-            $gas[$element->kategori][] = $element;
-        }
-
-        $headerHtml = view()->make('pdf.header',compact('data'))->render();
-        $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
+        // dd($dk);
+        $headerHtml = view()->make('pdf.header_klinik')->render();
+        $pdf = PDF::loadView('pdf.klinik', compact('dataa'));
         return $pdf
         ->setPaper('a4')
         ->setOrientation('portrait')
-        ->setOption('margin-top', '50mm')
-        ->setOption('footer-left','(*) Menunjukan hasil diatas atau dibawah nilai normal')
+        ->setOption('margin-top', '25mm')
+        ->setOption('header-font-name','Verdana')
+        ->setOption('footer-font-name','Verdana')
+        ->setOption('header-font-size','6')
+        ->setOption('footer-font-size','6')
+        ->setOption('header-html',$headerHtml)
+        ->setOption('footer-right', 'Page [page] of [toPage]')
+        ->inline();
+    }
+    
+    public function cetak_dokter(Request $request) {
+        $dataa;
+        $periode;
+        $dia = array();
+        $dk;
+        if ($request->query('start_date') && $request->query('end_date')) {
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date') . ' - ' . $request->query('end_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }elseif($request->query('start_date')){
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at',$request->query('start_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at',$request->query('start_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }
+        // dd($dk);
+        $headerHtml = view()->make('pdf.header_dokter')->render();
+        $pdf = PDF::loadView('pdf.dokter', compact('dataa'));
+        return $pdf
+        ->setPaper('a4')
+        ->setOrientation('portrait')
+        ->setOption('margin-top', '25mm')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')
@@ -284,7 +341,72 @@ class OwnerController extends Controller
         ->inline();
     }
 
-    public function ceatk_dokter(Request $request) {
-        // 
+    public function excel_klinik(Request $request) {
+        $dataa;
+        $periode;
+        $dia = array();
+        $dk;
+        if ($request->query('start_date') && $request->query('end_date')) {
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date') . ' - ' . $request->query('end_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }elseif($request->query('start_date')){
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at',$request->query('start_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->whereDate('created_at',$request->query('start_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }
+        $klinik = strtoupper($request->query('cabang_name')) . ' - ' . strtoupper(date_format(date_create($request->query('start_date')),"d M Y")) . ' - ' . strtoupper(date_format(date_create($request->query('end_date')),"d M Y"));
+        return Excel::download(new KlinikExport($dataa), $klinik .'.xlsx');
     }
+    
+    public function excel_dokter(Request $request) {
+        $dataa;
+        $periode;
+        $dia = array();
+        $dk;
+        if ($request->query('start_date') && $request->query('end_date')) {
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at', '>=' ,$request->query('start_date'))->whereDate('created_at','<=',$request->query('end_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date') . ' - ' . $request->query('end_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }elseif($request->query('start_date')){
+            $dataa = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at',$request->query('start_date'))->get();
+            $dk = Diagnosa::where('cabang_id', $request->query('cabang_id'))->where('dokter_id', $request->query('dokter_id'))->whereDate('created_at',$request->query('start_date'))->get()->groupBy('dokter_id');
+            $periode = $request->query('start_date');
+            for ($i=0; $i < count($dataa); $i++) { 
+                $ele = $dataa[$i];
+                $ele->ctd = $ele->created_at->format('d-m-Y');
+                $ele->pasien_id = $ele->pasien->name;
+                $ele->dokter_id = $ele->dokter->name;
+                array_push($dia, $ele);
+            }
+        }
+        $dokter = strtoupper($request->query('cabang_name')) . ' - ' . strtoupper($request->query('dokter_name')) . ' - ' . strtoupper(date_format(date_create($request->query('start_date')),"d M Y")) . ' - ' . strtoupper(date_format(date_create($request->query('end_date')),"d M Y"));
+        return Excel::download(new DokterExport($dataa), $dokter .'.xlsx');
+    }
+
+    public function pasien() {
+        return view('owner.pasien')->with('cabang', Cabang::all());
+    }
+
 }

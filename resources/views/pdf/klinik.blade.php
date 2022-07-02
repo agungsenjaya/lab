@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Table</title>
+        <title>{{ strtoupper(Request::get('cabang_name')) . ' - ' . strtoupper(date_format(date_create(Request::get('start_date')),"d M Y")) . ' - ' . strtoupper(date_format(date_create(Request::get('end_date')),"d M Y")) }}</title>
         <style type="text/css">
             body {
                 font-size: 10px !important;
@@ -402,47 +402,95 @@
             .text-center {
                 text-align: center !important;
             }
+            .opacity-0 {
+                opacity: 0 !important;
+            }
         </style>
         <body>
             <table class="table table-bordered border-dark">
                 <thead class="bg-light">
                     <tr class="text-center">
-                        <th scope="col">Pemeriksaan</th>
-                        <th scope="col">Hasil</th>
-                        <th scope="col">Nilai Normal</th>
+                        <th scope="col" width="10%">Tanggal</th>
+                        <th scope="col" width="20%">Nama Pasien</th>
+                        <th scope="col" width="20%">Dokter</th>
+                        <th scope="col" width="20%">Biaya Pemeriksaan</th>
+                        <th scope="col" width="30%">Jenis Pemeriksaan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($gas as $ga => $item)
+                    @foreach($dataa as $d)
                     <tr>
-                        <td class="text-uppercase">
-                            {{ $ga }}
+                        <td>
+                            {{ $d->created_at->format('d-m-Y') }}
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td class="text-capitalize">{{ $d->pasien_id }}</td>
+                        <td class="text-capitalize">{{ $d->dokter_id }}</td>
+                        <td>Rp {{ $d->pembayaran }}</td>
+                        <td>
+                            @php
+                            $dat = json_decode($d->data);
+                            $obat = array();
+                            $i = 0;
+                            $c = count($obat);
+                            @endphp
+                            @foreach($dat as $da)
+                            @php
+                            $det = json_decode($da);
+                            @endphp
+                            <!-- {{ json_encode($det[0]->data) }} -->
+                            @foreach($det as $dud)
+                            @if(!$dud->data->sub_kat)
+                            @php 
+                            array_push($obat, $dud->data->judul)
+                            @endphp
+                            @endif
+                            @endforeach
+                            @foreach($obat as $o)
+                                {{ $o }}{{ ($o == end($obat)) ? '' : ',' }}
+                            @endforeach
+                            @endforeach
+                        </td>
                     </tr>
-                    @foreach($item as $it)
+                    @endforeach
+                    <!-- @for ($i=0; $i < 50; $i++)
                     <tr>
-                        <td class="">{{ $it->data->judul }}</td>
-                        <td class="text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
-                        <td class="text-center">{{ $it->data->content }}</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td width="30%">a</td>
                     </tr>
-                    @endforeach @endforeach
+                    @endfor -->
                 </tbody>
-                <tfoot class="border-transparent" style="margin-bottom:40px">
+                <tfoot class="border-transparent" style="margin-bottom:30px">
                     <tr>
                         <td></td>
                     </tr>
                 </tfoot>
             </table>
-            <tfoot class="border-transparent table-1">
+            <table width="100%" class="table table-bordered border-dark" style="margin-top:-35px">
+                <tbody>
                     <tr>
-                        <td colspan="5">
-                            <table width="100%" class="table-1 border-transparent">
-                                <tr>
-                                    <td valign="top" class="text-right">
-                                        <div>
-                                            <p class="mb-0"><span>Sukabumi,</span> {{ date('d M Y') }}</p>
+                        <th scope="col" width="10%" class="opacity-0">a</th>
+                        <td scope="col" width="20%"></td>
+                        <td scope="col" width="20%"></td>
+                        <th class="text-left" scope="col" width="20%"></th>
+                        <td scope="col" width="30%"></td>
+                    </tr>
+                    <tr>
+                        <th scope="col" width="10%">Jumlah</th>
+                        <td scope="col" width="20%"></td>
+                        <td scope="col" width="20%"></td>
+                        <th class="text-left" scope="col" width="20%">Rp {{ str_replace(',','.',Request::get('total')) }}</th>
+                        <td scope="col" width="30%"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-right:5%;margin-left:5%;">
+                <table width="100%" class="border-transparent table-1">
+                    <td valign="top" class="text-right">
+                        <div>
+                        <p class="mb-0"><span>Sukabumi,</span> {{ date('d M Y') }}</p>
                                             <br />
                                             <br />
                                             <br />
@@ -450,13 +498,10 @@
                                             <br />
                                             <p>ATLM</p>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </tfoot>
-            
+                    </td>
+                </tr>
+            </table>
+        </div>
         </body>
     </head>
 </html>

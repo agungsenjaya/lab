@@ -48,7 +48,8 @@ $no = 1;
 <section class="space-m">
   <div class="container">
     <div class="card card-body shadow">
-    <div class="row mb-4">
+    <div class="alert alert-primary rounded-0">* Laporan pasien bisa dilihat maksimal 3 bulan ke belakang</div>
+    <div class="row mb-4 d-none">
       <div class="col">
         <!-- <label for="" class="form-label">Minimun Date</label> -->
         <input id="min" class="form-control" name="min" placeholder="Minimum Date">

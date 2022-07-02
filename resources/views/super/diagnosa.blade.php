@@ -124,12 +124,20 @@
                                 <td class="col-md"></td>
                             </tr>
                             @foreach($item as $it)
+                            @php
+                            $dat = App\Formula::find($it->data->id);
+                            @endphp
                             <tr class="row g-0">
                                 <td class="col-md-4">{{ $it->data->judul }}</td>
                                 <td class="col-md-2 text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
-                                <td class="col-md text-center">{{ $it->data->content }}</td>
+                                <td class="col-md text-center">
+                                    @if($dat)
+                                    {{ $dat->content }}
+                                    @endif
+                                </td>
                             </tr>
-                            @endforeach @endforeach
+                            @endforeach 
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -207,4 +207,26 @@ class ApiController extends Controller
         }
     }
 
+    public function pasien_cabang(Request $request) {
+        $data;
+        $periode;
+        $dia = array();
+        $dk;
+        $data = Diagnosa::where('cabang_id', $request->cabang_id)->whereDate('created_at', '>=' ,$request->start)->whereDate('created_at','<=',$request->end)->get();
+        for ($i=0; $i < count($data); $i++) { 
+            $ele = $data[$i];
+            $ele->ctd = $ele->created_at->format('d-m-Y');
+            $ele->pasien_id = $ele->pasien->name;
+            $ele->user_id = $ele->user->name;
+            $ele->dokter_id = $ele->dokter->name;
+            array_push($dia, $ele);
+        }
+        if ($data) {
+            return Response::json([
+                'code' => 200,
+                'data' => $dia
+            ]);
+        }
+    }
+
 }

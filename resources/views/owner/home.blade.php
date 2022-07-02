@@ -39,9 +39,9 @@ for ($i=0; $i < count($user); $i++) {
     <div class="position-relative">
   <div class="card shadow bg-primary">
   <div class="card-body z-index-100">
-      <h5 class="card-title">Transaksi Hari Ini</h5>
+      <h5 class="card-title">Jumlah Pasien</h5>
       <h1 class="text-warn title-2">{{ counTing(count($today)) }}</h1>
-      <p class="">Total transaksi hari ini</p>
+      <p class="">Total pasien hari ini</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
