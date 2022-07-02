@@ -230,7 +230,7 @@
       											<label class="form-check-label" for="flex-${as.id}">Anormali</label>
       										</div>
       									</div>
-      									<input type="text" data-nilai="${as.id}" class="form-control">
+      									<input type="text" data-nilai="${as.id}" class="form-control" required>
       								</div>
       								<div class="col nn-${as.id}">
       								<label for="" class="form-label">Nilai Normal</label>
@@ -291,7 +291,7 @@
       											<label class="form-check-label" for="flex-${val.id}">Anormali</label>
       										</div>
       									</div>
-      									<input type="text" data-nilai="${val.id}" class="form-control">
+      									<input type="text" data-nilai="${val.id}" class="form-control" required>
       								</div>
       								<div class="col nn-${val.id}">
       								<label for="" class="form-label">Nilai Normal</label>
