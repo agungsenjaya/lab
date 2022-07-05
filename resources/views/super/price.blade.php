@@ -27,7 +27,7 @@
 		e.preventDefault();
 		$('#kat > div').remove();
 		var a = $(this).val();
-		$.getJSON(`http://localhost:8000/api/v1/formulas/${a}`, function (data) {
+		$.getJSON(`http://localhost:8000/api/v1/formulas/${a}?cabang_id=${<?php echo Auth::user()->cabang_id ?>}`, function (data) {
 			$.each(data.data, function (index, value) {
 				var pro = data.price.filter(x => x.formula_id === value.id).map(x => x.pembayaran.replace('.',''));
 				if(value.sub_kat){

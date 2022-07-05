@@ -402,7 +402,7 @@
             @endphp
             <table class="border-transparent" width="100%">
                 <tr>
-                    <td align="left" width="50%">
+                    <td valign="top" width="50%">
                         <table class="table table-1 table-sm border-transparent" width="100%">
                             <tr class="row">
                                 <td class="col-5 fw-bold">No Transaksi / Dokumen</td>

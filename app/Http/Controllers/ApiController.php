@@ -66,12 +66,13 @@ class ApiController extends Controller
         }
     }
 
-    public function formulas($id)
+    public function formulas(Request $request, $id)
     {
+        $cabang_id = $request->query('cabang_id');
         $data = Formula::where('formula_kat_id', $id)->get();
         if (count($data)) {
             for ($i=0; $i < count($data); $i++) {
-                $dataa = Price::where('formula_id', $data[$i]->id)->where('cabang_id', 1)->first();
+                $dataa = Price::where('formula_id', $data[$i]->id)->where('cabang_id', $cabang_id)->first();
                 if ($dataa) {
                     array_push($this->cek_price, $dataa);
                 }
