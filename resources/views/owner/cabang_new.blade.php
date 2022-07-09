@@ -46,7 +46,7 @@
 @endsection
 @section('js')
 <script>
-    $.getJSON("http://www.emsifa.com/api-wilayah-indonesia/api/regencies/32.json",
+    $.getJSON("http://localhost:8000/json/prov.json",
         function (data) {
             $.each(data, function (index, value) { 
                 $('select[name="kota"]').append(`<option value="${value.name}">${value.name}</option>`);
