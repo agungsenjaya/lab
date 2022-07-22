@@ -235,6 +235,7 @@
       								<div class="col nn-${as.id}">
       								<label for="" class="form-label">Nilai Normal</label>
       								<input type="text" class="form-control normal-${as.id}" value="${(as.content) ? as.content : '-'}" disabled>
+      								<input type="hidden" class="form-control ori-${as.id}" value="${(as.content) ? as.content : '-'}" disabled>
       								</div>
     							<div class="col-1">
       									<label for="" class="form-label opacity-0">Remove</label>
@@ -296,6 +297,7 @@
       								<div class="col nn-${val.id}">
       								<label for="" class="form-label">Nilai Normal</label>
       								<input type="text" class="form-control normal-${val.id}" value="${(val.content) ? val.content : '-'}" disabled>
+      								<input type="hidden" class="form-control ori-${val.id}" value="${(val.content) ? val.content : '-'}" disabled>
       								</div>
     							<div class="col-1">
       									<label for="" class="form-label opacity-0">Remove</label>
@@ -382,7 +384,9 @@
       		for (let index = 0; index < cek_dig[0].data.length; index++) {
       			const element = cek_dig[0].data[index];
     		const emon = $(`.normal-${cek_dig[0].data[index].data.id}`).val();
+    		const eman = $(`.ori-${cek_dig[0].data[index].data.id}`).val();
     		element.data.content = emon;
+    		element.data.content_ori = eman;
     		// console.log(cek_dig[0].data[index].data.id);
       			dase.push(element.id);
       		}

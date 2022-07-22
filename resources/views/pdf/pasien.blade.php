@@ -429,9 +429,7 @@
                         <td class="">{{ $it->data->judul }}</td>
                         <td class="text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
                         <td class="text-center">
-                        @if($dat)
-                            {{ $dat->content }}
-                        @endif
+                            {{ $it->data->content_ori }}
                         </td>
                     </tr>
                     @endforeach @endforeach

@@ -31,6 +31,9 @@
 			$.each(data.data, function (index, value) {
 				var pro = data.price.filter(x => x.formula_id === value.id).map(x => x.pembayaran.replace('.',''));
 				if(value.sub_kat){
+					if (pro) {
+						console.log(pro);
+					}
 					$.each(data.data, function (ind, vale) { 
 						if (vale.id == value.sub_kat) {
 							$('#kat').append(`
@@ -46,6 +49,9 @@
 						}
 					});
 				}else{
+					if (pro) {
+						console.log(pro);
+					}
 					$('#kat').append(`
 				<div class="col-md-6">
 					<label class="form-label">${value.judul}</label>

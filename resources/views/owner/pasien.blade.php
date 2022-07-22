@@ -70,6 +70,7 @@ $no = 1;
                     <th scope="col" class="border-top-0 py-2">User</th>
                     <th scope="col" class="border-top-0 py-2">Kode Transaksi</th>
                     <th scope="col" class="border-top-0 py-2">Tgl Pemeriksaan</th>
+                    <th scope="col" class="border-top-0 py-2">Actions</th>
                 </tr>
             </thead>
                 <tbody class="text-capitalize" id="pasien">
@@ -114,7 +115,7 @@ $no = 1;
                     for (let index = 0; index < response.data.length; index++) {
                         const element = response.data[index];
                         let ids = counTing(element.id) + element.kode.substring(0,5);
-                        table.row.add([no++,element.pasien_id,element.dokter_id,element.user_id, ids.toUpperCase(),element.ctd]).draw(false);
+                        table.row.add([no++,element.pasien_id,element.dokter_id,element.user_id, ids.toUpperCase(),element.ctd, `<a href="http://localhost:8000/owner/diagnosa/${element.kode}" target="_blank" class="btn btn-sm w-100 btn-warn">Detail</a>`]).draw(false);
                     }
                     console.log(response);
                 }else{

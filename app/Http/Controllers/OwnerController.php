@@ -7,9 +7,11 @@ use App\User;
 use App\Cabang;
 use App\Role;
 use App\Formula;
+use App\Formula_kat;
 use App\Diagnosa;
 use App\Dokter;
 use App\Pasien;
+use App\Nilai;
 use App\Pricing;
 use App\Cetak;
 use Carbon\Carbon;
@@ -109,6 +111,29 @@ class OwnerController extends Controller
                 return redirect()->route('owner.user');
             }
         }
+    }
+
+    public function diagnosa($id)
+    {
+        // $data = Diagnosa::where('kode', $id)->first();
+        // return view('super.diagnosa',compact('data'));
+        $data = Diagnosa::where('kode', $id)->first();
+        $dat = json_decode($data->data);
+        $da = json_decode($dat[0]);
+        
+        for ($i=0; $i < count($da) ; $i++) {
+            $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
+            $da[$i]->no_kategori = $ded->id;
+            $da[$i]->kategori = $ded->judul;
+        }
+        $data->data = $da;
+
+        $gas = array();
+        foreach ($data->data as $element) {
+            $gas[$element->kategori][] = $element;
+        }
+        
+        return view('owner.diagnosa',compact('data','gas'));
     }
     
     public function user_update(Request $request, $id)
@@ -407,6 +432,20 @@ class OwnerController extends Controller
 
     public function pasien() {
         return view('owner.pasien')->with('cabang', Cabang::all());
+    }
+
+    public function nilai() {
+        $nilai = Nilai::all()->groupBy('formula_id')->toArray();
+        return view('owner.nilai',compact('nilai'));
+    }
+    
+    public function nilai_edit($id) {
+        $data = Nilai::find($id);
+        return view('owner.nilai',compact('data'));
+    }
+    
+    public function nilai_update(Request $request, $id) {
+        // 
     }
 
 }

@@ -85,6 +85,10 @@ Route::GROUP(['prefix' => 'superadmin',  'middleware' => ['role:superadmin']], f
 Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){
     
     Route::GET('/dashboard', 'OwnerController@index')->name('dashboard.owner');
+    
+    Route::GET('/nilai', 'OwnerController@nilai')->name('owner.nilai');
+    Route::GET('/nilai/edit/{id}', 'OwnerController@nilai_edit')->name('owner.nilai_edit');
+    Route::POST('/nilai/update/{id}', 'OwnerController@nilai_update')->name('owner.nilai_update');
 
     Route::GET('/user', 'OwnerController@user')->name('owner.user');
     Route::GET('/user/delete/{id}', 'OwnerController@user_delete')->name('owner.user_delete');

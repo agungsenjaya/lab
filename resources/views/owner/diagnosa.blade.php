@@ -1,27 +1,8 @@
-@extends('layouts.super') @section('content') 
+@extends('layouts.owner') @section('content') 
 @php
  $url =  $data -> kode;
  $cetak = App\Cetak::where('diagnosa_id', $data->id)->count();
 @endphp
-<!-- Modal -->
-<div class="modal fade" id="modalPrint" tabindex="-1" aria-labelledby="modalPrintLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title fw-bold" id="modalDelLabel"><i class="bi bi-info-circle me-2"></i>Notifications</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <p class="mb-0">Apakah anda yakin akan melakukan cetak hasil pemeriksaan? Silahkan klik tombol print di bawah untuk melanjutkan.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="{{ route('super.cetak',['id' => $data -> kode]) }}" target="_blank" class="btn btn-primary">Print</a>
-        <!-- <button type="button" class="btn btn-primary btn-cetak">Print</button> -->
-      </div>
-    </div>
-  </div>
-</div>
 <section>
     <div class="container">
         <div class="card shadow">
@@ -39,13 +20,13 @@
                                 <li class="breadcrumb-item active" aria-current="page">Diagnosa pasien</li>
                             </ol>
                         </nav>
-                        <div class="ms-3">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPrint"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak Pemeriksaan</button>
-                            <!-- <a href="{{ route('admin.cetak',['id' => $data -> kode]) }}" target="_blank" class="btn btn-primary"><i class="ms-Icon align-middle ms-Icon--Print me-2"></i>Cetak Pemeriksaan</a> -->
-                        </div>
                     </div>
                 </div>
-
+                <div class="pt-4">
+                    <div class="alert alert-primary rounded-0 text-center">
+                        <span class="text-uppercase fw-bold">{{ $data->cabang->name }}</span><br>{{ $data->cabang->alamat }}
+                    </div>
+                </div>
                 <div class="">
                     <div class="row py-4">
                         <div class="col-md-6">
@@ -159,28 +140,4 @@
         </div>
     </div>
 </section>
-@endsection
-@section('js')
-<script>
-    var modal = new bootstrap.Modal(document.getElementById('modalPrint'));
-    var toast = new bootstrap.Toast(document.getElementById('ToastPrint'));
-    $('.btn-cetak').on('click',function(){
-        $.ajax({
-            type: "POST",
-        url: "http://localhost:8000/api/v1/cetak",
-        data: {
-            'diagnosa_id' : {{ $data->id }},
-            'user_id' : {{ Auth::user()->id }},
-        },
-        dataType: "JSON",
-        success: function (response) {
-            if(response.code == 200) {
-                modal.hide();
-                toast.show();
-                window.open(`http://localhost:8000/superadmin/cetak/{{ $url }}`);
-            }
-        }
-    });
-})
-</script>
 @endsection
