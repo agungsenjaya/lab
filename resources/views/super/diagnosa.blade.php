@@ -14,10 +14,18 @@
       <div class="modal-body">
       <p class="mb-0">Apakah anda yakin akan melakukan cetak hasil pemeriksaan? Silahkan klik tombol print di bawah untuk melanjutkan.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="{{ route('super.cetak',['id' => $data -> kode]) }}" target="_blank" class="btn btn-primary">Print</a>
-        <!-- <button type="button" class="btn btn-primary btn-cetak">Print</button> -->
+      <div class="modal-footer d-flex justify-content-between">
+      <div>
+            <select id="seleh" class="form-select">
+                <option value="A4">A4</option>
+                <option value="F4">F4</option>
+            </select>
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <a id="print" href="{{ route('super.cetak',['id' => $data -> kode]) }}?paper=A4" target="_blank" class="btn btn-primary">Print</a> -->
+            <button type="button" class="btn btn-primary btn-cetak">Print</button>
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +61,7 @@
                                 <tr class="d-flex">
                                     <td class="col-4">No / Dokumen</td>
                                     <td>:</td>
-                                    <td class="text-uppercase col"><span class="badge alert-primary">{{ counTing($data->id) . substr($data->kode, 0 ,5) }}</span> <span class="text-capitalize">/  {{ ($cetak <= 1) ? 'Asli' : 'Copy ' . $cetak }}</span></td>
+                                    <td class="text-uppercase col"><span class="badge alert-primary">{{ counTing($data->id) . substr($data->kode, 0 ,5) }}</span> <span class="text-capitalize">/  {{ ($cetak <= 3) ? 'Asli' : 'Copy' }}</span></td>
                                 </tr>
                                 <tr class="d-flex">
                                     <td class="col-4">Nama Lengkap</td>
@@ -164,23 +172,13 @@
 <script>
     var modal = new bootstrap.Modal(document.getElementById('modalPrint'));
     var toast = new bootstrap.Toast(document.getElementById('ToastPrint'));
-    $('.btn-cetak').on('click',function(){
-        $.ajax({
-            type: "POST",
-        url: "http://localhost:8000/api/v1/cetak",
-        data: {
-            'diagnosa_id' : {{ $data->id }},
-            'user_id' : {{ Auth::user()->id }},
-        },
-        dataType: "JSON",
-        success: function (response) {
-            if(response.code == 200) {
-                modal.hide();
-                toast.show();
-                window.open(`http://localhost:8000/superadmin/cetak/{{ $url }}`);
-            }
-        }
+
+    var paper = 'A4';
+    $('#seleh').on('change', function () {
+        paper = $(this).val();
     });
-})
+    $('.btn-cetak').on('click',function(){
+        window.open(`http://localhost:8000/superadmin/cetak/{{ $url }}?paper=${paper}`);
+    });
 </script>
 @endsection

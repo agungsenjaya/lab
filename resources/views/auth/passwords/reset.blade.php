@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<section class="vh-100 bg-primaryd-flex align-items-center">
+<section class="vh-100 bg-primary d-flex align-items-center">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
             <div class="card-header text-center bg-transparent border-0 pt-4">
-                <h3 class="title-3 text-uppercase fw-bold">Reset Pasword</h3>
+                <h3 class="title-3 fw-bold">Reset Pasword</h3>
                 </div>
 
                 <div class="card-body">

@@ -35,7 +35,7 @@
                     <tr class="row">
                         <td class="title-3 col-4 text-capitalize">Supervisor</td>
                         <td class="col-1">:</td>
-                        <td class="text-uppercase col">
+                        <td class="text-capitalize col">
                         @php
                         $usr = \App\User::where('cabang_id', $cab->id )->get();
                         @endphp

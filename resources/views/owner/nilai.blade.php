@@ -42,34 +42,13 @@ $no = 1;
     @endfor
         </td>
         <td>
-          <a href="" class="btn btn-warn btn-sm w-100">Details</a>
+          <a href="{{ route('owner.nilai_edit',[ 'id' => $nil ]) }}" class="btn btn-warn btn-sm w-100">Edit</a>
         </td>
       </tr>
       @endforeach
       @endif
     </tbody>
   </table>
-
-  {{--<ul>
-  @foreach($nilai as $nil => $item)
-    <li>{{ $nil }}<br>
-    @for($i = 0; $i < count($item); $i++)
-    @php
-    $lat = json_encode($item[$i]);
-    $lot = json_decode($lat);
-    @endphp
-    @if($lot->kelamin == "laki-laki")
-      L : {{ $lot->normal }}
-    @elseif($lot->kelamin == "perempuan")
-     P : {{ $lot->normal }}
-     @else
-     {{ $lot->normal }}
-     @endif
-    @endfor
-    </li>
-    @endforeach
-  </ul>--}}
-
   </div>
   </div>
 </section>

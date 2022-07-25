@@ -1,16 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <div class="images">
-<section class="vh-100 bg-primaryalign-items-center d-flex">
+<section class="vh-100 bg-primary align-items-center d-flex">
 <div class="container z-index-100">
     <div class="card col-md-4 offset-md-4">
     <div class="card-header text-center bg-transparent border-0 pt-4">
-        <h3 class="title-3 text-uppercase fw-bold">Reset Pasword</h3>
+        <h3 class="fw-bold mb-0">Reset Password</h3>
     </div>
         <div class="card-body">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+                <!-- {{ session('status') }} -->
+                Silahkan check email anda, Terima kasih.
             </div>
         @endif
         <form method="POST" action="{{ route('password.email') }}">
@@ -42,7 +43,7 @@
     </div>
 </div>
 </section>
-<div class="d-bottom text-right">
+<div class="d-bottom text-end">
     <img src="{{ asset('img/shape-5.svg') }}" alt="" width="80%">
 </div>
 </div>

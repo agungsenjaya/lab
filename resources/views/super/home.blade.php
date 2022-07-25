@@ -19,7 +19,7 @@ $no = 1;
     <div class="card-body z-index-100">
       <h5 class="card-title">Jumlah Dokter</h5>
       <h1 class="text-warn title-2">{{ counTing(count($dokter)) }}</h1>
-      <p class="">Total dokter laboratorium <span class="text-capitalize">{{ Auth::user()->cabang->name }}</span></p>
+      <p class="">Total dokter di klinik</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">

@@ -24,8 +24,8 @@ for ($i=0; $i < count($user); $i++) {
   <div class="card shadow bg-primary">
     <div class="card-body z-index-100">
       <h5 class="card-title">Jumlah Transaksi</h5>
-      <h1 class="text-warn title-2">{{ counTing(count($diagnosa)) }}</h1>
-      <p class="">Transasksi dalam sistem</p>
+      <h1 class="text-warn title-2">{{ counTing($month) }}</h1>
+      <p class="">Transasksi bulan {{ date('F') }}</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">

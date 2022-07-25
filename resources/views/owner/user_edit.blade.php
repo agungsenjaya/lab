@@ -21,15 +21,15 @@
 
 <section>
     <div class="container">
-        <div class="card card-body shadow">
-
-        <div class="d-flex justify-content-between">
-					<div>
-						
+        <div class="card shadow">
+          <div class="card-header">
+          <div class="d-flex justify-content-between">
+					<div class="text-uppercase fw-bold">
+            {{ $data->username  }}
 					</div>
 					<div>
 						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
+							<ol class="breadcrumb mb-0">
 								<li class="breadcrumb-item"><a href="{{ route('owner.user') }}">User</a>
 								</li>
 								<li class="breadcrumb-item active" aria-current="page">Edit user</li>
@@ -37,7 +37,8 @@
 						</nav>
 					</div>
 				</div>
-
+          </div>
+          <div class="card-body">
         @if($errors->any())
         <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
           <p class="fw-bold">Error Listing</p>
@@ -89,6 +90,7 @@
   <button type="button" class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#modalDel">Delete User</button>
 </form>
 
+        </div>
         </div>
     </div>
 </section>

@@ -19,6 +19,11 @@
                             <td class="text-capitalize">{{ Auth::user()->name }}</td>
                         </tr>
                         <tr>
+                            <td class="title-3 ">Username</td>
+                            <td>:</td>
+                            <td class="text-capitalize">{{ Auth::user()->username }}</td>
+                        </tr>
+                        <tr>
                             <td class="title-3 ">Date Reg</td>
                             <td>:</td>
                             <td>{{ Auth::user()->created_at }}</td>

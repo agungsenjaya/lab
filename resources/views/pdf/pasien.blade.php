@@ -422,11 +422,28 @@
                         <td></td>
                     </tr>
                     @foreach($item as $it)
-                    @php
-                    $dat = App\Formula::find($it->data->id);
-                    @endphp
+                            @php
+                            $dat = App\Formula::find($it->data->id);
+                            $space = 0;
+                            if($dat->formula_kat_id && $dat->formula_sub_id && $dat->sub_kat){
+                                $space += 6;
+                            }else if($dat->formula_kat_id && $dat->formula_sub_id){
+                                $space += 4;
+                            }else if($dat->formula_kat_id && $dat->sub_kat){
+                                $space += 4;
+                            }else if($dat->formula_kat_id){
+                                $space += 2;
+                            }
+                            @endphp
                     <tr>
-                        <td class="">{{ $it->data->judul }}</td>
+                        <td class="">
+                        @if($space > 0)
+                                    @for($i = 0; $i < $space; $i++)
+                                    &nbsp;
+                                    @endfor
+                                    @endif
+                                    {{ $it->data->judul }}
+                        </td>
                         <td class="text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
                         <td class="text-center">
                             {{ $it->data->content_ori }}

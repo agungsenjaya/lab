@@ -32,7 +32,7 @@
         </div>
         @endif
 
-                <form action="{{ route('owner.user_store') }}" method="POST">
+                <form id="form-1" action="{{ route('owner.user_store') }}" method="POST">
       @csrf
       <div class="row">
         <div class="mb-3 col">
@@ -53,6 +53,7 @@
           @endforeach
         </select>
       </div>
+      {{--
   <div class="row">
     <div class="col mb-3">
                             <label for="password" class="form-label">{{ __('Password') }} <span class="text-danger">*</span></label>
@@ -72,6 +73,7 @@
                         </div>
 
                         </div>
+                        --}}
 
   <button type="submit" class="btn btn-primary">Tambah User</button>
 </form>
@@ -83,10 +85,17 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.2.2/imask.min.js"></script>
 <script>
+  var modalLoad = new bootstrap.Modal(document.getElementById('modalLoad'));
     var masa = document.getElementById('number');
     var maskOptions = {
       mask: Number,
     };
     var mask = IMask(masa, maskOptions);
+    
+    $('#form-1').submit(function () { 
+    // e.preventDefault();
+    modalLoad.show();
+    return true
+  });
 </script>
 @endsection

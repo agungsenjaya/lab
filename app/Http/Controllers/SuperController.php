@@ -50,7 +50,8 @@ class SuperController extends Controller
     {
         $today = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->whereDate('created_at', Carbon::today())->get();
         $data = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->get();
-        return view('super.pasien',compact('data','today'));
+        $month = Diagnosa::where('cabang_id', Auth::user()->cabang_id)->whereBetween('created_at', [Carbon::now()->subMonth(1), Carbon::now()])->get();
+        return view('super.pasien',compact('data','today','month'));
     }
 
     public function diagnosa($id)
@@ -159,10 +160,12 @@ class SuperController extends Controller
     
     public function user_store(Request $request)
     {
+        $a = rand(1000,9000);
+        $b = Auth::user()->cabang_id . $a;
         $valid = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users',
-            'password' => ['required','confirmed'],
+            // 'password' => ['required','confirmed'],
         ]);
         if ($valid->fails()) {
             Session::flash('failed', 'Data gagal, silahkan periksa kembali mungkin sudah terdaftar.');
@@ -170,10 +173,11 @@ class SuperController extends Controller
         }else{ 
             $data = User::create([
                 'name' => $request->name,
+                'username' => 'AD-' . $b,
                 'cabang_id' => Auth::user()->cabang_id,
                 'user_id' => Auth::user()->id,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make('AD' . $b),
             ]);
             $adm = Role::where('name', 'admin')->first();
             $data->attachRole($adm);
@@ -262,11 +266,12 @@ class SuperController extends Controller
         return redirect()->route('dashboard.super');
     }
 
-    public function cetak($id)
+    public function cetak(Request $request,$id)
     {
         $data = Diagnosa::where('kode', $id)->first();
         $dat = json_decode($data->data);
         $da = json_decode($dat[0]);
+        $paper = ($request->query('paper') == 'A4') ? '297' : '330';
         
         for ($i=0; $i < count($da) ; $i++) {
             $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
@@ -283,7 +288,9 @@ class SuperController extends Controller
         $headerHtml = view()->make('pdf.header',compact('data'))->render();
         $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
         return $pdf
-        ->setOption('margin-top', '50mm')
+        ->setOption('page-width', '210')
+        ->setOption('page-height', $paper)
+        ->setOption('margin-top', '60mm')
         ->setOption('footer-left','Sistem Laboratorium')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')

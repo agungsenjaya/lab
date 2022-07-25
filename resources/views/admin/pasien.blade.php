@@ -26,7 +26,7 @@ $no = 1;
 				</div>
 
                     <div class="alert alert-primary rounded-0">* Laporan pasien bisa dilihat maksimal 1 bulan ke belakang</div>
-                <div class="row mb-4 d-none">
+                <div class="row mb-4">
       <div class="col">
         <!-- <label for="" class="form-label">Minimun Date</label> -->
         <input id="min" class="form-control" name="min" placeholder="Minimum Date">
@@ -56,7 +56,7 @@ $no = 1;
 								<td><i class="text-primary bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
                                 <td>{{ $pas->user->name }}</td>
 								<td class="text-uppercase">{{ counTing($pas->id) . substr($pas->kode, 0 ,5) }}</td>
-								<td>{{ $pas->created_at }}</td>
+								<td>{{ $pas->created_at->format('Y/m/d') }}</td>
 								<td><a href="{{ route('admin.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-warn">Detail</a>
 								</td>
 							</tr>@endforeach</tbody>
@@ -106,7 +106,7 @@ $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date( data[4] );
+        var date = new Date( data[5] );
  
         if (
             ( min === null && max === null ) ||
@@ -130,7 +130,7 @@ $(document).ready(function() {
     });
  
     // // DataTables initialisation
-    // var table = $('#example').DataTable();
+    // var table = $('#table1').DataTable();
  
     // Refilter the table
     $('#min, #max').on('change', function () {

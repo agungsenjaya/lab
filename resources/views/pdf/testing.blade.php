@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Table</title>
         <style type="text/css">
             body {
                 font-size: 10px !important;
@@ -242,6 +243,10 @@
                 color: #fff;
             }
 
+            .text-danger {
+                color: #e3342f;
+            }
+
             .text-lowercase {
                 text-transform: lowercase !important;
             }
@@ -387,68 +392,34 @@
             .fw-bold {
                 font-weight: 700 !important;
             }
-            .table-1 tr,
-            .table-1 td {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
+            .table-1  tr, .table-1  td {
+                padding-left:0 !important;
+                padding-right:0 !important;
             }
-            .table-1 {
-                border-color: transparent !important;
+            .d-none {
+                display: none !important;
+            }
+            .text-center {
+                text-align: center !important;
             }
         </style>
         <body>
             @php
-            $cetak = App\Cetak::where('diagnosa_id', $data->id)->count();
+            $no = 1
             @endphp
-            <table class="border-transparent" width="100%">
-                <tr>
-                    <td valign="top" width="50%">
-                        <table class="table table-1 table-sm border-transparent" width="100%">
-                            <tr class="row">
-                                <td class="col-5 fw-bold">No Transaksi / Dokumen</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="text-uppercase col">{{ counTing($data->id) . substr($data->kode, 0 ,5) }} <span class="text-capitalize">/  {{ ($cetak <= 3) ? 'Asli' : 'Copy' }}</span></td>
-                            </tr>
-                            <tr class="row">
-                                <td class="col-5 fw-bold">Nama Lengkap</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="text-capitalize col">{{ $data->pasien->name }}</td>
-                            </tr>
-                            <tr class="row">
-                                <td class="col-5 fw-bold">Umur</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="text-capitalize col">{{ $data->pasien->tanggal_lahir }} Tahun</td>
-                            </tr>
-                            <tr class="row">
-                                <td class="col-5 fw-bold">Jenis Kelamin</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="text-capitalize col">{{ $data->pasien->kelamin }}</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td valign="top" width="50%">
-                        <table class="table table-1 table-sm border-transparent" width="100%">
-                            <tr class="row">
-                                <td class="col-5 fw-bold">Dokter</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="text-capitalize col">
-                                    Dr. {{ $data->dokter->name }}
-                                </td>
-                            </tr>
-                            <tr class="row">
-                                <td class="col-5 fw-bold">Tanggal Pemeriksaan</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="col">{{ $data->created_at->format('d M Y') }}</td>
-                            </tr>
-                            <tr class="row">
-                                <td class="col-5 fw-bold">Alamat Lengkap</td>
-                                <td class="col-1 fw-bold">:</td>
-                                <td class="text-capitalize col">{{ $data->pasien->alamat }}</td>
-                                <!-- <td class="text-capitalize col">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis iste illum sed eum blanditiis</td> -->
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+            <table class="table table-bordered border-dark">
+                <thead class="bg-light">
+                    <tr class="text-center">
+                        <th scope="col">no</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for($i = 1; $i < 100; $i++)
+                    <tr>
+                        <td>{{ $i }}</td>
+                    </tr>
+                    @endfor
+                </tbody>
             </table>
         </body>
     </head>

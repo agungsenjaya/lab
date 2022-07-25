@@ -14,16 +14,24 @@
                   <form method="POST" action="{{ route('login') }}">
                         @csrf
                     <div class="mb-4">
-                      <label class="form-label">Email address</label>
+                      <label class="form-label">Email / Username</label>
                       <!-- <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div> -->
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <!-- <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                        @enderror
+                        @enderror -->
+
+                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autofocus>
+@error('username')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
                     </div>
                     <div class="mb-4">
                                 <label class="form-label">Password</label>
@@ -40,7 +48,12 @@
                       </button>
                     </div>
                   </form>
+
                 </div>
+                  <div class="card-footer bg-transparent border-0 text-muted text-center mx-4">
+                Jika anda mempunyai kendala seputar lupa password, silahkan <a href="{{ route('password.request') }}" class="fw-bold"><u>klik disini.</u></a>
+                </div>
+
             </div>
         <div class="z-index-100 mb-0 d-none">
                 <div class="card-header bg-transparent border-0 text-center">

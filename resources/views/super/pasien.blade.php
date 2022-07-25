@@ -12,8 +12,8 @@ $no = 1;
   <div class="card shadow bg-primary text-white">
   <div class="card-body z-index-100">
       <h5 class="card-title">Jumlah Pasien</h5>
-      <h1 class="text-warn title-2">{{ counTing(count($data)) }}</h1>
-      <p class="">Total pasien di laboratorium <span class="text-capitalize">{{ Auth::user()->cabang->name }}</span></p>
+      <h1 class="text-warn title-2">{{ counTing(count($month)) }}</h1>
+      <p class="">Total pasien 3 bulan terakhir</p>
     </div>
   </div>
   <div class="d-center text-end d-flex align-items-end">
@@ -49,7 +49,7 @@ $no = 1;
   <div class="container">
     <div class="card card-body shadow">
     <div class="alert alert-primary rounded-0">* Laporan pasien bisa dilihat maksimal 3 bulan ke belakang</div>
-    <div class="row mb-4 d-none">
+    <div class="row mb-4">
       <div class="col">
         <!-- <label for="" class="form-label">Minimun Date</label> -->
         <input id="min" class="form-control" name="min" placeholder="Minimum Date">
@@ -72,14 +72,14 @@ $no = 1;
 								<th scope="col" class="border-top-0 py-2">Actions</th>
 							</tr>
 						</thead>
-						<tbody class="font-size-1 text-capitalize">@foreach($data->reverse() as $pas)
+						<tbody class="font-size-1 text-capitalize">@foreach($month->reverse() as $pas)
 							<tr>
 								<td>{{ counTing($no++) }}</td>
 								<td>{{ $pas->pasien->name }}</td>
 								<td><i class="text-primary bi bi-person-badge me-2"></i>{{ $pas->dokter->name }}</td>
                 <td>{{ $pas->user->name }}</td>
 								<td class="text-uppercase">{{ counTing($pas->id) . substr($pas->kode, 0 ,5) }}</td>
-								<td>{{ $pas->created_at }}</td>
+								<td>{{ $pas->created_at->format('Y/m/d') }}</td>
 								<td><a href="{{ route('super.diagnosa',['id' => $pas -> kode]) }}" class="btn btn-sm w-100 btn-warn">Detail</a>
 								</td>
 							</tr>@endforeach</tbody>
@@ -128,7 +128,7 @@ $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date( data[4] );
+        var date = new Date( data[5] );
  
         if (
             ( min === null && max === null ) ||

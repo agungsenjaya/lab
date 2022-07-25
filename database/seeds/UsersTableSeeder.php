@@ -38,29 +38,28 @@ class UsersTableSeeder extends Seeder
          */
         $a = new User();
         $a->name = 'owner';
-        $a->user_id = 1;
-        $a->cabang_id = 1;
+        $a->username = 'owner123';
         $a->email = 'owner@sample.com';
         $a->password = Hash::make('owner123');
         $a->save();
         $a->attachRole($ownerRole);
         
-        $b = new User();
-        $b->name = 'superadmin';
-        $b->user_id = 1;
-        $b->cabang_id = 1;
-        $b->email = 'super@sample.com';
-        $b->password = Hash::make('super123');
-        $b->save();
-        $b->attachRole($superRole);
+        // $b = new User();
+        // $b->name = 'superadmin';
+        // $b->user_id = 1;
+        // $b->cabang_id = 1;
+        // $b->email = 'super@sample.com';
+        // $b->password = Hash::make('super123');
+        // $b->save();
+        // $b->attachRole($superRole);
         
-        $c = new User();
-        $c->name = 'admin';
-        $c->user_id = 2;
-        $c->cabang_id = 1;
-        $c->email = 'admin@sample.com';
-        $c->password = Hash::make('admin123');
-        $c->save();
-        $c->attachRole($adminRole);
+        // $c = new User();
+        // $c->name = 'admin';
+        // $c->user_id = 2;
+        // $c->cabang_id = 1;
+        // $c->email = 'admin@sample.com';
+        // $c->password = Hash::make('admin123');
+        // $c->save();
+        // $c->attachRole($adminRole);
     }
 }

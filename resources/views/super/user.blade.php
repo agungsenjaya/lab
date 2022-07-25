@@ -11,6 +11,7 @@ $no = 1;
       <tr>
         <td>No</td>
         <td>Nama</td>
+        <td>Username</td>
         <td>Email</td>
         <td>Status</td>
         <td>Cabang</td>
@@ -25,6 +26,7 @@ $no = 1;
       <tr>
         <td>{{ counTing($no++) }}</td>
         <td class="text-capitalize">{{ $dat->name }}</td>
+        <td class="text-uppercase">{{ $dat->username }}</td>
         <td class="text-lowercase">{{ $dat->email }}</td>
         <td>
             @if($dat->deleted_at)

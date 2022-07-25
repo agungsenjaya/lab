@@ -157,11 +157,12 @@ class AdminController extends Controller
         return view('admin.info', compact('cabang'));
     }
 
-    public function cetak($id)
+    public function cetak(Request $request, $id)
     {
         $data = Diagnosa::where('kode', $id)->first();
         $dat = json_decode($data->data);
         $da = json_decode($dat[0]);
+        $paper = ($request->query('paper') == 'A4') ? '297' : '330';
         
         for ($i=0; $i < count($da) ; $i++) {
             $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
@@ -178,9 +179,10 @@ class AdminController extends Controller
         $headerHtml = view()->make('pdf.header',compact('data'))->render();
         $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
         return $pdf
-        ->setPaper('a4')
+        ->setOption('page-width', '210')
+        ->setOption('page-height', $paper)
         ->setOrientation('portrait')
-        ->setOption('margin-top', '50mm')
+        ->setOption('margin-top', '60mm')
         ->setOption('footer-left','(*) Menunjukan hasil diatas atau dibawah nilai normal')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
@@ -188,6 +190,16 @@ class AdminController extends Controller
         ->setOption('footer-font-size','6')
         ->setOption('header-html',$headerHtml)
         ->setOption('footer-right', 'Page [page] of [toPage]')
+        ->inline();
+    }
+
+    public function cetak_testing(){
+        $pdf = PDF::loadView('pdf.testing');
+        return $pdf
+        ->setOrientation('portrait')
+        ->setOption('footer-right', 'Page [page] of [toPage]')
+        ->setOption('page-width', '210')
+        ->setOption('page-height', '297')
         ->inline();
     }
 }

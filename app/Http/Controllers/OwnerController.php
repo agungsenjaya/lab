@@ -40,6 +40,7 @@ class OwnerController extends Controller
     public function index()
     {
         $today = Diagnosa::whereDate('created_at', Carbon::today())->get();
+        $month = Diagnosa::whereMonth('created_at', Carbon::now()->month)->count();
         $data = Diagnosa::all();
         
         $totall = 0;
@@ -51,7 +52,8 @@ class OwnerController extends Controller
         for ($i=0;  $i < count($data) ; $i++) { 
             $total += (int)preg_replace("/\s/u","",Str::replaceFirst('.','',$data[$i]->pembayaran),1);
         }
-        return view('owner.home',compact('total','totall','today'))
+        
+        return view('owner.home',compact('total','totall','today','month'))
         ->with('cabang',Cabang::all())
         ->with('user',User::all())
         ->with('pasien',Pasien::all())
@@ -87,11 +89,12 @@ class OwnerController extends Controller
 
     public function user_store(Request $request)
     {
+        $a = rand(1000,9000);
+        $b = $request->cabang_id . $a;
         $valid = Validator::make($request->all(), [
             'name' => 'required',
             'cabang_id' => 'required',
             'email' => 'required|unique:users',
-            'password' => ['required','confirmed'],
         ]);
         if ($valid->fails()) {
             Session::flash('failed', 'Data update telah gagal');
@@ -99,10 +102,11 @@ class OwnerController extends Controller
         }else{ 
             $data = User::create([
                 'name' => $request->name,
+                'username' => 'SP-' . $b,
                 'cabang_id' => $request->cabang_id,
                 'user_id' => Auth::user()->id,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make('SP' . $b),
             ]);
             $adm = Role::where('name', 'superadmin')->first();
             $data->attachRole($adm);
@@ -436,16 +440,59 @@ class OwnerController extends Controller
 
     public function nilai() {
         $nilai = Nilai::all()->groupBy('formula_id')->toArray();
+        // foreach($nilai as $nil => $item){
+        // $dot  = Formula::where('id', $nil)->first();
+        // $p = NULL;
+        // $l = NULL;
+        // $b = NULL;
+        // $d = NULL;
+        // $a = NULL;
+        // $dat;
+        // for($i = 0; $i < count($item); $i++){
+        //     $lat = json_encode($item[$i]);
+        //     $lot = json_decode($lat);
+        //     if($lot->kelamin == "laki-laki"){
+        //         $l =  " L :" .  $lot->normal;
+        //     }elseif($lot->kelamin == "perempuan"){
+        //         $p =  "P :" . $lot->normal;
+        //     }elseif($lot->kelamin == "bayi"){
+        //         $b =  " " . $lot->normal;
+        //     }elseif($lot->kelamin == "dewasa"){
+        //         $d =  $lot->normal;
+        //     } else{
+        //         $a =  $lot->normal;
+        //     }
+        // }
+        // $dat = $p . $l .  $d . $b . $a;
+        // $dot->content = $dat;
+        // $dot->save();
+        // }
+
         return view('owner.nilai',compact('nilai'));
     }
     
     public function nilai_edit($id) {
-        $data = Nilai::find($id);
-        return view('owner.nilai',compact('data'));
+        $nilai = Nilai::where('formula_id',$id)->get();
+        $formula = Formula::find($id);
+        return view('owner.nilai_edit',compact('nilai','formula'));
     }
     
     public function nilai_update(Request $request, $id) {
-        // 
+        $nilai_id = json_decode($request->nilai_id);
+        $data = json_decode($request->nilai_data);
+        for ($i=0; $i < count($nilai_id); $i++) {
+            $nil = Nilai::find($nilai_id[$i]);
+            $nil->normal = $data[$i];
+            $nil->save();
+        }
+
+        $formula = Formula::find($id);
+        $formula->content = $request->formula_content;
+        $formula->save();
+        if ($formula) {
+            Session::flash('success','Nilai normal telah diupdate pada database');
+            return redirect()->route('owner.nilai');
+        }
     }
 
 }

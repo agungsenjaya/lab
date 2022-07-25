@@ -34,7 +34,7 @@
                                 <tr class="d-flex">
                                     <td class="col-4">No / Dokumen</td>
                                     <td>:</td>
-                                    <td class="text-uppercase col"><span class="badge alert-primary">{{ counTing($data->id) . substr($data->kode, 0 ,5) }}</span> <span class="text-capitalize">/  {{ ($cetak <= 1) ? 'Asli' : 'Copy ' . $cetak }}</span></td>
+                                    <td class="text-uppercase col"><span class="badge alert-primary">{{ counTing($data->id) . substr($data->kode, 0 ,5) }}</span> <span class="text-capitalize">/  {{ ($cetak <= 3) ? 'Asli' : 'Copy' }}</span></td>
                                 </tr>
                                 <tr class="d-flex">
                                     <td class="col-4">Nama Lengkap</td>

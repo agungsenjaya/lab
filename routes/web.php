@@ -20,8 +20,8 @@ Route::GET('/','ClientController@index')->name('index');
 
 Auth::routes([
     'register' => false,
-    'reset' => false,
-    'request' => false,
+    // 'reset' => false,
+    // 'request' => false,
 ]);
 
 Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
@@ -40,6 +40,7 @@ Route::GROUP(['prefix' => 'admin',  'middleware' => ['role:admin']], function(){
     
     Route::GET('/diagnosa/{id}', 'AdminController@diagnosa')->name('admin.diagnosa');
     Route::GET('/cetak/{id}', 'AdminController@cetak')->name('admin.cetak');
+    Route::GET('/cetak_testing','AdminController@cetak_testing')->name('cetak.testing');
 });
 
 Route::GROUP(['prefix' => 'superadmin',  'middleware' => ['role:superadmin']], function(){
@@ -114,5 +115,4 @@ Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){
     Route::GET('/excel/dokter','OwnerController@excel_dokter')->name('excel.dokter');
     Route::GET('/cetak/klinik','OwnerController@cetak_klinik')->name('cetak.klinik');
     Route::GET('/cetak/dokter','OwnerController@cetak_dokter')->name('cetak.dokter');
-
 });

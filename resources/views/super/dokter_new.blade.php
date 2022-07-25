@@ -20,7 +20,7 @@
 				</div>
 
 
-    <form action="{{ route('super.dokter_store') }}" method="POST">
+    <form id="form-1" action="{{ route('super.dokter_store') }}" method="POST">
       @csrf
   <div class="mb-3">
     <label class="form-label">Nama Lengkap</label>
@@ -43,4 +43,14 @@
     </div>
     </div>
 </section>
+@endsection
+@section('js')
+<script>
+  var modalLoad = new bootstrap.Modal(document.getElementById('modalLoad'));
+  $('#form-1').submit(function () { 
+    // e.preventDefault();
+    modalLoad.show();
+    return true
+  });
+</script>
 @endsection

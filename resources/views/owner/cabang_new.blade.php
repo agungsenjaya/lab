@@ -19,7 +19,7 @@
 					</div>
 				</div>
 
-    <form action="{{ route('owner.cabang_store') }}" method="POST">
+    <form id="form-1" action="{{ route('owner.cabang_store') }}" method="POST">
         @csrf
   <div class="row mb-3">
   <div class="col">
@@ -46,6 +46,7 @@
 @endsection
 @section('js')
 <script>
+  var modalLoad = new bootstrap.Modal(document.getElementById('modalLoad'));
     $.getJSON("http://localhost:8000/json/prov.json",
         function (data) {
             $.each(data, function (index, value) { 
@@ -53,5 +54,11 @@
             });
         }
     );
+
+    $('#form-1').submit(function () { 
+    // e.preventDefault();
+    modalLoad.show();
+    return true
+  });
 </script>
 @endsection
