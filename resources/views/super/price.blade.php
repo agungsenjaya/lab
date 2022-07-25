@@ -29,7 +29,7 @@
 		var a = $(this).val();
 		$.getJSON(`http://localhost:8000/api/v1/formulas/${a}?cabang_id=${<?php echo Auth::user()->cabang_id ?>}`, function (data) {
 			$.each(data.data, function (index, value) {
-				var pro = data.price.filter(x => x.formula_id === value.id).map(x => x.pembayaran.replace('.',''));
+				var pro = data.price.filter(x => parseInt(x.formula_id) === value.id).map(x => x.pembayaran.replace('.',''));
 				if(value.sub_kat){
 					if (pro) {
 						console.log(pro);
@@ -49,9 +49,6 @@
 						}
 					});
 				}else{
-					if (pro) {
-						console.log(pro);
-					}
 					$('#kat').append(`
 				<div class="col-md-6">
 					<label class="form-label">${value.judul}</label>
