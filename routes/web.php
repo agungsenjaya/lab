@@ -110,6 +110,7 @@ Route::GROUP(['prefix' => 'owner',  'middleware' => ['role:owner']], function(){
     Route::GET('/account', 'OwnerController@account')->name('owner.account');
     Route::GET('/pricing', 'OwnerController@pricing')->name('owner.pricing');
     Route::GET('/pasien', 'OwnerController@pasien')->name('owner.pasien');
+    Route::GET('/diagnosa/{id}', 'OwnerController@diagnosa')->name('owner.diagnosa');
 
     Route::GET('/excel/klinik','OwnerController@excel_klinik')->name('excel.klinik');
     Route::GET('/excel/dokter','OwnerController@excel_dokter')->name('excel.dokter');

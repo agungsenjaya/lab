@@ -271,7 +271,8 @@ class SuperController extends Controller
         $data = Diagnosa::where('kode', $id)->first();
         $dat = json_decode($data->data);
         $da = json_decode($dat[0]);
-        $paper = ($request->query('paper') == 'A4') ? '297' : '330';
+        $paper = ($request->query('paper') == 'A4') ? 'A4' : 'Letter';
+        $margin = ($request->query('paper') == 'A4') ? '70mm' : '80mm';
         
         for ($i=0; $i < count($da) ; $i++) {
             $ded = Formula_kat::find($da[$i]->data->formula_kat_id);
@@ -288,14 +289,14 @@ class SuperController extends Controller
         $headerHtml = view()->make('pdf.header',compact('data'))->render();
         $pdf = PDF::loadView('pdf.pasien', compact('data','gas'));
         return $pdf
-        ->setOption('page-width', '210')
-        ->setOption('page-height', $paper)
-        ->setOption('margin-top', '60mm')
-        ->setOption('footer-left','Sistem Laboratorium')
+        ->setOption('page-size', $paper)
+        ->setOrientation('portrait')
+        ->setOption('margin-top', $margin)
+        ->setOption('footer-left','(*) Menunjukan hasil diatas atau dibawah nilai normal')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')
-        ->setOption('footer-font-size','6')
+        ->setOption('footer-font-size','7')
         ->setOption('header-html',$headerHtml)
         ->setOption('footer-right', 'Page [page] of [toPage]')
         ->inline();

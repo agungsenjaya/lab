@@ -320,7 +320,7 @@ class OwnerController extends Controller
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')
-        ->setOption('footer-font-size','6')
+        ->setOption('footer-font-size','7')
         ->setOption('header-html',$headerHtml)
         ->setOption('footer-right', 'Page [page] of [toPage]')
         ->inline();
@@ -364,7 +364,7 @@ class OwnerController extends Controller
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')
-        ->setOption('footer-font-size','6')
+        ->setOption('footer-font-size','7')
         ->setOption('header-html',$headerHtml)
         ->setOption('footer-right', 'Page [page] of [toPage]')
         ->inline();

@@ -5,7 +5,7 @@
         <title>Table</title>
         <style type="text/css">
             body {
-                font-size: 10px !important;
+                font-size: 12px !important;
                 font-family: Verdana;
             }
             table {
@@ -402,6 +402,12 @@
             .text-center {
                 text-align: center !important;
             }
+
+            table { page-break-inside:auto }
+            tr    { page-break-inside:avoid; page-break-after:auto }
+            thead { display:table-header-group }
+            tfoot { display:table-footer-group }
+            
         </style>
         <body>
             <table class="table table-bordered border-dark">
@@ -444,18 +450,18 @@
                                     @endif
                                     {{ $it->data->judul }}
                         </td>
-                        <td class="text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
+                        <td class="text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ ($it->nilai == "-") ? '' : $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
                         <td class="text-center">
-                            {{ $it->data->content_ori }}
+                            {{ ($it->data->content_ori == "-") ? '' : $it->data->content_ori  }}
                         </td>
                     </tr>
                     @endforeach @endforeach
                 </tbody>
-                <tfoot class="border-transparent" style="margin-bottom:40px">
+                <!-- <tfoot class="border-transparent" style="margin-bottom:40px">
                     <tr>
                         <td></td>
                     </tr>
-                </tfoot>
+                </tfoot> -->
             </table>
             <tfoot class="border-transparent table-1">
                     <tr>

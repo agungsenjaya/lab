@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <style type="text/css">
             body {
-                font-size: 10px !important;
+                font-size: 12px !important;
                 font-family: Verdana;
             }
             table {
@@ -407,7 +407,13 @@
                             <tr class="row">
                                 <td class="col-5 fw-bold">No Transaksi / Dokumen</td>
                                 <td class="col-1 fw-bold">:</td>
-                                <td class="text-uppercase col">{{ counTing($data->id) . substr($data->kode, 0 ,5) }} <span class="text-capitalize">/  {{ ($cetak <= 3) ? 'Asli' : 'Copy' }}</span></td>
+                                <td class="text-uppercase col">{{ counTing($data->id) . substr($data->kode, 0 ,5) }} <span class="text-capitalize">/  
+                                    @if(Auth::user()->hasRole('admin'))
+                                    {{ ($cetak <= 3) ? 'Asli' : 'Copy' }}
+                                    @else
+                                    {{ 'Asli' }}
+                                    @endif
+                                </span></td>
                             </tr>
                             <tr class="row">
                                 <td class="col-5 fw-bold">Nama Lengkap</td>

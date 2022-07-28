@@ -5,7 +5,7 @@
         <title>Table</title>
         <style type="text/css">
             body {
-                font-size: 10px !important;
+                font-size: 12px !important;
                 font-family: Verdana;
             }
             table {
@@ -402,6 +402,11 @@
             .text-center {
                 text-align: center !important;
             }
+
+            table { page-break-inside:auto }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
         </style>
         <body>
             @php

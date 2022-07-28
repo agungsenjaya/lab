@@ -5,7 +5,7 @@
         <title>{{ strtoupper(Request::get('cabang_name')) . ' - ' . strtoupper(Request::get('dokter_name')) . ' - ' . strtoupper(date_format(date_create(Request::get('start_date')),"d M Y")) . ' - ' . strtoupper(date_format(date_create(Request::get('end_date')),"d M Y")) }}</title>
         <style type="text/css">
             body {
-                font-size: 10px !important;
+                font-size: 12px !important;
                 font-family: Verdana;
             }
             table {

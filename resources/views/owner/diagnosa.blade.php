@@ -126,9 +126,9 @@
                                     @endfor
                                     @endif
                                     {{ $it->data->judul }}</td>
-                                <td class="col-md-2 text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
+                                <td class="col-md-2 text-center {{ !empty($it->anormali) ? 'text-danger' : '' }}">{{ ($it->nilai == "-") ? '' : $it->nilai }}<span class="text-danger">{{ !empty($it->anormali) ? $it->anormali : '' }}</span></td>
                                 <td class="col-md text-center">
-                                    {{ $it->data->content_ori }}
+                                    {{ ($it->data->content_ori == "-") ? '' : $it->data->content_ori  }}
                                 </td>
                             </tr>
                             @endforeach 
