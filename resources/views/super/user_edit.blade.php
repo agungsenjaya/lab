@@ -13,7 +13,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="{{ route('owner.user_delete',['id' => $data -> id]) }}" class="btn btn-primary">Delete Now</a>
+        <a href="{{ route('super.user_delete',['id' => $data -> id]) }}" class="btn btn-primary">Delete Now</a>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 25, 2022 at 12:29 PM
+-- Generation Time: Aug 11, 2022 at 03:27 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -39,6 +39,14 @@ CREATE TABLE `cabangs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cabangs`
+--
+
+INSERT INTO `cabangs` (`id`, `name`, `kota`, `img`, `kode`, `alamat`, `map`, `created_at`, `updated_at`) VALUES
+(1, 'klinik permata cisaat', 'KABUPATEN SUKABUMI', NULL, '54a01f20', 'jl. raya cisaat no.9, rt.18/rw.06, sukamantri, kec. cisaat, kabupaten sukabumi, jawa barat 43152', NULL, '2022-07-25 12:50:15', '2022-07-25 12:50:15'),
+(2, 'klinik mutawakal degung', 'KOTA SUKABUMI', NULL, '4c95bbf0', 'jl. arif rahman hakim 6-2, benteng, kec. warudoyong, kota sukabumi, jawa barat 43132', NULL, '2022-07-25 14:01:37', '2022-07-25 14:01:37');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +60,25 @@ CREATE TABLE `cetaks` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cetaks`
+--
+
+INSERT INTO `cetaks` (`id`, `diagnosa_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, '2022-07-25 13:48:28', '2022-07-25 13:48:28'),
+(2, 1, 3, '2022-07-25 13:48:37', '2022-07-25 13:48:37'),
+(3, 1, 3, '2022-07-28 00:37:32', '2022-07-28 00:37:32'),
+(4, 1, 3, '2022-07-28 00:37:32', '2022-07-28 00:37:32'),
+(5, 1, 3, '2022-07-28 00:45:52', '2022-07-28 00:45:52'),
+(6, 1, 3, '2022-07-28 01:49:47', '2022-07-28 01:49:47'),
+(7, 1, 3, '2022-07-28 03:00:05', '2022-07-28 03:00:05'),
+(8, 2, 3, '2022-07-28 03:56:18', '2022-07-28 03:56:18'),
+(9, 2, 3, '2022-07-28 09:26:39', '2022-07-28 09:26:39'),
+(10, 2, 3, '2022-07-28 09:30:24', '2022-07-28 09:30:24'),
+(11, 2, 3, '2022-07-28 09:30:38', '2022-07-28 09:30:38'),
+(12, 2, 4, '2022-07-30 02:04:37', '2022-07-30 02:04:37'),
+(13, 2, 4, '2022-07-30 03:06:17', '2022-07-30 03:06:17');
 
 -- --------------------------------------------------------
 
@@ -73,6 +100,14 @@ CREATE TABLE `diagnosas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `diagnosas`
+--
+
+INSERT INTO `diagnosas` (`id`, `kode`, `dokter_id`, `data`, `cabang_id`, `pasien_id`, `user_id`, `catatan`, `pembayaran`, `created_at`, `updated_at`) VALUES
+(1, '484991f0-0c1f-11ed-bc92-9b9420bf2a8e', 1, '[\"[{\\\"id\\\":1,\\\"data\\\":{\\\"id\\\":1,\\\"judul\\\":\\\"Hemoglobin\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"14 - 18 f\\/dl\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-25T04:34:06.000000Z\\\",\\\"content_ori\\\":\\\"P :12 - 16 g\\/dl L :14 - 18 f\\/dl\\\"},\\\"nilai\\\":\\\"17\\\",\\\"price\\\":\\\"25.000\\\"},{\\\"id\\\":2,\\\"data\\\":{\\\"id\\\":2,\\\"judul\\\":\\\"Eritrosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"4,5 - 6,0 juta \\/ ul\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-25T01:32:10.000000Z\\\",\\\"content_ori\\\":\\\"P :4,0 - 5,5 juta \\/ L :ul 4,5 - 6,0 juta \\/ ul\\\"},\\\"nilai\\\":\\\"4\\\",\\\"price\\\":\\\"20.000\\\"},{\\\"id\\\":3,\\\"data\\\":{\\\"id\\\":3,\\\"judul\\\":\\\"Leukosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"Dewasa : 5.000 - 10.000\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-24T14:06:42.000000Z\\\",\\\"content_ori\\\":\\\"Dewasa : 5.000 - 10.000 Bayi : 7.000 - 17.000 \\/ ul\\\"},\\\"nilai\\\":\\\"3000\\\",\\\"price\\\":\\\"15.000\\\"},{\\\"id\\\":4,\\\"data\\\":{\\\"id\\\":4,\\\"judul\\\":\\\"Hitung Jenis\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"-\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"40.000\\\"},{\\\"id\\\":5,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":5,\\\"judul\\\":\\\"Basofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"0 - 1 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"0 - 1 %\\\"},\\\"nilai\\\":\\\"1\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":6,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":6,\\\"judul\\\":\\\"Eosinofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"1 - 3 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"1 - 3 %\\\"},\\\"nilai\\\":\\\"2\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":7,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":7,\\\"judul\\\":\\\"N Batang\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"2 - 6 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"4\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":8,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":8,\\\"judul\\\":\\\"N Segmen\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"50 - 70 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"50 - 70 %\\\"},\\\"nilai\\\":\\\"50\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":9,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":9,\\\"judul\\\":\\\"Limfosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"20 - 40 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"20 - 40 %\\\"},\\\"nilai\\\":\\\"100\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":10,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":10,\\\"judul\\\":\\\"Monosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"2 - 6 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"1\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"}]\"]', 1, 1, 3, NULL, ' 100.000', '2022-07-25 13:40:01', '2022-07-25 13:40:01'),
+(2, '384281c0-0e29-11ed-970c-1d9e097d284b', 1, '[\"[{\\\"id\\\":1,\\\"data\\\":{\\\"id\\\":1,\\\"judul\\\":\\\"Hemoglobin\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"12 - 16 g\\/dl\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-25T04:34:06.000000Z\\\",\\\"content_ori\\\":\\\"P :12 - 16 g\\/dl L :14 - 18 f\\/dl\\\"},\\\"nilai\\\":\\\"15\\\",\\\"price\\\":\\\"25.000\\\"},{\\\"id\\\":2,\\\"data\\\":{\\\"id\\\":2,\\\"judul\\\":\\\"Eritrosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"4,0 - 5,5 juta \\/ ul\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-25T01:32:10.000000Z\\\",\\\"content_ori\\\":\\\"P :4,0 - 5,5 juta \\/ L :ul 4,5 - 6,0 juta \\/ ul\\\"},\\\"nilai\\\":\\\"5\\\",\\\"price\\\":\\\"20.000\\\"},{\\\"id\\\":3,\\\"data\\\":{\\\"id\\\":3,\\\"judul\\\":\\\"Leukosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"Dewasa : 5.000 - 10.000\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-24T14:06:42.000000Z\\\",\\\"content_ori\\\":\\\"Dewasa : 5.000 - 10.000 Bayi : 7.000 - 17.000 \\/ ul\\\"},\\\"nilai\\\":\\\"7000\\\",\\\"price\\\":\\\"15.000\\\"},{\\\"id\\\":4,\\\"data\\\":{\\\"id\\\":4,\\\"judul\\\":\\\"Hitung Jenis\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"-\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"40.000\\\"},{\\\"id\\\":5,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":5,\\\"judul\\\":\\\"Basofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"0 - 1 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"0 - 1 %\\\"},\\\"nilai\\\":\\\"1\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":6,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":6,\\\"judul\\\":\\\"Eosinofil\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"1 - 3 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"1 - 3 %\\\"},\\\"nilai\\\":\\\"4\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":7,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":7,\\\"judul\\\":\\\"N Batang\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"2 - 6 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"3\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":8,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":8,\\\"judul\\\":\\\"N Segmen\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"50 - 70 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"50 - 70 %\\\"},\\\"nilai\\\":\\\"50\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":9,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":9,\\\"judul\\\":\\\"Limfosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"20 - 40 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"20 - 40 %\\\"},\\\"nilai\\\":\\\"20\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":10,\\\"sub_kat\\\":4,\\\"data\\\":{\\\"id\\\":10,\\\"judul\\\":\\\"Monosit\\\",\\\"formula_kat_id\\\":1,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":4,\\\"content\\\":\\\"2 - 6 %\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"2 - 6 %\\\"},\\\"nilai\\\":\\\"3\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":38,\\\"data\\\":{\\\"id\\\":38,\\\"judul\\\":\\\"SGOT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 31 U\\/L\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-24T14:06:43.000000Z\\\",\\\"content_ori\\\":\\\"P :< 31 U\\/L L :< 34 U\\/L\\\"},\\\"nilai\\\":\\\"20\\\",\\\"price\\\":\\\"15.000\\\"},{\\\"id\\\":39,\\\"data\\\":{\\\"id\\\":39,\\\"judul\\\":\\\"SGPT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 36 U\\/L\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-24T14:06:43.000000Z\\\",\\\"content_ori\\\":\\\"P :< 36 U\\/L L :< 46 U\\/L\\\"},\\\"nilai\\\":\\\"30\\\",\\\"price\\\":\\\"30.000\\\"},{\\\"id\\\":40,\\\"data\\\":{\\\"id\\\":40,\\\"judul\\\":\\\"Gamma GT\\\",\\\"formula_kat_id\\\":2,\\\"formula_sub_id\\\":4,\\\"sub_kat\\\":null,\\\"content\\\":\\\"< 32 U\\/L\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"2022-07-24T14:06:43.000000Z\\\",\\\"content_ori\\\":\\\"P :< 32 U\\/L L :< 50 U\\/L\\\"},\\\"nilai\\\":\\\"35\\\",\\\"price\\\":\\\"15.000\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":80,\\\"data\\\":{\\\"id\\\":80,\\\"judul\\\":\\\"Widal\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"-\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"50.000\\\"},{\\\"id\\\":81,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":81,\\\"judul\\\":\\\"TO\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":82,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":82,\\\"judul\\\":\\\"TH\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":83,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":83,\\\"judul\\\":\\\"AH\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"positif\\\",\\\"price\\\":\\\"0\\\",\\\"anormali\\\":\\\"*\\\"},{\\\"id\\\":84,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":84,\\\"judul\\\":\\\"BH\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":85,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":85,\\\"judul\\\":\\\"AO\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":86,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":86,\\\"judul\\\":\\\"BO\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":87,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":87,\\\"judul\\\":\\\"CO\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":88,\\\"sub_kat\\\":80,\\\"data\\\":{\\\"id\\\":88,\\\"judul\\\":\\\"CH\\\",\\\"formula_kat_id\\\":3,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":80,\\\"content\\\":\\\"Negatif\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"Negatif\\\"},\\\"nilai\\\":\\\"negatif\\\",\\\"price\\\":\\\"0\\\"},{\\\"id\\\":138,\\\"data\\\":{\\\"id\\\":138,\\\"judul\\\":\\\"Resistensi\\\",\\\"formula_kat_id\\\":4,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"-\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"15.000\\\"},{\\\"id\\\":139,\\\"data\\\":{\\\"id\\\":139,\\\"judul\\\":\\\"Pengecatan Gram\\\",\\\"formula_kat_id\\\":4,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"-\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"2.000\\\"},{\\\"id\\\":144,\\\"data\\\":{\\\"id\\\":144,\\\"judul\\\":\\\"Secret Vagina\\\",\\\"formula_kat_id\\\":4,\\\"formula_sub_id\\\":null,\\\"sub_kat\\\":null,\\\"content\\\":\\\"-\\\",\\\"created_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"updated_at\\\":\\\"-000001-11-29T16:52:48.000000Z\\\",\\\"content_ori\\\":\\\"-\\\"},\\\"nilai\\\":\\\"-\\\",\\\"price\\\":\\\"5.000\\\"}]\"]', 1, 2, 3, NULL, ' 232.000', '2022-07-28 03:56:11', '2022-07-28 03:56:11');
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +124,13 @@ CREATE TABLE `dokters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dokters`
+--
+
+INSERT INTO `dokters` (`id`, `name`, `user_id`, `specialist`, `cabang_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'bujang', 2, NULL, 1, NULL, '2022-07-25 13:00:02', '2022-07-25 13:00:02');
 
 -- --------------------------------------------------------
 
@@ -696,6 +738,14 @@ CREATE TABLE `pasiens` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `pasiens`
+--
+
+INSERT INTO `pasiens` (`id`, `name`, `tanggal_lahir`, `ktp`, `kelamin`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 'ahmadi winda', 30, NULL, 'laki-laki', 'Jl. Pelda Suryanta No.21, Nanggeleng, Kec. Citamiang, Kota Sukabumi, Jawa Barat 43145', '2022-07-25 13:40:01', '2022-07-25 13:40:01'),
+(2, 'gani rapuncel', 25, NULL, 'perempuan', 'Cikundul, Kec. Lembursitu, Kabupaten Sukabumi, Jawa Barat 43134', '2022-07-28 03:56:11', '2022-07-28 03:56:11');
+
 -- --------------------------------------------------------
 
 --
@@ -707,6 +757,14 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('santi@sample.com', '$2y$10$Es7yCnxGYuAXrtG8FAaJG.cqcTG/L679OesNOjp8m9i/gP57dT8OG', '2022-07-29 15:16:57'),
+('agungsenjaya813@gmail.com', '$2y$10$DTVwRQV/o0PxTDvxdNg.Q.flRsoUWoGqdYBZN49G/rDuB64adsEeq', '2022-07-29 15:47:52');
 
 -- --------------------------------------------------------
 
@@ -762,6 +820,89 @@ CREATE TABLE `prices` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `prices`
+--
+
+INSERT INTO `prices` (`id`, `cabang_id`, `user_id`, `formula_id`, `pembayaran`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 1, '25.000', '2022-07-25 13:10:42', '2022-07-25 13:10:42'),
+(2, 1, 2, 2, '20.000', '2022-07-25 13:10:45', '2022-07-25 13:10:45'),
+(3, 1, 2, 3, '15.000', '2022-07-25 13:10:48', '2022-07-25 13:10:48'),
+(4, 1, 2, 4, '40.000', '2022-07-25 13:10:53', '2022-07-25 13:10:53'),
+(5, 1, 2, 5, '0', '2022-07-25 13:10:53', '2022-07-25 13:10:53'),
+(6, 1, 2, 6, '0', '2022-07-25 13:10:54', '2022-07-25 13:10:54'),
+(7, 1, 2, 7, '0', '2022-07-25 13:10:55', '2022-07-25 13:10:55'),
+(8, 1, 2, 8, '0', '2022-07-25 13:10:56', '2022-07-25 13:10:56'),
+(9, 1, 2, 9, '0', '2022-07-25 13:10:57', '2022-07-25 13:10:57'),
+(10, 1, 2, 10, '0', '2022-07-25 13:10:58', '2022-07-25 13:10:58'),
+(11, 1, 2, 11, '15.000', '2022-07-25 13:11:03', '2022-07-25 13:11:03'),
+(12, 1, 2, 12, '13.000', '2022-07-25 13:11:05', '2022-07-25 13:11:05'),
+(13, 1, 2, 13, '12.000', '2022-07-25 13:11:11', '2022-07-25 13:11:11'),
+(14, 1, 2, 14, '12.000', '2022-07-25 13:11:14', '2022-07-25 13:11:14'),
+(15, 1, 2, 15, '15.000', '2022-07-25 13:11:17', '2022-07-25 13:11:17'),
+(16, 1, 2, 16, '10.000', '2022-07-25 13:11:20', '2022-07-25 13:11:20'),
+(17, 1, 2, 17, '10.000', '2022-07-25 13:11:22', '2022-07-25 13:11:22'),
+(18, 1, 2, 18, '10.000', '2022-07-25 13:11:24', '2022-07-25 13:11:24'),
+(19, 1, 2, 19, '8.000', '2022-07-25 13:11:27', '2022-07-25 13:11:27'),
+(20, 1, 2, 20, '9.000', '2022-07-25 13:11:32', '2022-07-25 13:11:32'),
+(21, 1, 2, 21, '15.000', '2022-07-25 13:11:35', '2022-07-25 13:11:35'),
+(22, 1, 2, 22, '10.000', '2022-07-25 13:11:37', '2022-07-25 13:11:37'),
+(23, 1, 2, 23, '10.000', '2022-07-25 13:11:40', '2022-07-25 13:11:40'),
+(24, 1, 2, 24, '15.000', '2022-07-25 13:11:42', '2022-07-25 13:11:42'),
+(25, 1, 2, 25, '5.000', '2022-07-25 13:11:46', '2022-07-25 13:11:46'),
+(26, 1, 2, 26, '5.000', '2022-07-25 13:11:48', '2022-07-25 13:11:48'),
+(27, 1, 2, 27, '35.000', '2022-07-25 13:11:53', '2022-07-25 13:11:53'),
+(28, 1, 2, 28, '10.000', '2022-07-25 13:11:58', '2022-07-25 13:11:58'),
+(29, 1, 2, 29, '15.000', '2022-07-25 13:12:00', '2022-07-25 13:12:00'),
+(30, 1, 2, 30, '10.000', '2022-07-25 13:12:03', '2022-07-25 13:12:03'),
+(31, 1, 2, 31, '8.000', '2022-07-25 13:12:10', '2022-07-25 13:12:10'),
+(32, 1, 2, 32, '8.000', '2022-07-25 13:12:12', '2022-07-25 13:12:12'),
+(33, 1, 2, 33, '7.000', '2022-07-25 13:12:14', '2022-07-25 13:12:14'),
+(34, 1, 2, 34, '5.000', '2022-07-25 13:12:17', '2022-07-25 13:12:17'),
+(35, 1, 2, 35, '30.000', '2022-07-25 13:12:20', '2022-07-25 13:12:20'),
+(36, 1, 2, 36, '25.000', '2022-07-25 13:12:23', '2022-07-25 13:12:23'),
+(37, 1, 2, 37, '10.000', '2022-07-25 13:12:27', '2022-07-25 13:12:27'),
+(38, 1, 2, 38, '15.000', '2022-07-28 03:49:42', '2022-07-28 03:49:42'),
+(39, 1, 2, 39, '30.000', '2022-07-28 03:49:44', '2022-07-28 03:49:44'),
+(40, 1, 2, 40, '15.000', '2022-07-28 03:49:46', '2022-07-28 03:49:46'),
+(41, 1, 2, 41, '0', '2022-07-28 03:49:47', '2022-07-28 03:49:47'),
+(42, 1, 2, 42, '30.000', '2022-07-28 03:49:49', '2022-07-28 03:49:49'),
+(43, 1, 2, 43, '15.000', '2022-07-28 03:49:51', '2022-07-28 03:49:51'),
+(44, 1, 2, 44, '5.000', '2022-07-28 03:49:54', '2022-07-28 03:49:54'),
+(45, 1, 2, 45, '8.000', '2022-07-28 03:49:56', '2022-07-28 03:49:56'),
+(46, 1, 2, 46, '0', '2022-07-28 03:49:58', '2022-07-28 03:49:58'),
+(47, 1, 2, 47, '0', '2022-07-28 03:49:59', '2022-07-28 03:49:59'),
+(48, 1, 2, 48, '1.000', '2022-07-28 03:50:02', '2022-07-28 03:50:02'),
+(49, 1, 2, 49, '1.000', '2022-07-28 03:50:04', '2022-07-28 03:50:04'),
+(50, 1, 2, 50, '1.000', '2022-07-28 03:50:09', '2022-07-28 03:50:09'),
+(51, 1, 2, 80, '50.000', '2022-07-28 03:50:19', '2022-07-28 03:50:19'),
+(52, 1, 2, 81, '0', '2022-07-28 03:50:20', '2022-07-28 03:50:20'),
+(53, 1, 2, 82, '0', '2022-07-28 03:50:21', '2022-07-28 03:50:21'),
+(54, 1, 2, 83, '0', '2022-07-28 03:50:22', '2022-07-28 03:50:22'),
+(55, 1, 2, 84, '0', '2022-07-28 03:50:22', '2022-07-28 03:50:22'),
+(56, 1, 2, 85, '0', '2022-07-28 03:50:24', '2022-07-28 03:50:24'),
+(57, 1, 2, 86, '0', '2022-07-28 03:50:25', '2022-07-28 03:50:25'),
+(58, 1, 2, 87, '0', '2022-07-28 03:50:25', '2022-07-28 03:50:25'),
+(59, 1, 2, 88, '0', '2022-07-28 03:50:26', '2022-07-28 03:50:26'),
+(60, 1, 2, 89, '15.000', '2022-07-28 03:50:28', '2022-07-28 03:50:28'),
+(61, 1, 2, 90, '10.000', '2022-07-28 03:50:30', '2022-07-28 03:50:30'),
+(62, 1, 2, 91, '25.000', '2022-07-28 03:50:34', '2022-07-28 03:50:34'),
+(63, 1, 2, 92, '10.000', '2022-07-28 03:50:41', '2022-07-28 03:50:41'),
+(64, 1, 2, 93, '8.000', '2022-07-28 03:50:44', '2022-07-28 03:50:44'),
+(65, 1, 2, 94, '8.000', '2022-07-28 03:50:48', '2022-07-28 03:50:48'),
+(66, 1, 2, 95, '15.000', '2022-07-28 03:50:51', '2022-07-28 03:50:51'),
+(67, 1, 2, 138, '15.000', '2022-07-28 03:50:57', '2022-07-28 03:50:57'),
+(68, 1, 2, 139, '2.000', '2022-07-28 03:50:59', '2022-07-28 03:50:59'),
+(69, 1, 2, 140, '12.000', '2022-07-28 03:51:01', '2022-07-28 03:51:01'),
+(70, 1, 2, 141, '10.000', '2022-07-28 03:51:04', '2022-07-28 03:51:04'),
+(71, 1, 2, 142, '10.000', '2022-07-28 03:51:06', '2022-07-28 03:51:06'),
+(72, 1, 2, 143, '1.000', '2022-07-28 03:51:07', '2022-07-28 03:51:07'),
+(73, 1, 2, 144, '5.000', '2022-07-28 03:51:10', '2022-07-28 03:51:10'),
+(74, 1, 2, 145, '8.000', '2022-07-28 03:51:12', '2022-07-28 03:51:12'),
+(75, 1, 2, 151, '100.000', '2022-07-28 03:51:22', '2022-07-28 03:51:22'),
+(76, 1, 2, 152, '10.000', '2022-07-28 03:51:23', '2022-07-28 03:51:23'),
+(77, 1, 2, 153, '50.000', '2022-07-28 03:51:25', '2022-07-28 03:51:25');
+
 -- --------------------------------------------------------
 
 --
@@ -776,6 +917,14 @@ CREATE TABLE `pricings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pricings`
+--
+
+INSERT INTO `pricings` (`id`, `cabang_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '1', '2022-07-25 12:50:15', '2022-07-25 13:09:53'),
+(2, 2, 1, '0', '2022-07-25 14:01:37', '2022-07-25 14:01:37');
 
 -- --------------------------------------------------------
 
@@ -818,7 +967,10 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
-(1, 1, 'App\\User');
+(1, 1, 'App\\User'),
+(2, 2, 'App\\User'),
+(3, 3, 'App\\User'),
+(3, 4, 'App\\User');
 
 -- --------------------------------------------------------
 
@@ -847,7 +999,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `cabang_id`, `user_id`, `email`, `deleted_at`, `email_verified_at`, `password`, `api_token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'owner', 'owner123', NULL, NULL, 'owner@sample.com', NULL, NULL, '$2y$10$CakTECtJXEeQKCNrwXN6D.Mh6iDWBGml5IL0cyDlYswOykNXqim46', NULL, NULL, '2022-07-25 12:23:53', '2022-07-25 12:23:53');
+(1, 'owner', 'owner123', NULL, NULL, 'owner@sample.com', NULL, NULL, '$2y$10$CakTECtJXEeQKCNrwXN6D.Mh6iDWBGml5IL0cyDlYswOykNXqim46', NULL, NULL, '2022-07-25 12:23:53', '2022-07-25 12:23:53'),
+(2, 'santi wijaya', 'SP-15450', 1, 1, 'santi@sample.com', NULL, NULL, '$2y$10$ul90S6XIBoYvcFEAJPjQjevL2oUNocuSw0WQ03DIsM0atX0R0XwOu', NULL, 'ASyLeM68AD4JaNa2bQAhi9d3xqXeWoTBZWDJOfBQO86Fpw4LFiO9VYZPxVt0', '2022-07-25 12:52:04', '2022-07-25 14:08:16'),
+(3, 'hadi', 'AD-15665', 1, 2, 'hadi@sample.com', NULL, NULL, '$2y$10$q0M.JIV2Z4T.MTiuE5DYUOgN3EFkgim8Pb3gjGUYqkp4cep.bPoQm', NULL, NULL, '2022-07-25 13:01:42', '2022-07-25 13:01:42'),
+(4, 'agung senjaya', 'AD-12301', 1, 2, 'agungsenjaya813@gmail.com', NULL, NULL, '$2y$10$3ucX6G95HJuNETNoBgY5W.Rz0.izWXZsSBYBFRl1g4JWLC1nVY2Te', NULL, NULL, '2022-07-29 15:43:55', '2022-07-29 15:43:55');
 
 --
 -- Indexes for dumped tables
@@ -988,25 +1143,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cabangs`
 --
 ALTER TABLE `cabangs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cetaks`
 --
 ALTER TABLE `cetaks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `diagnosas`
 --
 ALTER TABLE `diagnosas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `dokters`
 --
 ALTER TABLE `dokters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1048,7 +1203,7 @@ ALTER TABLE `nilais`
 -- AUTO_INCREMENT for table `pasiens`
 --
 ALTER TABLE `pasiens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1060,13 +1215,13 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `pricings`
 --
 ALTER TABLE `pricings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1078,7 +1233,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

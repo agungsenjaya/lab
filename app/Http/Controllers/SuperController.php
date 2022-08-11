@@ -218,7 +218,7 @@ class SuperController extends Controller
             $data->name = $request->name; 
             $data->email = $request->email; 
             if ($request->password) {
-                $dat =  Validator::make($request->password, [
+                $dat =  Validator::make($request->all(), [
                     'password' => ['required', 'string', 'confirmed'],
                 ]);
                 if ($dat->fails()) {
@@ -272,7 +272,7 @@ class SuperController extends Controller
         $dat = json_decode($data->data);
         $da = json_decode($dat[0]);
         $paper = ($request->query('paper') == 'A4') ? 'A4' : 'Letter';
-        $margin = ($request->query('paper') == 'A4') ? '70mm' : '80mm';
+        $margin = ($request->query('paper') == 'A4') ? '80mm' : '100mm';
         
         for ($i=0; $i < count($da) ; $i++) {
             $ded = Formula_kat::find($da[$i]->data->formula_kat_id);

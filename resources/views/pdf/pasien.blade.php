@@ -5,7 +5,7 @@
         <title>Table</title>
         <style type="text/css">
             body {
-                font-size: 12px !important;
+                font-size: 14px !important;
                 font-family: Verdana;
             }
             table {

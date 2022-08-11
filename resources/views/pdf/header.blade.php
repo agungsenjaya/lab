@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <style type="text/css">
             body {
-                font-size: 12px !important;
+                font-size: 14px !important;
                 font-family: Verdana;
             }
             table {
@@ -405,7 +405,7 @@
                     <td valign="top" width="50%">
                         <table class="table table-1 table-sm border-transparent" width="100%">
                             <tr class="row">
-                                <td class="col-5 fw-bold">No Transaksi / Dokumen</td>
+                                <td class="col-5 fw-bold">No / Dokumen</td>
                                 <td class="col-1 fw-bold">:</td>
                                 <td class="text-uppercase col">{{ counTing($data->id) . substr($data->kode, 0 ,5) }} <span class="text-capitalize">/  
                                     @if(Auth::user()->hasRole('admin'))
@@ -438,7 +438,7 @@
                                 <td class="col-5 fw-bold">Dokter</td>
                                 <td class="col-1 fw-bold">:</td>
                                 <td class="text-capitalize col">
-                                    Dr. {{ $data->dokter->name }}
+                                    {{ $data->dokter->name }}
                                 </td>
                             </tr>
                             <tr class="row">

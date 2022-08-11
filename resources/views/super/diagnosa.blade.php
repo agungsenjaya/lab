@@ -93,7 +93,7 @@
                                     <td class="col-4">Dokter</td>
                                     <td>:</td>
                                     <td class="text-capitalize col">
-                                        Dr. {{ $data->dokter->name }}
+                                        {{ $data->dokter->name }}
                                     </td>
                                 </tr>
                                 <tr class="d-flex">

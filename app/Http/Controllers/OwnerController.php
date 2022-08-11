@@ -154,7 +154,7 @@ class OwnerController extends Controller
             $data->name = $request->name; 
             $data->email = $request->email; 
             if ($request->password) {
-                $dat =  Validator::make($request->password, [
+                $dat =  Validator::make($request->all(), [
                     'password' => ['required', 'string', 'confirmed'],
                 ]);
                 if ($dat->fails()) {
@@ -316,7 +316,7 @@ class OwnerController extends Controller
         return $pdf
         ->setPaper('a4')
         ->setOrientation('portrait')
-        ->setOption('margin-top', '25mm')
+        ->setOption('margin-top', '35mm')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')
@@ -360,7 +360,7 @@ class OwnerController extends Controller
         return $pdf
         ->setPaper('a4')
         ->setOrientation('portrait')
-        ->setOption('margin-top', '25mm')
+        ->setOption('margin-top', '35mm')
         ->setOption('header-font-name','Verdana')
         ->setOption('footer-font-name','Verdana')
         ->setOption('header-font-size','6')
